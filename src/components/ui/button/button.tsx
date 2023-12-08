@@ -1,18 +1,27 @@
-import { ComponentPropsWithoutRef } from 'react'
+import { ComponentPropsWithoutRef, ElementType } from 'react'
 
 import s from './button.module.scss'
 
-export type ButtonProps = {
-    /**
-     * add width: 100% to the 'button' el */
-    variant?: 'primary' | 'secondary' | 'tertiary' | 'link'
-    fullWidth?: boolean
-} & ComponentPropsWithoutRef<'button'> //это пропсы, которые принимает стандартный html-тег button, мы их расширяем своими пропсами
+export type ButtonProps<T extends ElementType> = {
+  /**
+   * add width: 100% to the 'button' el */
+  as?: T
+  fullWidth?: boolean
+  variant?: 'link' | 'primary' | 'secondary' | 'tertiary'
+} & ComponentPropsWithoutRef<T> //это пропсы, которые принимает стандартный html-тег button, мы их расширяем своими пропсами (сейчас это уже дженерик)
 /**
  * js doc - Button component description */
-export const Button = ({ variant = 'primary', fullWidth, className, ...rest }: ButtonProps) => {
+export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) => {
+  const {
+    as: Component = 'button' /*на месте проинициализировали */,
 
-    return (
-        <button className={`${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className}`} {...rest} />
-    )
+    className,
+    fullWidth,
+    variant = 'primary',
+    ...rest
+  } = props
+
+  return (
+    <Component className={`${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className}`} {...rest} />
+  )
 }

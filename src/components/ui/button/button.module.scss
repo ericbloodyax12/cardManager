@@ -1,19 +1,117 @@
+.button {
+  all: unset;
+
+  cursor: pointer;
+  user-select: none;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  padding: 6px 28px;
+
+  text-decoration: none;
+
+  background-color: transparent;
+  border: none;
+  border-radius: 4px;
+
+  transition: var(--transition-duration-basic) background-color;
+
+  &:focus {
+    outline: 2px solid var(--color-info-700);
+  }
+}
+
 .primary {
-  background-color: red;
+  color: var(--color-light-100);
+  background-color: var(--color-accent-500);
+  box-shadow: 0 4px 18px 0 rgb(140 97 255 / 35%);
+
+  &:active:enabled {
+    background-color: var(--color-accent-700);
+  }
+
+  &:hover:enabled {
+    background-color: var(--color-accent-300);
+  }
+
+  &_disabled {
+    color: var(--color-light-900);
+    background-color: var(--color-accent-900);
+  }
 }
 
 .secondary {
-  background-color: green;
+  color: var(--color-light-100);
+  background-color: var(--color-dark-300);
+  box-shadow: 0 2px 10px 0 rgb(109 109 109 / 25%);
+
+  &:active:enabled {
+    background-color: var(--color-dark-500);
+  }
+
+  &:hover:enabled {
+    background-color: var(--color-dark-100);
+  }
+
+  &_disabled {
+    color: var(--color-light-900);
+  }
 }
 
 .tertiary {
-  background-color: blue;
+  color: var(--color-accent-500);
+  background-color: transparent;
+  border: 1px var(--color-accent-500) solid;
+
+  &:focus {
+    background-color: var(--color-dark-900);
+  }
+
+  &:active:enabled {
+    background-color: var(--color-accent-900);
+    border-color: var(--color-accent-700);
+  }
+
+  &:hover:enabled {
+    background-color: var(--color-dark-500);
+    border-color: var(--color-accent-700);
+  }
+
+  &_disabled {
+    color: var(--color-accent-900);
+    border-color: var(--color-accent-900);
+  }
 }
 
 .link {
-  background-color: yellow;
+  //color: var(--color-accent-500);
+
+  &:focus {
+    border-radius: 24px;
+  }
+
+  &:active:enabled {
+    color: var(--color-accent-700);
+  }
+
+  &:hover:enabled {
+    color: var(--color-accent-300);
+  }
+
+  &_disabled {
+    color: var(--color-accent-900);
+  }
 }
 
 .fullWidth {
   width: 100%;
+}
+
+.disabled {
+  cursor: default;
 }

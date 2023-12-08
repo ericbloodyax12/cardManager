@@ -1,7 +1,7 @@
 import type { Preview } from '@storybook/react'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/700.css'
-// import '@/styles/index' todo падает ошибка динамических импортов в StoryBook (по методичке импорт требуется)
+import '../src/styles/index.scss'
 
 const preview: Preview = {
   parameters: {
