@@ -13,8 +13,7 @@ export type ButtonProps<T extends ElementType> = {
  * js doc - Button component description */
 export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) => {
   const {
-    as: Component = 'button' /*на месте проинициализировали */,
-
+    as: Component = 'button' /* инициализация с переименованием */,
     className,
     fullWidth,
     variant = 'primary',
