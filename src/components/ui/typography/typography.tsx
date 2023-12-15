@@ -20,7 +20,7 @@ export type TypographyProps<T extends ElementType> = {
     | 'overline'
     | 'subtitle1'
     | 'subtitle2'
-} & ComponentPropsWithoutRef<T> //это пропсы, которые принимает стандартный html-тег button, мы их расширяем своими пропсами (сейчас это уже дженерик)
+} & ComponentPropsWithoutRef<T> //это пропсы, которые принимает стандартный html-тег 'X', мы их расширяем своими пропсами (сейчас это уже дженерик)
 /**
  * js doc - Typography component description */
 export const Typography = <T extends ElementType = 'button'>(props: TypographyProps<T>) => {
@@ -31,5 +31,5 @@ export const Typography = <T extends ElementType = 'button'>(props: TypographyPr
     ...rest
   } = props
 
-  return <Component className={`${s[variant]} ${className}`} {...rest} />
+  return <Component className={`${s[variant]} ${s.typography} ${className}`} {...rest} />
 }

@@ -18,7 +18,11 @@ export function App() {
       <Typography as={'a'} href={'https://www.youtube.com'} variant={'link1'}>
         sdssssssssd
       </Typography>
+      <Typography as={'a'} href={'https://www.youtube.com'} variant={'link2'}>
+        1sdssssssssd
+      </Typography>
       <Typography variant={'body1'}>sdssd</Typography>
+      <Typography variant={'body2'}>sdssd</Typography>
     </div>
   )
 }
