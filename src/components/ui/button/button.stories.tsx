@@ -33,7 +33,7 @@ export const PrimaryButtonWithIcon: Story = {
     variant: 'primary',
   },
 }
-PrimaryButtonWithIcon.storyName = 'Primary Button with Typography'
+PrimaryButtonWithIcon.storyName = 'Primary Button with Icon'
 export const Secondary: Story = {
   args: {
     children: 'Secondary Button',
