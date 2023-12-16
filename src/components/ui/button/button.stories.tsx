@@ -1,4 +1,4 @@
-import LogoutIcon from '@/components/assets/icons/logout.svg'
+import LogoutIcon from '@/components/assets/icons/svgIcon/logout.svg'
 import { Meta, StoryObj } from '@storybook/react'
 
 import { Button } from './'
