@@ -3,6 +3,7 @@ import React from 'react'
 import { App } from '@/App'
 import ReactDOM from 'react-dom/client'
 
+import '../src/styles/index.scss'
 import './styles/index.scss'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/700.css'

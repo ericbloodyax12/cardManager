@@ -1,6 +1,6 @@
 html {
   box-sizing: border-box;
-  font-size: 100%;
+  font-size: 100%; // 16px: 1rem
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -22,10 +22,6 @@ option {
   font-size: inherit;
   font-weight: inherit;
   font-style: inherit;
-  color: inherit;
-}
-
-a:visited {
   color: inherit;
 }
 
