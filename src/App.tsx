@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
-
 export function App() {
   return (
     <div>
@@ -12,17 +11,9 @@ export function App() {
       >
         sdsdsd
       </Button>
-      Hello world
-      <Typography variant={'large'}>sdssd</Typography>
-      <Typography variant={'h1'}>sdssd</Typography>
-      <Typography as={'a'} href={'https://www.youtube.com'} variant={'link1'}>
-        sdssssssssd
-      </Typography>
-      <Typography as={'a'} href={'https://www.youtube.com'} variant={'link2'}>
-        1sdssssssssd
-      </Typography>
-      <Typography variant={'body1'}>sdssd</Typography>
-      <Typography variant={'body2'}>sdssd</Typography>
+      <Button>
+        <Typography variant={'body1'}>button2</Typography>
+      </Button>
     </div>
   )
 }

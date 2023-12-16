@@ -2,6 +2,10 @@
   font-family: var(--font-family-primary);
 }
 
+p {
+  all: unset;
+}
+
 .large {
   font-size: var(--font-size-xxl);
   font-weight: var(--font-weight-bold);

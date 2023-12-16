@@ -1,0 +1,89 @@
+@import 'utils/commonTextFieldStyles';
+
+.inputContainer {
+  position: relative;
+  width: 284px;
+  height: 36px;
+  margin-top: 20px;
+}
+
+.iconbutton {
+  all: unset;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.default {
+  @include common-styles-input;
+}
+
+.password {
+  @include common-styles-input;
+
+  width: 242px;
+  padding-right: 42px; // Ширина иконки глаза + дополнительный отступ
+}
+
+.search {
+  @include common-styles-input;
+
+  width: 254px;
+  padding-left: 40px; // Это значение должно быть больше, чем левый отступ иконки
+}
+
+.icon {
+  position: absolute; // Позиционируем иконку абсолютно внутри родительского элемента
+  z-index: 1;
+  top: 50%; // Размещаем её вертикально по центру относительно родительского контейнера
+  left: 10px; // Устанавливаем её слева от поля ввода
+  transform: translateY(-50%); // Дополнительная коррекция для вертикального центрирования
+
+  width: 20px;
+  height: 20px;
+
+  color: var(--color-dark-100);
+}
+
+.eyeIcon {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: calc(100% - 20px - 10px);
+  transform: translateY(-50%);
+
+  width: 20px;
+  height: 20px;
+
+  color: var(--color-dark-100);
+
+  &:focus-visible {
+    outline: var(--outline-focus);
+  }
+}
+
+.label {
+  position: absolute;
+  bottom: 33px; // Разместить над контейнером
+  left: 0; // Разместить слева
+
+  width: 32px;
+  height: 24px;
+
+  color: var(--color-dark-100);
+}
+
+.error {
+  color: var(--color-danger-300);
+  border-color: var(--color-danger-300);
+
+  &:focus {
+    background-color: transparent;
+    border: 2px solid var(--color-danger-300);
+    border-radius: 2px;
+    outline: 1px solid var(--color-danger-300);
+  }
+}
+
+.fullWidth {
+  width: 100%;
+}
