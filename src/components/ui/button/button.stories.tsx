@@ -1,4 +1,4 @@
-import { Typography } from '@/components/ui/typography'
+import LogoutIcon from '@/components/assets/icons/logout.svg'
 import { Meta, StoryObj } from '@storybook/react'
 
 import { Button } from './'
@@ -25,14 +25,15 @@ export const Primary: Story = {
   },
 }
 Primary.storyName = 'Primary Button' // для создания сложных имен
-export const Primary2: Story = {
+export const PrimaryButtonWithIcon: Story = {
   args: {
-    children: <Typography variant={'body1'}>Primary Button</Typography>,
+    children: 'sasa',
     disabled: false,
+    icon: LogoutIcon,
     variant: 'primary',
   },
 }
-Primary2.storyName = 'Primary Button with Typography'
+PrimaryButtonWithIcon.storyName = 'Primary Button with Typography'
 export const Secondary: Story = {
   args: {
     children: 'Secondary Button',
