@@ -1,3 +1,4 @@
+import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
 export function App() {
   return (
@@ -6,6 +7,7 @@ export function App() {
         Carosserie Test Zürich Stauffacherstrasse 31 8004 Zürich, ZH, CH
       </Typography>
       <br />
+      <TextField variant={'default'} />
     </div>
   )
 }
