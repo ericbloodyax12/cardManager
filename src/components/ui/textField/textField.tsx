@@ -36,7 +36,7 @@ export const TextField = forwardRef<HTMLInputElement, InputProps>((props, ref) =
 
   return (
     <div className={`${s.inputContainer} ${fullWidth ? s.fullWidth : ''}`}>
-      <Typography as={'label'} className={s.label} variant={'body2'}>
+      <Typography as={'p'} className={s.label} variant={'body2'}>
         {label}
       </Typography>
       {variant === 'search' && <SearchIcon className={s.icon} />}
