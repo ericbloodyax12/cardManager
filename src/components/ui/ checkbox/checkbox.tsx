@@ -7,7 +7,6 @@ import * as Checkbox from '@radix-ui/react-checkbox'
 import s from './checkbox.module.scss'
 
 type CheckboxComponentProps = {
-  variant?: 'withLabel' | 'withoutLabel' // без него сторибук жалуется
   withLabel?: boolean
 }
 export const CheckboxComponent = (props: CheckboxComponentProps) => {

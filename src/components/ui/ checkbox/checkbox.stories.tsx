@@ -2,12 +2,7 @@ import { CheckboxComponent } from '@/components/ui/ checkbox/checkbox'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  argTypes: {
-    variant: {
-      control: { type: 'radio' },
-      options: ['withLabel', 'withoutLabel'],
-    },
-  },
+  argTypes: {},
   component: CheckboxComponent,
   tags: ['autodocs'],
   title: 'Components/UI/CheckboxComponent',
