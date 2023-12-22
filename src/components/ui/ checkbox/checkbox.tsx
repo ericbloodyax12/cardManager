@@ -24,7 +24,7 @@ export const CheckboxComponent = (props: CheckboxComponentProps) => {
           onCheckedChange={setChecked}
         >
           <Checkbox.Indicator className={s.CheckboxIndicator} forceMount>
-            {/* forceMount свойство, которое не дает исчезать после checked */}
+            {/* forceMount свойство, которое не дает исчезать после checked, нужно до конца разобраться потому что сейчас и без него работает  */}
             {checked === true ? <CheckIcon /> : ''}
           </Checkbox.Indicator>
         </Checkbox.Root>
