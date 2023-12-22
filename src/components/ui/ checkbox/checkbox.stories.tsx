@@ -5,7 +5,7 @@ const meta = {
   argTypes: {
     variant: {
       control: { type: 'radio' },
-      options: ['primary'],
+      options: ['withLabel', 'withoutLabel'],
     },
   },
   component: CheckboxComponent,
@@ -16,9 +16,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const WithoutLabel: Story = {
   args: {
-    children: 'Default',
-    disabled: false,
+    withLabel: false,
+  },
+}
+export const WithLabel: Story = {
+  args: {
+    withLabel: true,
   },
 }

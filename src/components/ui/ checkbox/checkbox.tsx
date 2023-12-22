@@ -1,16 +1,22 @@
 import { useState } from 'react'
 
 import { CheckIcon } from '@/components/assets/icons/componentSvg/check'
+import { Typography } from '@/components/ui/typography'
 import * as Checkbox from '@radix-ui/react-checkbox'
 
 import s from './checkbox.module.scss'
 
-export const CheckboxComponent = () => {
+type CheckboxComponentProps = {
+  variant?: 'withLabel' | 'withoutLabel' // без него сторибук жалуется
+  withLabel?: boolean
+}
+export const CheckboxComponent = (props: CheckboxComponentProps) => {
   const [checked, setChecked] = useState<'indeterminate' | boolean>(false)
+  const { withLabel = false } = props
 
   return (
     <form>
-      <div style={{ alignItems: 'center', display: 'flex' }}>
+      <div>
         <Checkbox.Root
           checked={checked}
           className={s.CheckboxRoot}
@@ -19,13 +25,15 @@ export const CheckboxComponent = () => {
           onCheckedChange={setChecked}
         >
           <Checkbox.Indicator className={s.CheckboxIndicator} forceMount>
-            {/*forceMount*/}
-            {checked === true ? <CheckIcon /> : <CheckIcon />}
+            {/* forceMount свойство, которое не дает исчезать после checked */}
+            {checked === true ? <CheckIcon /> : ''}
           </Checkbox.Indicator>
         </Checkbox.Root>
-        <label className={'s.Label'} htmlFor={'c1'}>
-          Accept terms and conditions.
-        </label>
+        {withLabel && (
+          <label className={'s.Label'} htmlFor={'c1'}>
+            <Typography>Accept terms and conditions.</Typography>
+          </label>
+        )}
       </div>
     </form>
   )
