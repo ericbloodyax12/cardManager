@@ -20,14 +20,12 @@
 .password {
   @include common-styles-input;
 
-  width: 242px;
-  padding-right: 42px; // Ширина иконки глаза + дополнительный отступ
+  padding-right: 40px; // Ширина иконки глаза + дополнительный отступ
 }
 
 .search {
   @include common-styles-input;
 
-  width: 254px;
   padding-left: 40px; // Это значение должно быть больше, чем левый отступ иконки
 }
 

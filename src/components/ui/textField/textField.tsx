@@ -17,7 +17,16 @@ export type InputProps = {
 } & ComponentPropsWithoutRef<'input'>
 
 export const TextField = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { className, errorMessage, fullWidth, label, search, variant = 'default', ...rest } = props
+  const {
+    children,
+    className,
+    errorMessage,
+    fullWidth,
+    label,
+    search,
+    variant = 'default',
+    ...rest
+  } = props
   const [isShowPassword, setIsShowPassword] = useState(false)
   // const isPassword = type === 'password'
   // const iconToRender = getIcon(isPassword, isShowPassword)
@@ -46,7 +55,9 @@ export const TextField = forwardRef<HTMLInputElement, InputProps>((props, ref) =
         {...rest}
         ref={ref}
       />
-
+      <Typography as={'p'} variant={'body1'}>
+        {children}
+      </Typography>
       <button
         className={s.iconbutton} // inputContainer--icon-button
         onClick={() => {
