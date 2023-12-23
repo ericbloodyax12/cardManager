@@ -2,9 +2,9 @@ export const CheckIcon = () => {
   return (
     <svg
       fill={'none'}
-      height={18}
+      height={19}
       viewBox={'0 0 18 18'}
-      width={18}
+      width={19}
       xmlns={'http://www.w3.org/2000/svg'}
     >
       <path
