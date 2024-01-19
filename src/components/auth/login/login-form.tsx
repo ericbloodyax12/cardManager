@@ -11,7 +11,14 @@ type FormValues = {
 }
 
 export const LoginForm = () => {
-  const { control, handleSubmit, register } = useForm<FormValues>()
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+    register,
+  } = useForm<FormValues>()
+
+  console.log(errors)
 
   const onSubmit = (data: FormValues) => {
     console.log(data)
@@ -22,8 +29,23 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <TextField {...register('email')} label={'email'} />
-      <TextField {...register('password')} label={'password'} variant={'password'} />
+      <TextField
+        {...register('email', {
+          pattern: { message: 'Invalid email', value: emailRegex },
+          required: 'Email is required',
+        })}
+        errorMessage={errors.email?.message}
+        label={'email'}
+      />
+      <TextField
+        {...register('password', {
+          minLength: { message: 'Password has to be at least 3 characters long', value: 3 },
+          required: 'Password is required',
+        })}
+        errorMessage={errors.password?.message}
+        label={'password'}
+        variant={'password'}
+      />
       <CheckboxComponent
         checked={value}
         label={'remember me'}
@@ -34,3 +56,6 @@ export const LoginForm = () => {
     </form>
   )
 }
+
+const emailRegex =
+  /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/
