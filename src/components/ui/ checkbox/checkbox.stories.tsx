@@ -18,6 +18,7 @@ export const WithoutLabel: Story = {
 }
 export const WithLabel: Story = {
   args: {
+    label: 'login',
     withLabel: true,
   },
 }
