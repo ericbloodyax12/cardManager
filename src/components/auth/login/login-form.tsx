@@ -18,14 +18,12 @@ export const LoginForm = () => {
     register,
   } = useForm<FormValues>()
 
-  console.log(errors)
-
   const onSubmit = (data: FormValues) => {
     console.log(data)
   }
   const {
     field: { onChange, value },
-  } = useController({ control, defaultValue: false, name: 'rememberMe' })
+  } = useController({ control, defaultValue: false, name: 'rememberMe' }) // Это происходит из-за того что чекбокс из radix ui не совместим напрямую с register(). Что бы это исправить, воспользуемся хуком useController из react-hook-form:
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

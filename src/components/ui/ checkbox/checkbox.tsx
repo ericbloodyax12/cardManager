@@ -12,20 +12,29 @@ type CheckboxComponentProps = {
   withLabel?: boolean
 } & CheckboxProps
 export const CheckboxComponent = (props: CheckboxComponentProps) => {
-  const [value, setChecked] = useState<boolean>(false)
   const { label = '', withLabel = false, ...rest } = props
+  const { checked, onCheckedChange } = props
+  const [checkBoxValue, setCheckBoxValue] = useState<boolean>(checked as boolean)
+  const checkBoxStateInfo = {
+    changeCallBack: onCheckedChange ? onCheckedChange : setCheckBoxValue,
+    value: checked ? checked : checkBoxValue,
+  }
+
+  console.log('checked:', checked)
 
   return (
     <div className={s.checkboxContainer}>
       <Checkbox.Root
-        checked={value}
+        checked={checkBoxStateInfo.value}
         className={s.CheckboxRoot}
         id={'c1'}
-        onCheckedChange={setChecked as (checked: 'indeterminate' | boolean) => void}
+        onCheckedChange={() =>
+          checkBoxStateInfo.changeCallBack(!checkBoxStateInfo.value as boolean)
+        }
         {...rest}
       >
         <Checkbox.Indicator className={s.CheckboxIndicator}>
-          {value === true ? <CheckIcon /> : ''}
+          {checkBoxStateInfo.value === true ? <CheckIcon /> : ''}
         </Checkbox.Indicator>
       </Checkbox.Root>
       {withLabel && (
