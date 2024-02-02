@@ -8,29 +8,39 @@ import { CheckboxProps } from '@radix-ui/react-checkbox'
 import s from './checkbox.module.scss'
 
 type CheckboxComponentProps = {
+  label?: string
   withLabel?: boolean
 } & CheckboxProps
 export const CheckboxComponent = (props: CheckboxComponentProps) => {
-  const [checked, setChecked] = useState<boolean>(false)
-  const { withLabel = false, ...rest } = props
+  const { label = '', withLabel = false, ...rest } = props
+  const { checked, onCheckedChange } = props
+  const [checkBoxValue, setCheckBoxValue] = useState<boolean>(checked as boolean)
+  const checkBoxStateInfo = {
+    changeCallBack: onCheckedChange ? onCheckedChange : setCheckBoxValue,
+    value: checked ? checked : checkBoxValue,
+  }
+
+  console.log('checked:', checked)
 
   return (
     <div className={s.checkboxContainer}>
       <Checkbox.Root
-        checked={checked}
+        checked={checkBoxStateInfo.value}
         className={s.CheckboxRoot}
         id={'c1'}
-        onCheckedChange={setChecked as (checked: 'indeterminate' | boolean) => void}
+        onCheckedChange={() =>
+          checkBoxStateInfo.changeCallBack(!checkBoxStateInfo.value as boolean)
+        }
         {...rest}
       >
         <Checkbox.Indicator className={s.CheckboxIndicator}>
-          {checked === true ? <CheckIcon /> : ''}
+          {checkBoxStateInfo.value === true ? <CheckIcon /> : ''}
         </Checkbox.Indicator>
       </Checkbox.Root>
       {withLabel && (
         <label className={s.Label} htmlFor={'c1'}>
-          <Typography as={'p'} variant={'body2'}>
-            Accept terms and conditions.
+          <Typography as={'label'} variant={'body2'}>
+            {label}
           </Typography>
         </label>
       )}

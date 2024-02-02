@@ -21,11 +21,15 @@ export type TypographyProps<T extends ElementType> = {
         | 'overline'
         | 'subtitle1'
         | 'subtitle2'
+    : T extends 'label'
+    ? 'body2'
     : never
 } & ComponentPropsWithoutRef<T> //это пропсы, которые принимает стандартный html-тег 'X', мы их расширяем своими пропсами (сейчас это уже дженерик)
 /**
  * js doc - Typography component description */
-export const Typography = <T extends ElementType = 'a' | 'p'>(props: TypographyProps<T>) => {
+export const Typography = <T extends ElementType = 'a' | 'label' | 'p'>(
+  props: TypographyProps<T>
+) => {
   const {
     as: Component = 'p' /* инициализация с переименованием */,
     className,
