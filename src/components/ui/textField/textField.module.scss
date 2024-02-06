@@ -7,10 +7,14 @@
   margin-top: 20px;
 }
 
-.iconbutton {
+.inputContainer_icon-button {
   all: unset;
   cursor: pointer;
   background-color: transparent;
+
+  &:focus {
+    all: unset;
+  }
 }
 
 .default {
