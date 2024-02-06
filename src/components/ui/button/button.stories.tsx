@@ -1,4 +1,3 @@
-import LogoutIcon from '@/components/assets/icons/svgIcon/logout.svg'
 import { Meta, StoryObj } from '@storybook/react'
 
 import { Button } from './'
@@ -27,10 +26,10 @@ export const Primary: Story = {
 Primary.storyName = 'Primary Button' // для создания сложных имен
 export const PrimaryButtonWithIcon: Story = {
   args: {
-    children: 'sasa',
+    children: 'Primary Button with Icon',
     disabled: false,
-    icon: LogoutIcon,
     variant: 'primary',
+    withIcon: true,
   },
 }
 PrimaryButtonWithIcon.storyName = 'Primary Button with Icon'
