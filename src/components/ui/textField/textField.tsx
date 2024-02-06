@@ -59,8 +59,9 @@ export const TextField = forwardRef<HTMLInputElement, InputProps>((props, ref) =
         {children}
       </Typography>
       <button
-        className={s.iconbutton} // inputContainer--icon-button
-        onClick={() => {
+        className={s['inputContainer_icon-button']} // inputContainer--icon-button
+        onClick={e => {
+          e.preventDefault()
           setIsShowPassword(value => !value)
         }}
       >
