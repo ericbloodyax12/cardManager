@@ -18,7 +18,7 @@ export const WithoutLabel: Story = {
 }
 export const WithLabel: Story = {
   args: {
-    label: 'login',
+    label: 'Check me',
     withLabel: true,
   },
 }
