@@ -1,10 +1,5 @@
-import { LoginForm } from '@/components/auth/login/login-form'
+import { Router } from '@/router'
 
 export function App() {
-  return (
-    <div>
-      <LoginForm />
-    </div>
-  )
+  return <Router />
 }
-// test commit
