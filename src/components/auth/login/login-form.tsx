@@ -1,5 +1,6 @@
 import { useController, useForm } from 'react-hook-form'
 
+import { loginSchema } from '@/components/auth/login/helpers/loginSchema'
 import { CheckboxComponent } from '@/components/ui/ checkbox/checkbox'
 import { Button } from '@/components/ui/button'
 import { TextField } from '@/components/ui/textField'
@@ -8,13 +9,7 @@ import { z } from 'zod'
 
 import s from './login-form.module.scss'
 
-const loginSchema = z.object({
-  email: z.string().trim().email(), // required by default
-  password: z.string().min(3),
-  rememberMe: z.boolean().default(false),
-})
-
-type FormValues = z.infer<typeof loginSchema> // Для того что бы не писать типы для формы вручную - z.infer
+export type FormValuesType = z.infer<typeof loginSchema> // Для того что бы не писать типы для формы вручную - z.infer
 
 export const LoginForm = () => {
   const {
@@ -22,14 +17,14 @@ export const LoginForm = () => {
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm<FormValues>({
+  } = useForm<FormValuesType>({
     defaultValues: {
       rememberMe: false,
     },
     resolver: zodResolver(loginSchema),
   })
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = (data: FormValuesType) => {
     console.log(data)
   }
   const {
