@@ -7,6 +7,8 @@ import {
   useParams,
 } from 'react-router-dom'
 
+import { LoginForm } from '@/components/auth/login/login-form'
+
 const pathParams = {
   premiumUserID: 'premiumUserID',
 }
@@ -19,7 +21,7 @@ function PremiumContent() {
 
 const publicRoutes: RouteObject[] = [
   {
-    element: <div>login</div>,
+    element: <LoginForm />,
     path: '/login',
   },
 ]
@@ -33,7 +35,7 @@ const premiumRoutes: RouteObject[] = [
   {
     element: (
       <div>
-        The contet for Premium users
+        The content for Premium users
         <PremiumContent />
       </div>
     ),
@@ -59,15 +61,12 @@ export const Router = () => {
 function PrivateRoutes() {
   const isAuthenticated = true // этот флаг мы берем из хука из rtk query
 
-  console.log('PrivateRoutes')
-
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} /> // Outlet спец react routers component, который рендрит чилдренов которые есть в текущем роуте
 }
 function PremiumRoutes() {
-  const isPremium = true
+  const isPremium = false
   const isAuthenticated = true
 
-  console.log('PremiumRoutes')
   if (!isAuthenticated) {
     return <Navigate to={'login'} />
   }
