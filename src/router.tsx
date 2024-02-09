@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom'
 
 import { LoginForm } from '@/components/auth/login/login-form'
+import { Decks } from '@/pages/decks'
 
 const pathParams = {
   premiumUserID: 'premiumUserID',
@@ -27,7 +28,7 @@ const publicRoutes: RouteObject[] = [
 ]
 const privateRoutes: RouteObject[] = [
   {
-    element: <div>hello</div>,
+    element: <Decks />,
     path: '/',
   },
 ]
