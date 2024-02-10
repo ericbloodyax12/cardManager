@@ -12,7 +12,14 @@ type CheckboxComponentProps = {
   withLabel?: boolean
 } & CheckboxProps
 export const CheckboxComponent = (props: CheckboxComponentProps) => {
-  const { checked, className, label = '', onCheckedChange, withLabel = false, ...rest } = props
+  const {
+      checked,
+      className,
+      label = '',
+      onCheckedChange,
+      withLabel = false,
+      ...rest
+  } = props
   const [checkBoxValue, setCheckBoxValue] = useState<boolean>(!!checked)
 
   // useEffect(() => {
@@ -28,10 +35,10 @@ export const CheckboxComponent = (props: CheckboxComponentProps) => {
         className={`${s.CheckboxRoot} ${className}`}
         id={'c1'}
         onCheckedChange={checked => {
-          const value = !!checked
+          // const value = !!checked
 
           onCheckedChange?.(checked)
-          setCheckBoxValue(value)
+          setCheckBoxValue(!!checked)
         }}
         {...rest}
       >

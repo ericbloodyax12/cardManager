@@ -1,13 +1,14 @@
-import { useController, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 import { loginSchema } from '@/components/auth/login/helpers/loginSchema'
-import { CheckboxComponent } from '@/components/ui/ checkbox/checkbox'
+
 import { Button } from '@/components/ui/button'
 import { TextField } from '@/components/ui/textField'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import s from './login-form.module.scss'
+import {ControlledCheckboxComponent} from "@/components/ui/controlled/controlledCheckBox/controlledCheckboxComponent";
 
 export type FormValuesType = z.infer<typeof loginSchema> // Для того что бы не писать типы для формы вручную - z.infer
 
@@ -27,10 +28,7 @@ export const LoginForm = () => {
   const onSubmit = (data: FormValuesType) => {
     console.log(data)
   }
-  const {
-    field: { onChange, value },
-  } = useController({ control, defaultValue: false, name: 'rememberMe' }) // Используем useController из-за того что чекбокс из radix ui не совместим напрямую с register(). Что бы это исправить, воспользуемся хуком useController из react-hook-form:
-
+    console.log(control)
   return (
     <form className={s.fromContainer} onSubmit={handleSubmit(onSubmit)}>
       <TextField
@@ -46,13 +44,7 @@ export const LoginForm = () => {
         label={'password'}
         variant={'password'}
       />
-      <CheckboxComponent
-        checked={value}
-        className={s.checkbox}
-        label={'remember me'}
-        onCheckedChange={onChange}
-        withLabel
-      />
+        <ControlledCheckboxComponent control={control}/>
       <Button className={s.submit} type={'submit'}>
         Submit
       </Button>
