@@ -7,8 +7,10 @@ import {
   useParams,
 } from 'react-router-dom'
 
-import { LoginForm } from '@/components/auth/login/login-form'
 import { Decks } from '@/pages/decks'
+import {Login} from "@/pages/publicPages/login";
+import {SignUp} from "@/pages/publicPages/signUp";
+import {RecoveryPage} from "@/pages/publicPages/recoveryPage";
 
 const pathParams = {
   premiumUserID: 'premiumUserID',
@@ -22,15 +24,29 @@ function PremiumContent() {
 
 const publicRoutes: RouteObject[] = [
   {
-    element: <LoginForm />,
+    element: <Login/>,
     path: '/login',
   },
+  {
+    element: <SignUp/>,
+    path: '/sign_up',
+  },
+  {
+    element: <RecoveryPage/>,
+    path: '/recovery_page',
+  },
+
 ]
 const privateRoutes: RouteObject[] = [
   {
-    element: <Decks />,
-    path: '/',
+    element: <div>error 404</div>,
+    path: '/*'
   },
+  {
+    element: <Decks />,
+    path: '/decks',
+  },
+
 ]
 const premiumRoutes: RouteObject[] = [
   {
@@ -53,19 +69,24 @@ const router = createBrowserRouter([
   {
     children: premiumRoutes,
     element: <PremiumRoutes />,
-  },
+  }
 ])
 
 export const Router = () => {
   return <RouterProvider router={router} />
 }
 function PrivateRoutes() {
+  console.log("PrivateRoutes")
   const isAuthenticated = true // этот флаг мы берем из хука из rtk query
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} /> // Outlet спец react routers component, который рендрит чилдренов которые есть в текущем роуте
 }
+
+
+
 function PremiumRoutes() {
-  const isPremium = false
+  console.log('PremiumRoutes')
+  const isPremium = true
   const isAuthenticated = true
 
   if (!isAuthenticated) {

@@ -9,10 +9,15 @@ import { z } from 'zod'
 
 import s from './login-form.module.scss'
 import {ControlledCheckboxComponent} from "@/components/ui/controlled/controlledCheckBox/controlledCheckboxComponent";
+import {Typography} from "@/components/ui/typography";
+import { useNavigate} from "react-router-dom";
+
 
 export type FormValuesType = z.infer<typeof loginSchema> // Для того что бы не писать типы для формы вручную - z.infer
 
 export const LoginForm = () => {
+
+    const navigate = useNavigate()
   const {
     control,
     formState: { errors },
@@ -29,6 +34,9 @@ export const LoginForm = () => {
     console.log(data)
   }
     console.log(control)
+    console.log(s.forgotPassword)
+
+
   return (
     <form className={s.fromContainer} onSubmit={handleSubmit(onSubmit)}>
       <TextField
@@ -48,6 +56,12 @@ export const LoginForm = () => {
       <Button className={s.submit} type={'submit'}>
         Submit
       </Button>
+
+          <Typography variant={'body2'} className={s.forgotPassword}>Forgot Password?</Typography>
+
+
+           <Typography as={"a"} variant={'link1'} onClick={() => { navigate('/sign_up')} }>Sign Up</Typography>
+
     </form>
   )
 }

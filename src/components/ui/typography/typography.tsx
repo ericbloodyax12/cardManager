@@ -33,7 +33,7 @@ export const Typography = <T extends ElementType = 'a' | 'label' | 'p'>(
   const {
     as: Component = 'p' /* инициализация с переименованием */,
     className,
-    variant = 'primary',
+    variant = 'body2',
     ...rest
   } = props
 
