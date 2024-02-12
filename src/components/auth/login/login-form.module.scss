@@ -15,4 +15,13 @@
 
 .forgotPassword {
   cursor: pointer;
+  color: var(--color-light-700);
+
+  &:hover {
+    color: var(--color-light-100);
+  }
+}
+
+.signUp:hover {
+  color: var(--color-info-100);
 }

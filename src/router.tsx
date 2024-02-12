@@ -39,12 +39,12 @@ const publicRoutes: RouteObject[] = [
 ]
 const privateRoutes: RouteObject[] = [
   {
-    element: <div>error 404</div>,
-    path: '/*'
+    element: <Decks />,
+    path: '/',
   },
   {
-    element: <Decks />,
-    path: '/decks',
+    element: <div>error 404</div>,
+    path: '/*'
   },
 
 ]
