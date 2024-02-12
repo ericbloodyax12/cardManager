@@ -17,7 +17,7 @@ export type FormValuesType = z.infer<typeof loginSchema> // Для того чт
 
 export const LoginForm = () => {
 
-    const navigate = useNavigate()
+  const navigate = useNavigate()
   const {
     control,
     formState: { errors },
@@ -57,10 +57,9 @@ export const LoginForm = () => {
         Submit
       </Button>
 
-          <Typography variant={'body2'} className={s.forgotPassword}>Forgot Password?</Typography>
+          <Typography variant={'body2'} className={s.forgotPassword} onClick={() => {navigate('/recovery_page')}} >Forgot Password?</Typography>
 
-
-           <Typography as={"a"} variant={'link1'} onClick={() => { navigate('/sign_up')} }>Sign Up</Typography>
+          <Typography as={"a"} variant={'link1'} className={s.signUp} onClick={() => { navigate('/sign_up')} }>Sign Up</Typography>
 
     </form>
   )
