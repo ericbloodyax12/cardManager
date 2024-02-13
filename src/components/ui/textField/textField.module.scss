@@ -68,10 +68,13 @@
   bottom: 33px; // Разместить над контейнером
   left: 0; // Разместить слева
 
+  display: flex;
+
   width: 32px;
   height: 24px;
 
   color: var(--color-dark-100);
+  white-space: nowrap;
 }
 
 .error {

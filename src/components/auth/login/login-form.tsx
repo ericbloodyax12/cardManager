@@ -41,7 +41,7 @@ export const LoginForm = () => {
   return (
       <Card className={s.cardContainer}>
           <Typography variant={"h1"}>Sign In</Typography>
-          <form className={s.fromContainer} onSubmit={handleSubmit(onSubmit)}>
+          <form className={s.formContainer} onSubmit={handleSubmit(onSubmit)}>
               <TextField
                   className={s.textField}
                   {...register('email')}
