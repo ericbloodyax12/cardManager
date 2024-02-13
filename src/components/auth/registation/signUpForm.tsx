@@ -41,7 +41,7 @@ export const SignUpForm = () => {
                 <TextField
                     className={s.textField}
                     {...register('password')}
-                    errorMessage={errors.confirmPassword?.message}
+                    errorMessage={errors.confirmPassword?.message} // todo : error message from superRefine in schema
                     label={'password'}
                     variant={'password'}
                 />
@@ -55,12 +55,13 @@ export const SignUpForm = () => {
                 <Button className={s.submit} type={'submit'} fullWidth={true}>
                     Sign Up
                 </Button>
-                <div className={s.forgotPasswordContainer}>
-                    <Typography variant={'body2'} className={s.forgotPassword} onClick={() => {
+                <div className={s.haveAccountContainer}>
+                    <Typography variant={'body2'} className={s.haveAccount} onClick={() => {
                         navigate('/login')
                     }}>Already have an account?</Typography>
                 </div>
-                <div className={s.signUpContainer}><Typography as={"a"} variant={'link1'} className={s.signUp} onClick={() => {
+                <div className={s.signInContainer}>
+                    <Typography as={"a"} variant={'link1'} className={s.signIn} onClick={() => {
                     navigate('/login')
                 }}>Sign In</Typography></div>
             </form>
