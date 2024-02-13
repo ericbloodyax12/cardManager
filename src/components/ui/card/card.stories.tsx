@@ -15,6 +15,10 @@ export default meta
 type Story = StoryObj<typeof meta>
 export const Default: Story = {
     args: {
-        children: <Typography variant={'large'}>Card</Typography>
+        children: <Typography variant={'large'}>Card</Typography>,
+        style: {
+            width: '420px',
+            height: '552px',
+        }
     },
 }
