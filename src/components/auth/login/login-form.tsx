@@ -59,10 +59,14 @@ export const LoginForm = () => {
               <Button className={s.submit} type={'submit'} fullWidth={true}>
                   Submit
               </Button>
-
-              <Typography variant={'body2'} className={s.forgotPassword} onClick={() => {navigate('/recovery_page')}} >Forgot Password?</Typography>
-
-              <Typography as={"a"} variant={'link1'} className={s.signUp} onClick={() => { navigate('/sign_up')} }>Sign Up</Typography>
+              <div className={s.forgotPasswordContainer}>
+                  <Typography variant={'body2'} className={s.forgotPassword} onClick={() => {
+                      navigate('/recovery_page')
+                  }}>Forgot Password?</Typography>
+              </div>
+              <div className={s.signUpContainer}><Typography as={"a"} variant={'link1'} className={s.signUp} onClick={() => {
+                  navigate('/sign_up')
+              }}>Sign Up</Typography></div>
 
           </form>
       </Card>
