@@ -9,9 +9,10 @@ import {
 
 import { Decks } from '@/pages/decks'
 
-import {RecoveryPage} from "@/pages/publicPages/recoveryPage";
 import {SignIn} from "@/pages/publicPages/signIn/signIn";
 import {SignUp} from "@/pages/publicPages/signUp/signUp";
+import {ForgotPassword} from "@/pages/publicPages/forgotPassword/forgotPassword";
+
 
 
 
@@ -35,7 +36,7 @@ const publicRoutes: RouteObject[] = [
     path: '/sign_up',
   },
   {
-    element: <RecoveryPage/>,
+    element: <ForgotPassword/>,
     path: '/recovery_page',
   },
 
