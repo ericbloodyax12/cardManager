@@ -8,9 +8,10 @@ import {
 } from 'react-router-dom'
 
 import { Decks } from '@/pages/decks'
-import {SignUp} from "@/pages/publicPages/signUp";
+
 import {RecoveryPage} from "@/pages/publicPages/recoveryPage";
 import {SignIn} from "@/pages/publicPages/signIn/signIn";
+import {SignUp} from "@/pages/publicPages/signUp/signUp";
 
 
 

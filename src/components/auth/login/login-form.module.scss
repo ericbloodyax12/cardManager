@@ -27,10 +27,14 @@
   border-radius: 5px // TODO: крч, я уже ставил это по умолчанию в кнопке но почему то он не отображается, не понимаю почему не ловит
 }
 
-.forgotPassword {
-  cursor: pointer;
+.forgotPasswordContainer {
   display: flex;
   justify-content: end;
+}
+
+.forgotPassword {
+  cursor: pointer;
+  display: inline;
   color: var(--color-light-700);
 
   &:hover {
@@ -38,9 +42,12 @@
   }
 }
 
-.signUp {
+.signUpContainer {
   display: flex;
   justify-content: center;
+}
+
+.signUp {
   color: var(--color-accent-500);
   &:hover {color: var(--color-info-100);}
 
