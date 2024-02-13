@@ -1,3 +1,14 @@
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  place-content: center center;
+  align-items: center;
+
+  width: 420px;
+  height: 528px;
+
+}
+
 .fromContainer {
   display: flex;
   flex-direction: column;
@@ -9,12 +20,17 @@
   align-items: center;
   justify-content: center;
 
-  width: 150px;
-  height: 36px
+  //width: 150px;
+  height: 36px;
+  margin: 0 auto;
+
+  border-radius: 5px // TODO: крч, я уже ставил это по умолчанию в кнопке но почему то он не отображается, не понимаю почему не ловит
 }
 
 .forgotPassword {
   cursor: pointer;
+  display: flex;
+  justify-content: end;
   color: var(--color-light-700);
 
   &:hover {
@@ -22,6 +38,10 @@
   }
 }
 
-.signUp:hover {
-  color: var(--color-info-100);
+.signUp {
+  display: flex;
+  justify-content: center;
+  color: var(--color-accent-500);
+  &:hover {color: var(--color-info-100);}
+
 }
