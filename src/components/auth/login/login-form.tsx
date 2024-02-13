@@ -11,6 +11,7 @@ import s from './login-form.module.scss'
 import {ControlledCheckboxComponent} from "@/components/ui/controlled/controlledCheckBox/controlledCheckboxComponent";
 import {Typography} from "@/components/ui/typography";
 import {useNavigate} from "react-router-dom";
+import {Card} from "@/components/ui/card";
 
 
 
@@ -38,29 +39,33 @@ export const LoginForm = () => {
 
 
   return (
-    <form className={s.fromContainer} onSubmit={handleSubmit(onSubmit)}>
-      <TextField
-        className={s.textField}
-        {...register('email')}
-        errorMessage={errors.email?.message}
-        label={'email'}
-      />
-      <TextField
-        className={s.textField}
-        {...register('password')}
-        errorMessage={errors.password?.message}
-        label={'password'}
-        variant={'password'}
-      />
-        <ControlledCheckboxComponent control={control}/>
-      <Button className={s.submit} type={'submit'}>
-        Submit
-      </Button>
+      <Card className={s.cardContainer}>
+          <Typography variant={"h1"}>Sign In</Typography>
+          <form className={s.fromContainer} onSubmit={handleSubmit(onSubmit)}>
+              <TextField
+                  className={s.textField}
+                  {...register('email')}
+                  errorMessage={errors.email?.message}
+                  label={'email'}
+              />
+              <TextField
+                  className={s.textField}
+                  {...register('password')}
+                  errorMessage={errors.password?.message}
+                  label={'password'}
+                  variant={'password'}
+              />
+              <ControlledCheckboxComponent control={control}/>
+              <Button className={s.submit} type={'submit'} fullWidth={true}>
+                  Submit
+              </Button>
 
-          <Typography variant={'body2'} className={s.forgotPassword} onClick={() => {navigate('/recovery_page')}} >Forgot Password?</Typography>
+              <Typography variant={'body2'} className={s.forgotPassword} onClick={() => {navigate('/recovery_page')}} >Forgot Password?</Typography>
 
-          <Typography as={"a"} variant={'link1'} className={s.signUp} onClick={() => { navigate('/sign_up')} }>Sign Up</Typography>
+              <Typography as={"a"} variant={'link1'} className={s.signUp} onClick={() => { navigate('/sign_up')} }>Sign Up</Typography>
 
-    </form>
+          </form>
+      </Card>
+
   )
 }

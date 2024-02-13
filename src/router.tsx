@@ -8,9 +8,9 @@ import {
 } from 'react-router-dom'
 
 import { Decks } from '@/pages/decks'
-import {Login} from "@/pages/publicPages/login";
 import {SignUp} from "@/pages/publicPages/signUp";
 import {RecoveryPage} from "@/pages/publicPages/recoveryPage";
+import {SignIn} from "@/pages/publicPages/signIn/signIn";
 
 
 
@@ -26,7 +26,7 @@ function PremiumContent() {
 
 const publicRoutes: RouteObject[] = [
   {
-    element: <Login />,
+    element: <SignIn />,
     path: '/login',
   },
   {
