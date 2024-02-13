@@ -10,14 +10,14 @@ import { z } from 'zod'
 import s from './login-form.module.scss'
 import {ControlledCheckboxComponent} from "@/components/ui/controlled/controlledCheckBox/controlledCheckboxComponent";
 import {Typography} from "@/components/ui/typography";
-import { useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+
 
 
 export type FormValuesType = z.infer<typeof loginSchema> // Для того что бы не писать типы для формы вручную - z.infer
 
 export const LoginForm = () => {
-
-  const navigate = useNavigate()
+    const navigate = useNavigate()
   const {
     control,
     formState: { errors },

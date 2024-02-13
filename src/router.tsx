@@ -12,6 +12,8 @@ import {Login} from "@/pages/publicPages/login";
 import {SignUp} from "@/pages/publicPages/signUp";
 import {RecoveryPage} from "@/pages/publicPages/recoveryPage";
 
+
+
 const pathParams = {
   premiumUserID: 'premiumUserID',
 }
@@ -24,7 +26,7 @@ function PremiumContent() {
 
 const publicRoutes: RouteObject[] = [
   {
-    element: <Login/>,
+    element: <Login />,
     path: '/login',
   },
   {
