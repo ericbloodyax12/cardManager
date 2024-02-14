@@ -1,3 +1,9 @@
+.signUpContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+}
+
 button {
   all: unset;
 
@@ -17,7 +23,7 @@ button {
 
   background-color: transparent;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
 
   transition: var(--transition-duration-basic) background-color;
 

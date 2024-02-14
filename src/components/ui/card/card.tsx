@@ -13,11 +13,11 @@ export type CardProps = {} & ComponentPropsWithoutRef<'div'>
 // Cоздаем компонент Card с помощью функции forwardRef. Этот компонент принимает вложенный компонент с типом HTMLDivElement
 // (то есть DOM-элемент <div>) и пропсы CardProps. Внутри компонента мы достаем className и все остальные пропсы из restProps.
 // Мы также получаем ref, который будет передан из родительского компонента с использованием forwardRef.
-export const Card = forwardRef<HTMLDivElement, CardProps>(({ className, ...restProps },ref) => {
+export const Card = forwardRef<HTMLDivElement, CardProps>(({ className, children, ...restProps },ref) => {
     const classNames = {root: clsx(s.root, className)}
     return (
         <div className={classNames.root} ref={ref} {...restProps}>
-
+            {children}
         </div>
     );
 })
