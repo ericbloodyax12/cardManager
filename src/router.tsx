@@ -81,7 +81,7 @@ export const Router = () => {
 }
 function PrivateRoutes() {
   console.log("PrivateRoutes")
-  const isAuthenticated = true // этот флаг мы берем из хука из rtk query
+  const isAuthenticated = false // этот флаг мы берем из хука из rtk query
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} /> // Outlet спец react routers component, который рендрит чилдренов которые есть в текущем роуте
 }
@@ -91,7 +91,7 @@ function PrivateRoutes() {
 function PremiumRoutes() {
   console.log('PremiumRoutes')
   const isPremium = true
-  const isAuthenticated = true
+  const isAuthenticated = false
 
   if (!isAuthenticated) {
     return <Navigate to={'login'} />

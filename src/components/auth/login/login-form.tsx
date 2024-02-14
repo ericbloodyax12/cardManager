@@ -7,11 +7,13 @@ import { TextField } from '@/components/ui/textField'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import s from './login-form.module.scss'
+
 import {ControlledCheckboxComponent} from "@/components/ui/controlled/controlledCheckBox/controlledCheckboxComponent";
 import {Typography} from "@/components/ui/typography";
 import {useNavigate} from "react-router-dom";
 import {Card} from "@/components/ui/card";
+
+import s from './login-form.module.scss'
 
 
 
