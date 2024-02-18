@@ -1,9 +1,14 @@
 import { useGetDecksQuery } from '@/services/base-api'
 
 export const Decks = () => {
-  const query = useGetDecksQuery()
+  const {data} = useGetDecksQuery()
 
-  console.log(query)
+  console.log(data)
 
-  return <div>Deks</div>
+  return <div>
+    <ul>
+        {data?.items.map((i)=> <li>{i.name}</li> )}
+    </ul>
+
+  </div>
 }

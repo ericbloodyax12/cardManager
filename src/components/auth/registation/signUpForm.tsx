@@ -23,8 +23,10 @@ export const SignUpForm = () => {
     })
 
     const onSubmit = (data: FormValuesType) => {
+
         console.log(data)
         console.log(errors.confirmPassword?.message)
+
     }
 
 
