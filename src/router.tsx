@@ -12,7 +12,7 @@ import { Decks } from '@/pages/decks'
 import {SignIn} from "@/pages/publicPages/signIn/signIn";
 import {SignUp} from "@/pages/publicPages/signUp/signUp";
 import {ForgotPassword} from "@/pages/publicPages/forgotPassword/forgotPassword";
-import {useGetAuthQuery} from "@/services/base-api";
+
 
 
 
@@ -81,10 +81,9 @@ export const Router = () => {
   return <RouterProvider router={router} />
 }
 function PrivateRoutes() {
-  const {data} = useGetAuthQuery()
-  console.log("data:",data)
-  console.log("PrivateRoutes")
-  const isAuthenticated = data // этот флаг мы берем из хука из rtk query
+
+
+  const isAuthenticated = true// этот флаг мы берем из хука из rtk query
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} /> // Outlet спец react routers component, который рендрит чилдренов которые есть в текущем роуте
 }

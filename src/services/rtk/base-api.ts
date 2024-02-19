@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import {GetDecksResponse} from "@/services/flashcards.types";
-import {GetCurrentUserDataResponse} from "@/services/types/auth.types";
-import {BaseQueryArg} from "@reduxjs/toolkit/dist/query/baseQueryTypes";
+import {GetDecksResponse} from "@/services/rtk/types/flashcards.types";
+import {GetCurrentUserDataResponse} from "@/services/rtk/types/auth.types";
+
 // import идет именно '@reduxjs/toolkit/query/react' это важно, rtk query не специфичен для react (и redux и rtk можно использовать с любым фреймворком) но для реакта есть специальные хуки, чтобы ими воспользоваться нужно ипортировать именно так, иначе будут ошибки
 
 export const baseApi = createApi({
@@ -10,10 +10,10 @@ export const baseApi = createApi({
     // в fetchBaseQuery (функция-хелпер) мы передаем объект, у него достаточно много параметров, это как раз то что мы делаем и в axios
     baseUrl: 'https://api.flashcards.andrii.es',
     credentials: 'include', // потому что будут авторизационные токены в куках
-    // prepareHeaders: headers => {
-    //   //специальный метод который будет выполняться на каждом запросе и он цепляет специальный header ('x-auth-skip', 'true'), позволяет получать доступ к api без авторизации, это чисто для упрощения на первых парах чтобы у нас на данный момент был доступ к запросам на бэк (тестовый ак, на котором бэк будет видеть что мы авторизованы)
-    //   headers.append('x-auth-skip', 'true') // append - добавить
-    // }, // это все то, что будет происходить при каждом нашем запросе, уровень baseQuery который будет использоваться с помощью данной api, вообще api- шек у нас может быть несколько, но тк мы подключаемся к одной то будет 1
+    prepareHeaders: headers => {
+      //специальный метод который будет выполняться на каждом запросе и он цепляет специальный header ('x-auth-skip', 'true'), позволяет получать доступ к api без авторизации, это чисто для упрощения на первых парах чтобы у нас на данный момент был доступ к запросам на бэк (тестовый ак, на котором бэк будет видеть что мы авторизованы)
+      headers.append('x-auth-skip', 'true') // append - добавить
+    }, // это все то, что будет происходить при каждом нашем запросе, уровень baseQuery который будет использоваться с помощью данной api, вообще api- шек у нас может быть несколько, но тк мы подключаемся к одной то будет 1
   }),
   endpoints: builder => {
     // здесь происходит описание наших endpoints, по факту мы здесь передаем коллбэк и получаем builder (фабричный метод)

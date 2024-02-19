@@ -1,4 +1,4 @@
-import { useGetDecksQuery } from '@/services/base-api'
+import { useGetDecksQuery } from '@/services/rtk/base-api'
 
 export const Decks = () => {
   const {data} = useGetDecksQuery()
