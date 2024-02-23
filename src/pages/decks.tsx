@@ -1,20 +1,24 @@
 // import { useGetDecksQuery } from '@/services/rtk/base-api'
 
-import {TodosType} from "@/services/api/auth-services";
+
 import {useEffect, useState} from "react";
-import {setAsyncTodos} from "@/store/authStore/authStore";
+import {DecksTypeItem} from "@/services/api/authTypes";
+import {setDecksState} from "@/store/authStore/authStore";
+
+
 
 
 export const Decks = () => {
   // const {data} = useGetDecksQuery()
-  const [todos, setTodos] = useState<TodosType[]>([])
+
+  const [decks, setDecks] = useState<DecksTypeItem[]>([])
   useEffect(() => {
-    setAsyncTodos(setTodos)
+    setDecksState(setDecks)
   }, []);
+
   return <div>
-    deks
     <ul>
-      {todos.map((t) => <li key={t.id}><b>{t.title}</b></li>)}
+      {decks.map((d) => <li key={d.id}><b>{d.name}</b></li>)}
     </ul>
 
   </div>

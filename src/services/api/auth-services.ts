@@ -1,13 +1,29 @@
+import {DecksResponseType} from "@/services/api/authTypes";
+
 export type TodosType = {
   "userId": number,
   "id": number,
   "title": string,
   "completed": boolean
 }
+
+
+const baseUrl = 'https://api.flashcards.andrii.es'
 export const getTodos = async (): Promise<TodosType[]> => {
   const res = await fetch('https://jsonplaceholder.typicode.com/todos')
   const todos = await res.json()
   return todos
+}
+export const getDecks = ():Promise<DecksResponseType> => {
+  const decksPath =  '/v1/decks'
+  return fetch(baseUrl + decksPath,{
+    headers: {'x-auth-skip': 'true'}
+  })
+      .then((res) => res.json())
+      .then((data) => {
+        return data
+      })
+
 }
 
 
