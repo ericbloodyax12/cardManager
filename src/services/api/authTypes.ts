@@ -23,3 +23,13 @@ export type DecksTypePagination = {
 	itemsPerPage: number;
 	totalPages: number;
 }
+
+export type authResponseType = {
+	avatar: string;
+	id: string;
+	email: string;
+	isEmailVerified: boolean;
+	name: string;
+	created: string;
+	updated: string;
+}

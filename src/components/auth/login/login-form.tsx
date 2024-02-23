@@ -34,10 +34,9 @@ export const LoginForm = () => {
   })
 
   const onSubmit = (data: FormValuesType) => {
-    console.log(data)
+    console.log('data form Login onSubmit',data)
   }
-    console.log(control)
-    console.log(s.forgotPassword)
+
 
 
   return (
