@@ -27,15 +27,16 @@ export const authServices = {
         })
   },
 
-  getIsAuth: async () : Promise<authResponseType> => {
+  getIsAuth: async () : Promise<boolean> => {
     const authPath = '/v1/auth/me'
     const res = await fetch(authServices.baseUrl + authPath, {
       headers: {'x-auth-skip': 'true'}
     })
-    const isAuthResponse = await res.json()
+    const isAuthResponse:authResponseType = await res.json()
     const isAuth = await isAuthResponse.isEmailVerified
     return isAuth
-  }
+  },
+
 } as const
 
 
