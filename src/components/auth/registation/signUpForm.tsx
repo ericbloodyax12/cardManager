@@ -10,10 +10,12 @@ import {z} from "zod";
 import {TextField} from "@/components/ui/textField";
 import {Button} from "@/components/ui/button";
 import {useNavigate} from "react-router-dom";
+import {authServices} from "@/services/api/auth-services";
 
 export type FormValuesType = z.infer<typeof signUpSchema>
 export const SignUpForm = () => {
     const navigate = useNavigate()
+
     const {
         formState: { errors },
         handleSubmit,
@@ -22,18 +24,41 @@ export const SignUpForm = () => {
         resolver: zodResolver(signUpSchema),
     })
 
-    const onSubmit = (data: FormValuesType) => {
+    const onSubmit = async (data: FormValuesType) => {
+        try {
+            const {email, password} = data;
+            const formData = new FormData();
 
-        console.log(data)
-        console.log(errors.confirmPassword?.message)
+            formData.append('email', email);
+            formData.append('password', password);
 
-    }
+            const signUpPath = '/v1/auth/sign-up';
+
+            const response = await fetch(authServices.baseUrl + signUpPath, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json;charset=utf-8' },
+                body: JSON.stringify({email, password})
+            });
+            console.log('formData',formData)
+
+            if (response.ok) {
+                navigate('/login');
+            } else {
+                // Handle error response
+                const errorData = await response.json();
+                console.error('Error :', errorData);
+            }
+        } catch (error) {
+            console.error('Error :', error);
+        }
+    };
+
 
 
     return (
         <Card className={s.cardContainer}>
             <Typography variant={"h1"}>Sign Up</Typography>
-            <form className={s.formContainer} onSubmit={handleSubmit(onSubmit)} >
+            <form className={s.formContainer} onSubmit={handleSubmit(onSubmit)} id={"signUpForm"} >
                 <TextField
                     className={s.textField}
                     {...register('email')}
