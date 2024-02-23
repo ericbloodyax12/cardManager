@@ -17,6 +17,7 @@ import {ForgotPassword} from "@/pages/publicPages/forgotPassword/forgotPassword"
 
 
 
+
 const pathParams = {
   premiumUserID: 'premiumUserID',
 }
