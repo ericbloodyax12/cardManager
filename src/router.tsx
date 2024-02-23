@@ -12,6 +12,8 @@ import { Decks } from '@/pages/decks'
 import {SignIn} from "@/pages/publicPages/signIn/signIn";
 import {SignUp} from "@/pages/publicPages/signUp/signUp";
 import {ForgotPassword} from "@/pages/publicPages/forgotPassword/forgotPassword";
+import {useEffect, useState} from "react";
+import {authStore} from "@/store/authStore/authStore";
 
 
 
@@ -82,9 +84,14 @@ export const Router = () => {
   return <RouterProvider router={router} />
 }
 function PrivateRoutes() {
+  const [isAuth, setIsAuth] = useState<boolean>(false)
 
+  useEffect(() => {
+    authStore.setAuthState(setIsAuth)
+    console.log('isAuth',isAuth)
+  }, []);
 
-  const isAuthenticated = true// этот флаг мы берем из хука из rtk query
+  const isAuthenticated = isAuth// этот флаг мы берем из хука из rtk query
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} /> // Outlet спец react routers component, который рендрит чилдренов которые есть в текущем роуте
 }

@@ -1,4 +1,4 @@
-import {DecksResponseType} from "@/services/api/authTypes";
+import {authResponseType, DecksResponseType} from "@/services/api/authTypes";
 
 export type TodosType = {
   "userId": number,
@@ -25,6 +25,16 @@ export const authServices = {
         .then((data) => {
           return data
         })
+  },
+
+  getIsAuth: async () : Promise<authResponseType> => {
+    const authPath = '/v1/auth/me'
+    const res = await fetch(authServices.baseUrl + authPath, {
+      headers: {'x-auth-skip': 'true'}
+    })
+    const isAuthResponse = await res.json()
+    const isAuth = await isAuthResponse.isEmailVerified
+    return isAuth
   }
 } as const
 

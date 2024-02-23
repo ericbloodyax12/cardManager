@@ -26,8 +26,6 @@ export const CheckboxComponent = (props: CheckboxComponentProps) => {
   //   setCheckBoxValue(!!checked)
   // }, [checked])
 
-  console.log('checked:', checked)
-
   return (
     <div className={s.checkboxContainer}>
       <Checkbox.Root
