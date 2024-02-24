@@ -10,7 +10,8 @@ import {z} from "zod";
 import {TextField} from "@/components/ui/textField";
 import {Button} from "@/components/ui/button";
 import {useNavigate} from "react-router-dom";
-import {authServices} from "@/services/api/auth-services";
+import {authStore} from "@/store/authStore/authStore";
+import {toast} from "react-toastify";
 
 export type FormValuesType = z.infer<typeof signUpSchema>
 export const SignUpForm = () => {
@@ -25,33 +26,27 @@ export const SignUpForm = () => {
     })
 
     const onSubmit = async (data: FormValuesType) => {
-        try {
             const {email, password} = data;
             const formData = new FormData();
-
             formData.append('email', email);
             formData.append('password', password);
 
-            const signUpPath = '/v1/auth/sign-up';
-
-            const response = await fetch(authServices.baseUrl + signUpPath, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json;charset=utf-8' },
-                body: JSON.stringify({email, password})
-            });
-            console.log('formData',formData)
-
-            if (response.ok) {
-                navigate('/login');
-            } else {
-                // Handle error response
-                const errorData = await response.json();
-                console.error('Error :', errorData);
-            }
-        } catch (error) {
-            console.error('Error :', error);
-        }
+       try {
+            await authStore.createUser(email,password)
+           navigate('/login')
+         toast.success("Registration is success", {
+           position: "top-left"
+         })
+       }
+       catch (e: any) {
+         const errorMessage = e.message
+           console.error(e.message)
+         toast.error(errorMessage, {
+           position: "top-left"
+         })
+       }
     };
+
 
 
 

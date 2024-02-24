@@ -24,7 +24,7 @@ export type DecksTypePagination = {
 	totalPages: number;
 }
 
-export type authResponseType = {
+export type AuthResponseType = {
 	avatar: string;
 	id: string;
 	email: string;
@@ -32,4 +32,16 @@ export type authResponseType = {
 	name: string;
 	created: string;
 	updated: string;
+	message?: string;
+}
+
+export type CreateUserResponseType = {
+	avatar: string;
+	id: string;
+	email: string;
+	isEmailVerified: boolean;
+	name: string;
+	created: string;
+	updated: string;
+	errorMessages?: string[]
 }
