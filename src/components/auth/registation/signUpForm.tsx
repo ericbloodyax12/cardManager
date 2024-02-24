@@ -47,9 +47,6 @@ export const SignUpForm = () => {
        }
     };
 
-
-
-
     return (
         <Card className={s.cardContainer}>
             <Typography variant={"h1"}>Sign Up</Typography>
