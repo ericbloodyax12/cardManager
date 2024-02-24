@@ -1,4 +1,4 @@
-import {authResponseType, DecksResponseType} from "@/services/api/authTypes";
+import {AuthResponseType, CreateUserResponseType, DecksResponseType} from "@/services/api/authTypes";
 
 export type TodosType = {
   "userId": number,
@@ -27,15 +27,28 @@ export const authServices = {
         })
   },
 
-  getIsAuth: async () : Promise<boolean> => {
+  getIsAuth: async (): Promise<AuthResponseType> => {
     const authPath = '/v1/auth/me'
-    const res = await fetch(authServices.baseUrl + authPath, {
-      headers: {'x-auth-skip': 'true'}
-    })
-    const isAuthResponse:authResponseType = await res.json()
-    const isAuth = await isAuthResponse.isEmailVerified
-    return isAuth
+    const res = await fetch(authServices.baseUrl + authPath)
+    return (res.status === 200)
+        ? await res.json()
+        : await res.json()
   },
+
+  postCreateUser: async (email:string, password:string): Promise<CreateUserResponseType> => {
+      const signUpPath = '/v1/auth/sign-up'
+      const response = await fetch(authServices.baseUrl + signUpPath, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json;charset=utf-8'},
+        body: JSON.stringify({email, password})
+      });
+      if (response.status !== 201) {
+        const errorData = await response.json()
+        const errorMessage = errorData.errorMessages[0]
+        throw new Error(errorMessage)
+      }
+      return await response.json()
+    }
 
 } as const
 
