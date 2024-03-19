@@ -14,6 +14,7 @@ import {SignUp} from "@/pages/publicPages/signUp/signUp";
 import {ForgotPassword} from "@/pages/publicPages/forgotPassword/forgotPassword";
 import {useEffect, useState} from "react";
 import {authStore} from "@/store/authStore/authStore";
+import {CheckEmail} from "@/pages/publicPages/checkEmail/checkEmailPage";
 
 
 
@@ -42,6 +43,10 @@ const publicRoutes: RouteObject[] = [
   {
     element: <ForgotPassword/>,
     path: '/recovery_page',
+  },
+  {
+    element: <CheckEmail/>,
+    path: '/check_email',
   },
 
 ]
@@ -95,9 +100,6 @@ function PrivateRoutes() {
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} /> // Outlet спец react routers component, который рендрит чилдренов которые есть в текущем роуте
 }
-
-
-
 function PremiumRoutes() {
   console.log('PremiumRoutes')
   const isPremium = false

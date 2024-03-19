@@ -9,21 +9,24 @@ import {Typography} from "@/components/ui/typography";
 import {forgotPasswordSchema} from "@/components/auth/forgotPassword/helpers/forgotpasswordSchema";
 import {TextField} from "@/components/ui/textField";
 import {Button} from "@/components/ui/button";
+import {useState} from "react";
 
 export type FormValuesType = z.infer<typeof forgotPasswordSchema> // Для того что бы не писать типы для формы вручную - z.infer
 
 export const ForgotPasswordForm = () => {
     const navigate = useNavigate()
+    const [isSubmitting, setIsSubmitting] = useState(false)
     const {
         formState: { errors },
         handleSubmit,
         register,
     } = useForm<FormValuesType>({
-
         resolver: zodResolver(forgotPasswordSchema),
     })
 
     const onSubmit = (data: FormValuesType) => {
+        console.log('isSubmitting',isSubmitting)
+        setIsSubmitting(true)
         console.log(data)
     }
 
@@ -42,7 +45,14 @@ export const ForgotPasswordForm = () => {
                         Enter your email address and we will send you further instructions
                     </Typography>
                 </div>
-                <Button className={s.submit} type={'submit'} fullWidth={true}>
+                <Button className={s.submit}
+                        type={'submit'}
+                        fullWidth={true}
+                        onClick={() => {
+                            navigate('/check_email')
+                }}
+                        disabled={isSubmitting}
+                >
                     Send Instructions
                 </Button>
                 <div className={s.rememberPasswordContainer}>

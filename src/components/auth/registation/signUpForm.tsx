@@ -55,13 +55,13 @@ export const SignUpForm = () => {
                     className={s.textField}
                     {...register('email')}
                     errorMessage={errors.email?.message}
-                    label={'email'}
+                    label={'Email'}
                 />
                 <TextField
                     className={s.textField}
                     {...register('password')}
-                    errorMessage={errors.confirmPassword?.message} // todo : error message from superRefine in schema
-                    label={'password'}
+                    errorMessage={errors.confirmPassword?.message}
+                    label={'Password'}
                     variant={'password'}
                 />
                 <TextField
