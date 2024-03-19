@@ -1,14 +1,14 @@
 .cardContainer {
   display: flex;
   flex-direction: column;
+  gap: 30px;
   place-content: center center;
   align-items: center;
 
   width: 420px;
   height: 456px;
+
 }
-
-
 
 .formContainer {
   display: flex;
@@ -18,13 +18,13 @@
 
   width: 348px;
   height: 398px;
-  margin-top: 40px;
- 
+    margin-top: 80px;
 
 }
 
 .header{
-  margin-top: 20px;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .bodyContainer{
@@ -37,16 +37,19 @@
   color: var(--color-light-900);
 }
 
+.bodyBr{
+
+}
+
 .submit {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  //width: 150px;
   height: 36px;
   margin-top: 30px;
 
-  //border-radius: 5px // TODO: крч, я уже ставил это по умолчанию в кнопке но почему то он не отображается, не понимаю почему не ловит
+
 }
 
 .rememberPasswordContainer {
@@ -54,10 +57,16 @@
   justify-content: end;
 }
 
-.rememberPassword {
-  cursor: pointer;
-  display: inline;
-  color: var(--color-light-700);
+.checkButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+width: 348px;
+
+  //width: 150px;
+  height: 36px;
+  margin-top: 30px;
 
   &:hover {
     color: var(--color-light-100);
