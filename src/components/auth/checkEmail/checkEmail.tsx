@@ -22,7 +22,6 @@ export const CheckEmailForm = () => {
             }}>Back to Sign In</Button>
           </div>
 
-
       </Card>
   )
 }

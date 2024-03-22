@@ -6,64 +6,56 @@
   align-items: center;
 }
 
+
 .CheckboxRoot {
   //all: unset!important;
 
   position: relative;
+  z-index: 1;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: 18px;
-  height: 18px;
-  padding: 0;
+  //width: 18px;
+  //height: 18px;
+  //padding: 0;
 
   background-color: transparent;
-  border: 2px solid var(--color-light-900);
-  border-radius: 4px;
+  border: 1px solid transparent;
 
+  //border-radius: 4px;
+
+  &::before{
+    // добавлено для создания круглой тени
+    content: '';
+
+    position: absolute;
+    z-index: -1;
+
+    width: 36px;
+    height: 36px;
+    padding: 0;
+
+    background-color: transparent;
+    border-radius: 50%;
+  }
+
+  &:hover::before {
+    background-color: var(--color-dark-500);
+  }
+
+  &:active::before {
+    background-color: var(--color-dark-100);
+  }
 
 }
 
-.CheckboxRoot:hover::before {
-  // добавлено для создания круглой тени
-  content: '';
-
-  position: absolute;
-  z-index: -1;
-
-  width: 36px;
-  height: 36px;
-  padding: 0;
-
-  background-color: var(--color-dark-500);
-  border-radius: 50%;
-}
-
-.CheckboxRoot:active::before {
-  // добавлено для создания круглой тени
-  content: '';
-
-  position: absolute;
-  z-index: -1;
-
-  width: 36px;
-  height: 36px;
-  padding: 0;
-
-  background-color: var(--color-dark-100);
-  border-radius: 50%;
-}
-
-.CheckboxIndicator {
-  width: 18px;
-  height: 18px;
-}
-
-.CheckboxIndicator:hover {
-  //color: grey;
-}
+//
+//.CheckboxIndicator {
+//  width: 18px;
+//  height: 18px;
+//}
 
 .Label {
   padding-left: 5px;
