@@ -5,8 +5,9 @@ import s from '@/components/ui/typography/typography.module.scss'
 export type TypographyProps<T extends ElementType> = {
   /**
    * nothing */
-  as?: T
-  fullWidth?: boolean
+  as?: T,
+  fullWidth?: boolean,
+  color?: string,
   variant?: T extends 'a'
     ? 'link1' | 'link2'
     : T extends 'p'
@@ -22,7 +23,7 @@ export type TypographyProps<T extends ElementType> = {
         | 'subtitle1'
         | 'subtitle2'
     : T extends 'label'
-    ? 'body2'
+    ? 'body2'|'label'
     : never
 } & ComponentPropsWithoutRef<T> //это пропсы, которые принимает стандартный html-тег 'X', мы их расширяем своими пропсами (сейчас это уже дженерик)
 /**
