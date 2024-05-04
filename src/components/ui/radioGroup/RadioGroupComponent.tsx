@@ -9,7 +9,7 @@ export const RadioGroupComponent = () => {
   return (
       <form>
         <RadioGroup.Root className={s.RadioGroupRoot} defaultValue="default" aria-label="View density">
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div className={s.itemWrapper}>
             <RadioGroup.Item className={s.RadioGroupItem} value="default" id="r1">
               <RadioGroup.Indicator className={s.RadioGroupIndicator} />
             </RadioGroup.Item>
