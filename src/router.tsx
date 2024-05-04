@@ -15,6 +15,7 @@ import {ForgotPassword} from "@/pages/publicPages/forgotPassword/forgotPassword"
 import {useEffect, useState} from "react";
 import {authStore} from "@/store/authStore/authStore";
 import {CheckEmail} from "@/pages/publicPages/checkEmail/checkEmailPage";
+import {TestComponentsPage} from "@/pages/testPages/testComponentsPage";
 
 
 
@@ -48,6 +49,10 @@ const publicRoutes: RouteObject[] = [
     element: <CheckEmail/>,
     path: '/check_email',
   },
+  {
+    element: <TestComponentsPage/>,
+    path: '/test_page'
+  }
 
 ]
 const privateRoutes: RouteObject[] = [

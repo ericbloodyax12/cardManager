@@ -3,7 +3,7 @@ import React, { ComponentPropsWithoutRef, ElementRef } from 'react'
 import * as Tabs from '@radix-ui/react-tabs'
 
 
-import s from './tabSwither.module.scss'
+import s from './tabSwitcher.module.scss'
 
 type TabInfo = {
   title: string
@@ -16,7 +16,7 @@ type TabSwitcherProps = {
 export const TabSwitcher = React.forwardRef<ElementRef<typeof Tabs.Trigger>, TabSwitcherProps>(
     ({ tabs, valueName, ...rest }) => {
       const tabsWithValue = tabs.map(t => ({ ...t, value: valueName}))
-
+      console.log('tab value',tabs)
       return (
           <Tabs.Root className={s.tabsRoot} defaultValue={tabsWithValue[0].value} {...rest}>
             <Tabs.List aria-label={'My TabSwitcher'} className={s.TabsList}>
