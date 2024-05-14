@@ -1,56 +1,121 @@
-.select_Container {
-  top: 20px;
-  left: 20px;
 
-display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+
+/* reset */
+button {
+  all: unset;
+}
+
+.rootContainer {
+
+}
+
+.SelectTrigger {
+  top: 24px;
+
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
   justify-content: center;
 
   width: 210px;
-  height: 60px;
-
-
-}
-
-.select {
-  width: 210px;
   height: 36px;
-  padding-left: 5px;
+  padding: 0 15px;
 
- background-color: transparent;
-  border: 2px solid var(--color-dark-300) ;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--color-light-100);
 
-  &:hover {
-    background-color: var(--color-dark-500);
-    border: 1px solid var(--color-dark-100);
-
-  }
-
-  &:active {
-    background-color: transparent;
-    border: 1px solid var(--color-dark-100);
-  }
-
-  &:focus {
-    border: 2px solid var(--color-info-700);
-  }
-}
-
-.select option {
   background-color: transparent;
-  border: 2px solid green ;
-
-  &:hover {
-    background-color: var(--color-accent-900);
-  }
+border: 1px solid var(--color-dark-300);
+  border-radius: 2px;
 }
 
-option {
-  background-color: green;
-  border: 2px solid green ;
+.SelectTrigger:hover {
+  background-color: var(--color-dark-100);
+}
 
-  &:hover {
-    background-color: var(--color-accent-900);
-  }
+.SelectTrigger:focus {
+  border: 1px solid var(--color-info-700);
+}
+
+.SelectTrigger[data-placeholder] {
+  color: var(--color-light-100);
+}
+
+.SelectIcon {
+  color: var(--color-light-100);
+}
+
+.SelectContent {
+  //overflow: hidden;
+
+
+
+  background-color: transparent;
+
+  //border-radius: 6px;
+  box-shadow: 0 10px 38px -10px red, 0 10px 20px -15px rgb(22 23 24 / 20%);
+}
+
+.SelectViewport {
+  //margin: 5px;
+}
+
+.SelectItem {
+  user-select: none;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: 210px;
+  height: 26px;
+  padding: 0 35px 0 25px;
+
+
+
+  color: var(--color-light-100);
+
+  border-radius: 3px;
+}
+
+.SelectItem[data-disabled] {
+  pointer-events: none;
+  color: transparent;
+}
+
+.SelectItem[data-highlighted] {
+  color: var(--color-accent-300);
+  background-color: transparent;
+  outline: none;
+}
+
+.SelectItem[data-highlighted]:hover {
+  background-color: var(--color-accent-900);
+}
+
+.SelectItemIndicator {
+  position: absolute;
+  left: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 25px;
+}
+
+.SelectScrollButton {
+  cursor: default;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 25px;
+
+  color: violet;
+
+  background-color: transparent;
 }
