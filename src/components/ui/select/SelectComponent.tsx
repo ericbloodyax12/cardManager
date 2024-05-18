@@ -18,11 +18,7 @@ export const SelectComponent = ({items}: SelectComponentProps) => (
          <SelectDownIcon/>
       </Select.Trigger>
       <Select.Portal>
-        <Select.Content className={s.SelectContent}>
-          {/*<Select.ScrollUpButton className={s.SelectScrollButton}>*/}
-          {/*  <SelectUpIcon/>*/}
-          {/*</Select.ScrollUpButton>*/}
-          <Select.Viewport className={s.SelectViewport}>
+        <Select.Content position={"popper"} className={s.SelectContent}>
             <Select.Group>
               {items.map((item, index) => (
                   <SelectItem key={index} value={item.value}>
@@ -30,7 +26,6 @@ export const SelectComponent = ({items}: SelectComponentProps) => (
                   </SelectItem>
               ))}
             </Select.Group>
-          </Select.Viewport>
           <Select.ScrollDownButton className={s.SelectScrollButton}>
             <SelectDownIcon/>
           </Select.ScrollDownButton>
