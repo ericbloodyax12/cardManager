@@ -20,7 +20,7 @@ export const SelectComponent = ({items}: SelectComponentProps) => (
          <SelectDownIcon/>
         </Select.Icon>
       </Select.Trigger>
-      <Select.Portal>
+      {/*<Select.Portal>*/}
         <Select.Content className={s.SelectContent}>
           <Select.ScrollUpButton className={s.SelectScrollButton}>
             <SelectUpIcon/>
@@ -38,13 +38,12 @@ export const SelectComponent = ({items}: SelectComponentProps) => (
               {/*<SelectItem value="grapes">Grapes</SelectItem>*/}
               {/*<SelectItem value="pineapple">Pineapple</SelectItem>*/}
             </Select.Group>
-
           </Select.Viewport>
           <Select.ScrollDownButton className={s.SelectScrollButton}>
             <SelectDownIcon/>
           </Select.ScrollDownButton>
         </Select.Content>
-      </Select.Portal>
+      {/*</Select.Portal>*/}
       </div>
     </Select.Root>
 );
