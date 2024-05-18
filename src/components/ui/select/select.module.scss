@@ -6,23 +6,23 @@ button {
 }
 
 .rootContainer {
+  width: 210px;
+  height: 36px;
 
 }
 
 .SelectTrigger {
-  top: 24px;
-
-  display: inline-flex;
+  display: flex;
   gap: 10px;
   align-items: center;
   justify-content: center;
 
   width: 210px;
   height: 36px;
-  padding: 0 15px;
 
-  font-size: 13px;
-  line-height: 1;
+
+  //font-size: 13px;
+  //line-height: 1; // как это связано со стрелкой
   color: var(--color-light-100);
 
   background-color: transparent;
@@ -35,26 +35,27 @@ border: 1px solid var(--color-dark-300);
 }
 
 .SelectTrigger:focus {
-  border: 1px solid var(--color-info-700);
+  border: 1px solid var(--color-info-100);
 }
 
-.SelectTrigger[data-placeholder] {
-  color: var(--color-light-100);
-}
-
-.SelectIcon {
-  color: var(--color-light-100);
-}
+//.SelectTrigger[data-placeholder] {
+//  color: var(--color-light-100);
+//}
+//
+//.SelectIcon {
+//  color: var(--color-light-100);
+//}
 
 .SelectContent {
+  width: 210px;
+  margin-top: 36px ;
+  margin-left: 32px;
+
   //overflow: hidden;
-
-
-
   background-color: transparent;
 
   //border-radius: 6px;
-  box-shadow: 0 10px 38px -10px red, 0 10px 20px -15px rgb(22 23 24 / 20%);
+  box-shadow: 0 10px 38px -10px var(--color-accent-100), 0 10px 20px -15px rgb(22 23 24 / 20%);
 }
 
 .SelectViewport {
@@ -62,22 +63,24 @@ border: 1px solid var(--color-dark-300);
 }
 
 .SelectItem {
-  user-select: none;
-
-  position: relative;
+  //user-select: none;
 
   display: flex;
   align-items: center;
+  justify-content: center;
 
   width: 210px;
-  height: 26px;
-  padding: 0 35px 0 25px;
+  height: 36px;
+
+  //padding: 0 35px 0 25px;
 
 
 
   color: var(--color-light-100);
 
-  border-radius: 3px;
+border: 1px solid var(--color-dark-300);
+
+
 }
 
 .SelectItem[data-disabled] {
