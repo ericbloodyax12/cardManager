@@ -1,10 +1,10 @@
 import React from 'react';
 import * as Select from '@radix-ui/react-select';
 // import classnames from 'classnames';
-import s from './select.module.scss';
 import {SelectDownIcon} from "@/components/assets/icons/componentSvg/selectDownIcon";
-import {SelectUpIcon} from "@/components/assets/icons/componentSvg/selectUpComponent";
 import {Typography} from "@/components/ui/typography";
+
+import s from './select.module.scss';
 
 
 type SelectComponentProps = {
@@ -13,18 +13,15 @@ type SelectComponentProps = {
 
 export const SelectComponent = ({items}: SelectComponentProps) => (
     <Select.Root>
-      <div className={s.rootContainer}>
       <Select.Trigger className={s.SelectTrigger} aria-label="Food">
         <Typography><Select.Value placeholder="Select box" /></Typography>
-        <Select.Icon className={s.SelectIcon}>
          <SelectDownIcon/>
-        </Select.Icon>
       </Select.Trigger>
-      {/*<Select.Portal>*/}
+      <Select.Portal>
         <Select.Content className={s.SelectContent}>
-          <Select.ScrollUpButton className={s.SelectScrollButton}>
-            <SelectUpIcon/>
-          </Select.ScrollUpButton>
+          {/*<Select.ScrollUpButton className={s.SelectScrollButton}>*/}
+          {/*  <SelectUpIcon/>*/}
+          {/*</Select.ScrollUpButton>*/}
           <Select.Viewport className={s.SelectViewport}>
             <Select.Group>
               {items.map((item, index) => (
@@ -32,19 +29,13 @@ export const SelectComponent = ({items}: SelectComponentProps) => (
                     {item.children}
                   </SelectItem>
               ))}
-              {/*<SelectItem value="apple">Apple</SelectItem>*/}
-              {/*<SelectItem value="banana">Banana</SelectItem>*/}
-              {/*<SelectItem value="blueberry">Blueberry</SelectItem>*/}
-              {/*<SelectItem value="grapes">Grapes</SelectItem>*/}
-              {/*<SelectItem value="pineapple">Pineapple</SelectItem>*/}
             </Select.Group>
           </Select.Viewport>
           <Select.ScrollDownButton className={s.SelectScrollButton}>
             <SelectDownIcon/>
           </Select.ScrollDownButton>
         </Select.Content>
-      {/*</Select.Portal>*/}
-      </div>
+      </Select.Portal>
     </Select.Root>
 );
 
