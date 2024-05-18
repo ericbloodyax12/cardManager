@@ -4,6 +4,7 @@ import * as Tabs from '@radix-ui/react-tabs'
 
 
 import s from './tabSwitcher.module.scss'
+import {Typography} from "@/components/ui/typography";
 
 type TabInfo = {
   title: string
@@ -11,10 +12,11 @@ type TabInfo = {
 type TabSwitcherProps = {
   tabs: TabInfo[]
   valueName: string
+  disabled?: boolean
 } & ComponentPropsWithoutRef<typeof Tabs.Root>
 
 export const TabSwitcher = React.forwardRef<ElementRef<typeof Tabs.Trigger>, TabSwitcherProps>(
-    ({ tabs, valueName, ...rest }) => {
+    ({ tabs, valueName,disabled = false, ...rest }) => {
       const tabsWithValue = tabs.map(t => ({ ...t, value: valueName}))
       console.log('tab value',tabs)
       return (
@@ -22,8 +24,8 @@ export const TabSwitcher = React.forwardRef<ElementRef<typeof Tabs.Trigger>, Tab
             <Tabs.List aria-label={'My TabSwitcher'} className={s.TabsList}>
               {tabsWithValue.map((tab, index) => {
                 return (
-                    <Tabs.Trigger className={s.TabsTrigger} key={index} value={tab.value}>
-                      {tab.title}
+                    <Tabs.Trigger disabled={disabled} className={`${s.TabsTrigger} ${disabled ? s.disabled : ''}`} key={index} value={tab.value}>
+                      <Typography>{tab.title}</Typography>
                     </Tabs.Trigger>
                 )
               })}

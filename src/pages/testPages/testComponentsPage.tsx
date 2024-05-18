@@ -1,6 +1,7 @@
 import {RadioGroupComponent} from "@/components/ui/radioGroup";
 import s from './testPage.module.scss'
 import {SelectComponent} from "@/components/ui/select";
+import {TabSwitcher} from "@/components/ui/tabSwitcher";
 
 
 export const TestComponentsPage = () => {
@@ -20,6 +21,13 @@ export const TestComponentsPage = () => {
           { value: 'grapes', children: 'Grapes' },
           { value: 'pineapple', children: 'Pineapple' },
         ]} />
+        <TabSwitcher tabs={ [
+          { title: 'Apple' },
+          { title: 'Juice' },
+          { title: 'Juice' },
+          { title: 'Lemon' }
+        ]} valueName="my-tabs" disabled={false}/>
       </div>
+
   )
 }
