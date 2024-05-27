@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%; // Adjust based on your design
+  height: 60px;  // Adjust based on your design
+  padding: 0 100px;
+
+  background-color: var(--color-dark-700); // Assuming a dark background
+
+  .AvatarContainer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .logo {
+
+  }
+
+
+
+  .avatar {
+    //width: 40px;  // Adjust the size as per your design
+    //height: 40px;
+    //border-radius: 50%;
+  }
+}

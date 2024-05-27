@@ -1,7 +1,10 @@
 
-import s from './testPage.module.scss'
+// import s from './testPage.module.scss'
+//
+// import {DropDownMenuComponent} from "@/components/ui/dropDownMenus/dropDownMenu";
+import {HeaderWithButton} from "@/components/ui/headers/headerWithButton";
 
-import {DropDownMenuComponent} from "@/components/ui/dropDownMenu/dropDownMenu";
+import {HeaderWithAvatar} from "@/components/ui/headers/headerWithAvatar";
 
 
 export const TestComponentsPage = () => {
@@ -12,10 +15,13 @@ export const TestComponentsPage = () => {
   // ]
 
   return (
-      <div className={s.testContainer}>
-        <DropDownMenuComponent/>
+      <div>
+      <HeaderWithButton title={"Barsegyan Group"}/>
+        <HeaderWithAvatar title={"Barsegyan Group"} avatarUrl={""} />
+      {/*// <div className={s.testContainer}>*/}
+      {/*//   <DropDownMenuComponent/>*/}
+      {/*// </div>*/}
+
       </div>
-
-
   )
 }
