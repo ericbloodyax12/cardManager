@@ -7,7 +7,7 @@ import {
   DropDownMenuIcon1,
   DropDownMenuIcon2, DropDownMenuIcon3,
   DropDownMenuIcon4
-} from "@/components/assets/icons/componentSvg/dropDownMenuIcon";
+} from "@/components/assets/icons/componentSvg/dropDownMenu/dropDownMenuIcon";
 import {CheckIcon} from "@/components/assets/icons/componentSvg/check";
 
 import {SelectDownIcon} from "@/components/assets/icons/componentSvg/selectDownIcon";

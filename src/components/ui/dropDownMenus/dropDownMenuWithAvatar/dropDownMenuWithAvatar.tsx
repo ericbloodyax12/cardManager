@@ -1,34 +1,46 @@
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import image010 from '../../../assets/images/010.jpg'
 
+
+
+import {CheckIcon} from "@/components/assets/icons/componentSvg/check";
+import {SelectDownIcon} from "@/components/assets/icons/componentSvg/selectDownIcon";
+import {MyProfile} from "@/components/assets/icons/componentSvg/dropDownMenu/myProfile";
+import {LogoutWhite} from "@/components/assets/icons/componentSvg/dropDownMenu/logoutWhite";
 
 import s from './dropDownMenuWithAvatar.module.scss';
-import {
-  DropDownMenuIcon1,
-  DropDownMenuIcon2, DropDownMenuIcon3,
-  DropDownMenuIcon4
-} from "@/components/assets/icons/componentSvg/dropDownMenuIcon";
-import {CheckIcon} from "@/components/assets/icons/componentSvg/check";
-
-import {SelectDownIcon} from "@/components/assets/icons/componentSvg/selectDownIcon";
+import {Avatar} from "@/components/assets/Avatar/avatar";
+import {Typography} from "@/components/ui/typography";
 
 
-export const DropDownMenuWithAvatarComponent = () => {
+export type DropDownMenuWithAvatarComponentProps = {
+  email?:string
+}
+export const DropDownMenuWithAvatarComponent = ({email = "as@gmail.com"}:DropDownMenuWithAvatarComponentProps) => {
 
 
   return (
-          <div>
+      <div className={s.dropDownMenuContainer}>
             <DropdownMenu.Root>
+
               <DropdownMenu.Trigger asChild>
                 <button className={s.IconButton} aria-label="Customise options">
-                  <DropDownMenuIcon1 />
+                  <img className={s.staticAvatar} src={image010}/>
                 </button>
               </DropdownMenu.Trigger>
 
               <DropdownMenu.Portal>
                 <DropdownMenu.Content className={s.DropdownMenuContent} sideOffset={5}>
-                  <DropdownMenu.Item className={s.DropdownMenuItem}>
-                    <DropDownMenuIcon2 />Learn
+
+                    <DropdownMenu.Item className={s.DropdownMenuItem}>
+                    <Avatar initialImageUrl={image010}/>
+                    <div className={s.AvatarLabel}>
+                      <Typography>
+                        Barsegyan Group
+                      </Typography>
+                      {email}
+                    </div>
                   </DropdownMenu.Item>
 
                   <DropdownMenu.Separator className={s.DropdownMenuSeparator} /> {/* просто линия - перегородка */}
@@ -39,7 +51,7 @@ export const DropDownMenuWithAvatarComponent = () => {
                     <DropdownMenu.ItemIndicator className={s.DropdownMenuItemIndicator}>
                       <CheckIcon />
                     </DropdownMenu.ItemIndicator>
-                    <DropDownMenuIcon3 />Edit
+                    <MyProfile/> Profile
                   </DropdownMenu.CheckboxItem >
 
                   <DropdownMenu.Separator className={s.DropdownMenuSeparator} /> {/* просто линия */}
@@ -48,13 +60,15 @@ export const DropDownMenuWithAvatarComponent = () => {
                       <DropdownMenu.ItemIndicator className={s.DropdownMenuItemIndicator}>
                         <SelectDownIcon/>
                       </DropdownMenu.ItemIndicator>
-                      <DropDownMenuIcon4 />Delete
+                      <LogoutWhite/>Sign Out
                     </DropdownMenu.RadioItem>
                   <DropdownMenu.Arrow className={s.DropdownMenuArrow} />
                 </DropdownMenu.Content>
+
               </DropdownMenu.Portal>
+
             </DropdownMenu.Root>
-          </div>
+      </div>
   )
 }
 
