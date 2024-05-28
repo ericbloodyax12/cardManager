@@ -1,0 +1,24 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 60px;
+    padding: 0 20px;
+
+    background-color: #f8f8f8; /* Цвет фона заголовка */
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+
+    object-fit: cover; /* Для того чтобы изображение полностью заполнило контейнер */
+    background-color: #ccc; /* Цвет фона аватара */
+    border-radius: 50%;
+}
