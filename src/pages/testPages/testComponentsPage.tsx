@@ -2,7 +2,9 @@
 
 
 
-import {CreateNewPassword} from "@/components/auth/createNewPassword/createNewPassword";
+
+
+import {EditProfileMainPage} from "@/pages/editProfilePages/editProfileMainPage/editProfileMainPage";
 
 
 export const TestComponentsPage = () => {
@@ -13,8 +15,6 @@ export const TestComponentsPage = () => {
   // ]
 
   return (
-      <div>
-     <CreateNewPassword/>
-      </div>
+      <EditProfileMainPage name={"Eric"} email={"as@gmail.com"}/>
   )
 }
