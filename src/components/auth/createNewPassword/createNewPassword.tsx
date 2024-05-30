@@ -28,7 +28,8 @@ export const CreateNewPassword = () => {
   })
 
   const onSubmit = (data: FormValuesType) => {
-    console.log('data form Login onSubmit',data)
+    console.log('data form newPassword onSubmit',data)
+    navigate('/login')
   }
 
   return (
@@ -51,9 +52,7 @@ export const CreateNewPassword = () => {
 
 
 
-              <Button className={s.submit} type={'submit'} fullWidth={true} onClick={(() => {
-                navigate("/login")
-              })}>
+              <Button className={s.submit} type={'submit'} fullWidth={true}>
                  Create New Password
               </Button>
           </form>
