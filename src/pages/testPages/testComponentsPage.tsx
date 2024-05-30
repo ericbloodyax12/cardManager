@@ -1,11 +1,8 @@
 
-// import s from './testPage.module.scss'
-//
-// import {DropDownMenuComponent} from "@/components/ui/dropDownMenus/dropDownMenu";
-import {HeaderWithButton} from "@/components/ui/headers/headerWithButton";
 
-import {HeaderWithAvatar} from "@/components/ui/headers/headerWithAvatar";
-import {DropDownMenuWithAvatarComponent} from "@/components/ui/dropDownMenus/dropDownMenuWithAvatar";
+
+
+import {CreateNewPassword} from "@/components/auth/createNewPassword/createNewPassword";
 
 
 export const TestComponentsPage = () => {
@@ -17,10 +14,7 @@ export const TestComponentsPage = () => {
 
   return (
       <div>
-      <HeaderWithButton title={"Barsegyan Group"}/>
-        <HeaderWithAvatar title={"Barsegyan Group"} avatarUrl={""} />
-        <DropDownMenuWithAvatarComponent/>
-
+     <CreateNewPassword/>
       </div>
   )
 }

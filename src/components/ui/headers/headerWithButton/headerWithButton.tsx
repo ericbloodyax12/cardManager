@@ -8,6 +8,7 @@ type HeaderWithButtonProps = {
   title: string;
 };
 export const HeaderWithButton = ({ title }: HeaderWithButtonProps) => {
+  //component has margin-bottom:30px on default
   const navigate = useNavigate();
   return (
 
