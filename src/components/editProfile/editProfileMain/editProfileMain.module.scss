@@ -1,0 +1,16 @@
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  place-content: center center;
+  align-items: center;
+
+  width: 420px;
+  height: 348px;
+}
+
+.divContainer {
+  display: flex;
+  gap: 5px;
+  align-items: baseline
+}

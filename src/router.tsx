@@ -17,6 +17,7 @@ import {authStore} from "@/store/authStore/authStore";
 import {CheckEmail} from "@/pages/publicPages/checkEmail/checkEmailPage";
 import {TestComponentsPage} from "@/pages/testPages/testComponentsPage";
 import {CreateNewPasswordPage} from "@/pages/publicPages/createNewPassword/createNewPasswordPage";
+import {EditProfileMainPage} from "@/pages/editProfilePages/editProfileMainPage/editProfileMainPage";
 
 
 
@@ -58,7 +59,10 @@ const publicRoutes: RouteObject[] = [
     element: <CreateNewPasswordPage/>,
     path: '/new_password'
   },
-
+  {
+    element: <div>error 404</div>,
+    path: '/*'
+  },
 ]
 const privateRoutes: RouteObject[] = [
   {
@@ -66,9 +70,10 @@ const privateRoutes: RouteObject[] = [
     path: '/',
   },
   {
-    element: <div>error 404</div>,
-    path: '/*'
+    element: <EditProfileMainPage name={"Eric"} email={"as@gmail.com"}/>,
+    path: '/edit_main_profile',
   },
+
 
 ]
 const premiumRoutes: RouteObject[] = [
