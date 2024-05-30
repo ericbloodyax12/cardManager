@@ -20,9 +20,6 @@ export const TestComponentsPage = () => {
       <HeaderWithButton title={"Barsegyan Group"}/>
         <HeaderWithAvatar title={"Barsegyan Group"} avatarUrl={""} />
         <DropDownMenuWithAvatarComponent/>
-      {/*// <div className={s.testContainer}>*/}
-      {/*//   <DropDownMenuComponent/>*/}
-      {/*// </div>*/}
 
       </div>
   )

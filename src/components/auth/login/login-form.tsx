@@ -15,8 +15,6 @@ import {Card} from "@/components/ui/card";
 
 import s from './login-form.module.scss'
 
-
-
 export type FormValuesType = z.infer<typeof loginSchema> // Для того что бы не писать типы для формы вручную - z.infer
 
 export const LoginForm = () => {
@@ -40,6 +38,7 @@ export const LoginForm = () => {
 
 
   return (
+
       <Card className={s.cardContainer}>
           <Typography variant={"h1"}>Sign In</Typography>
           <form className={s.formContainer} onSubmit={handleSubmit(onSubmit)}>
@@ -75,6 +74,5 @@ export const LoginForm = () => {
 
           </form>
       </Card>
-
   )
 }
