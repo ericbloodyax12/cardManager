@@ -59,7 +59,7 @@ export const LoginForm = () => {
 
               <div className={s.forgotPasswordContainer}>
                   <Typography variant={'body2'} className={s.forgotPassword} onClick={() => {
-                      navigate('/recovery_page')
+                      navigate('/forgot_password')
                   }}>Forgot Password?</Typography>
               </div>
               <Button className={s.submit} type={'submit'} fullWidth={true}>
