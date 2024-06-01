@@ -4,7 +4,8 @@
 
 
 
-import {EditProfileMainPage} from "@/pages/editProfilePages/editProfileMainPage/editProfileMainPage";
+
+import {MainLayoutWrapper} from "@/pages/mainLayoutWrapper/mainLayoutWrapper";
 
 
 export const TestComponentsPage = () => {
@@ -15,6 +16,6 @@ export const TestComponentsPage = () => {
   // ]
 
   return (
-      <EditProfileMainPage name={"Eric"} email={"as@gmail.com"}/>
+      <MainLayoutWrapper/>
   )
 }
