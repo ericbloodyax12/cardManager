@@ -9,7 +9,7 @@ type HeaderWithButtonProps = {
   title: string;
   avatarUrl:string;
 };
-export const HeaderWithAvatar = ({ title,avatarUrl = "" }: HeaderWithButtonProps) => {
+export const HeaderWithAvatar = ({ title, avatarUrl = "" }: HeaderWithButtonProps) => {
 
   return (
 
