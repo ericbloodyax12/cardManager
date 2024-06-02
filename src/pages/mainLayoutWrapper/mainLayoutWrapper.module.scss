@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 60px 1fr;
+  gap: 60px;
 
   width: 100%;
   height: 100%;
@@ -10,6 +11,7 @@
 
   .main-layout-container__header{
     //height: 60px;
+   
   }
 
   .main-layout-container__content{
