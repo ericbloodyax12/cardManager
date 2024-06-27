@@ -6,20 +6,22 @@ import {Avatar} from "@/components/assets/Avatar/avatar";
 
 
 
+
 type HeaderWithButtonProps = {
   title: string;
   isAuth: boolean;
   avatarUrl?: string;
 };
 export const AppHeader = ({ title, isAuth, avatarUrl = "" }: HeaderWithButtonProps) => {
+  // const useRouteData = useContext(RouteDataContext)
   const location = useLocation();
-  console.log(location)
+  // console.log(useRouteData)
+
   //component has margin-bottom:30px on default
   const navigate = useNavigate();
-  const buttonText = (location.pathname === "/login") ? "sign up" : "sign in"
+  const buttonText = (location.pathname === "/login") ? "Sign Up" : "Sign In"
   const buttonPath = (location.pathname === "/login") ? "/sign_up" : "/login"
   return (
-
             <header className={s.header}>
               <Typography variant={"large"} className={s.logo}>{title}</Typography>
               {
@@ -31,9 +33,7 @@ export const AppHeader = ({ title, isAuth, avatarUrl = "" }: HeaderWithButtonPro
                     </div>
                 : <Button variant={"secondary"} className={s.button} onClick={(()=> {navigate(buttonPath)} )}>{buttonText}</Button>
               }
-
             </header>
-
   )
 }
 

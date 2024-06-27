@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext } from 'react';
 
 
 
@@ -8,4 +8,4 @@ type RouteDataContextType = {
 }
 export const RouteDataContext = createContext<RouteDataContextType | null>(null);
 
-export const useRouteData = () => useContext(RouteDataContext);
+// export const useRouteData = () => useContext(RouteDataContext);
