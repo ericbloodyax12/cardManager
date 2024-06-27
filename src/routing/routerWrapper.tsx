@@ -4,7 +4,7 @@ import {MainLayoutWrapper} from "@/pages/mainLayoutWrapper/mainLayoutWrapper";
 
 import {PrivateRouteWrapper} from "@/routing/privateRouteWrapper";
 import {routesConfig} from "@/routing/routesList/Routes";
-import {RouteDataContext} from "@/routing/routeDataContext/routeDataContext";
+
 
 type TRouterWrapperProps = {};
 export const isAuth = false
@@ -15,7 +15,9 @@ export const RouterWrapper: FC<TRouterWrapperProps> = () => {
   return (
       <BrowserRouter>
         <Routes>
-          <Route path={'/'} element={<MainLayoutWrapper isAuth={isAuth}/>}>
+          <Route path={'/'} element={
+
+            <MainLayoutWrapper isAuth={isAuth}/>}>
             {routes.map((route) => {
               if (route.private) {
                 return (
@@ -24,9 +26,9 @@ export const RouterWrapper: FC<TRouterWrapperProps> = () => {
                         key={route.path}
                         path={route.path}
                         element={
-                          <RouteDataContext.Provider value={{path: route.path, name: route.name}}>
+                          // <RouteDataContext.Provider value={{path: route.path, name: route.name}}>
                             <PrivateRouteWrapper isAuth={isAuth}/>
-                          </RouteDataContext.Provider>
+                          // </RouteDataContext.Provider>
                         }
                     >
                       <Route path={route.path} element={route.element}/>

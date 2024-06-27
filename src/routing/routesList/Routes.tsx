@@ -3,6 +3,9 @@ import {SignIn} from "@/pages/publicPages/signIn/signIn";
 import {Decks} from "@/pages/decks";
 import {EditProfileMainPage} from "@/pages/editProfilePages/editProfileMainPage/editProfileMainPage";
 import {SignUp} from "@/pages/publicPages/signUp/signUp";
+import {CreateNewPassword} from "@/components/auth/createNewPassword/createNewPassword";
+import {CheckEmail} from "@/pages/publicPages/checkEmail/checkEmailPage";
+import {TestComponentsPage} from "@/pages/testPages/testComponentsPage";
 
 type RouteConfigType = {
   name: string,
@@ -33,6 +36,11 @@ export const routesConfig: RouteConfigType[] = [
     element: <SignUp/>,
   },
   {
+    name: "checkEmailPage",
+    path: '/checkEmailPage',
+    element: <CheckEmail />,
+  },
+  {
     name: "decks",
     path: '/decks',
     element: <Decks />,
@@ -44,4 +52,18 @@ export const routesConfig: RouteConfigType[] = [
     element: <EditProfileMainPage name = {"Eric"} email = {"as@gmail.com"} />,
     private: true,
   },
+  {
+    name: "createNewPassword",
+    path: '/createNewPassword',
+    element: <CreateNewPassword />,
+    private: true,
+  }, {
+    name: "testComponentsPage",
+    path: '/test_page',
+    element: <TestComponentsPage />,
+    private: false
+  },
+
+
+
 ]
