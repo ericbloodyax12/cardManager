@@ -10,7 +10,6 @@ isAuth: boolean
 
 export const MainLayoutWrapper: FC<TMainLayoutWrapperProps> = ({isAuth}) => {
 
-
   return (
       <div className={s["main-layout-container"]}>
         <div className={s["main-layout-container__header"]}>

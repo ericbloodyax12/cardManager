@@ -16,6 +16,6 @@ export const TestComponentsPage = () => {
   // ]
 
   return (
-      <MainLayoutWrapper/>
+      <MainLayoutWrapper isAuth={false}/>
   )
 }
