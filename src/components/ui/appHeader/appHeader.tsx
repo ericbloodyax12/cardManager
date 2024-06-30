@@ -3,7 +3,8 @@ import s from './appHeader.module.scss';
 import {Typography} from "@/components/ui/typography";
 import {useLocation, useMatches, useNavigate} from "react-router-dom";
 import {Avatar} from "@/components/assets/Avatar/avatar";
-import {useRouteData} from "@/contexts/routeDataContext/routeDataContext";
+import {TButtonInfo} from "@/routing/routesList/Routes";
+
 
 
 
@@ -15,28 +16,17 @@ type HeaderWithButtonProps = {
   avatarUrl?: string;
 };
 export const AppHeader = ({ title, isAuth, avatarUrl = "" }: HeaderWithButtonProps) => {
-  const data = useMatches()
-  console.log(data)
-  const {routesData, currentRouteData} = useRouteData()
-  const location = useLocation();
-  console.log('currentRouteData',currentRouteData)
-  //component has margin-bottom:30px on default
+  const matchRoutes = useMatches();
+  const {pathname: currentPathName} = useLocation();
   const navigate = useNavigate();
-  const getButtonTextAndPath = (path: string) => {
-    const route = routesData?.find((route) => route.path === path);
-    if (route) {
-      switch (route.path) {
-        case '/login':
-          return { text: 'Sign Up', path: '/sign_up' };
-        default:
-          return { text: 'Sign In', path: '/login' };
-      }
-    }
-    return { text: 'Sign In', path: '/login' };
-  };
 
-  const buttonText = getButtonTextAndPath(location.pathname).text
-  const buttonPath =  getButtonTextAndPath(location.pathname).path
+  const currentRouteInfo = matchRoutes.find(
+    route => route.pathname === currentPathName
+  );
+  const buttonInfo = currentRouteInfo?.handle as TButtonInfo;
+
+
+
   return (
             <header className={s.header}>
               <Typography variant={"large"} className={s.logo}>{title}</Typography>
@@ -47,7 +37,13 @@ export const AppHeader = ({ title, isAuth, avatarUrl = "" }: HeaderWithButtonPro
                       <Avatar initialImageUrl={avatarUrl} alt="User Avatar" />
 
                     </div>
-                : <Button variant={"secondary"} className={s.button} onClick={(()=> {navigate(buttonPath)} )}>{buttonText}</Button>
+                : <Button
+                    variant={"secondary"}
+                    className={s.button}
+                    onClick={(() => navigate(buttonInfo.navigateTo))}
+                  >
+                    {buttonInfo.buttonText}
+                </Button>
               }
             </header>
   )
