@@ -4,7 +4,8 @@ import {MainLayoutWrapper} from "@/pages/mainLayoutWrapper/mainLayoutWrapper";
 
 import {PrivateRouteWrapper} from "@/routing/privateRouteWrapper";
 import {routesConfig} from "@/routing/routesList/Routes";
-import { RouteDataContext } from './routeDataContext/routeDataContext';
+import {RouteDataProvider} from "@/contexts/routeDataContext/routeDataProvider";
+
 
 
 type TRouterWrapperProps = {};
@@ -17,9 +18,9 @@ export const RouterWrapper: FC<TRouterWrapperProps> = () => {
       <BrowserRouter>
         <Routes>
           <Route path={'/'} element={
-            <RouteDataContext.Provider value={routesData}>
-            <MainLayoutWrapper isAuth={isAuth}/>
-            </RouteDataContext.Provider>
+            <RouteDataProvider routesData={routesData}>
+              <MainLayoutWrapper isAuth={isAuth}/>
+            </RouteDataProvider>
             }
           >
 
@@ -27,7 +28,6 @@ export const RouterWrapper: FC<TRouterWrapperProps> = () => {
               if (route.private) {
                 return (
                     <Route
-
                         key={route.path}
                         path={route.path}
                         element={
@@ -40,7 +40,7 @@ export const RouterWrapper: FC<TRouterWrapperProps> = () => {
                     </Route>
                 )
               }
-              return <Route key={route.path} path={route.path} element={route.element}/>;
+              return <Route handle={{name:"test"}} key={route.path} path={route.path} element={route.element}/>;
             })}
             <Route path="*" element={isAuth ? <Navigate to="/"/> : <Navigate to="/login"/>}/>
           </Route>
