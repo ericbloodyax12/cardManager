@@ -1,10 +1,10 @@
 import {Button} from "@/components/ui/button";
 import s from './appHeader.module.scss';
 import {Typography} from "@/components/ui/typography";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation, useMatches, useNavigate} from "react-router-dom";
 import {Avatar} from "@/components/assets/Avatar/avatar";
-import {RouteDataContext} from "@/routing/routeDataContext/routeDataContext";
-import {useContext} from "react";
+import {useRouteData} from "@/contexts/routeDataContext/routeDataContext";
+
 
 
 
@@ -15,13 +15,15 @@ type HeaderWithButtonProps = {
   avatarUrl?: string;
 };
 export const AppHeader = ({ title, isAuth, avatarUrl = "" }: HeaderWithButtonProps) => {
-  const routeData = useContext(RouteDataContext)
+  const data = useMatches()
+  console.log(data)
+  const {routesData, currentRouteData} = useRouteData()
   const location = useLocation();
-
+  console.log('currentRouteData',currentRouteData)
   //component has margin-bottom:30px on default
   const navigate = useNavigate();
   const getButtonTextAndPath = (path: string) => {
-    const route = routeData?.find((route) => route.path === path);
+    const route = routesData?.find((route) => route.path === path);
     if (route) {
       switch (route.path) {
         case '/login':
@@ -32,8 +34,7 @@ export const AppHeader = ({ title, isAuth, avatarUrl = "" }: HeaderWithButtonPro
     }
     return { text: 'Sign In', path: '/login' };
   };
-  // const buttonText = ( location.pathname === "/login") ? "Sign Up" : "Sign In"
-  // const buttonPath = (location.pathname === "/login") ? "/sign_up" : "/login"
+
   const buttonText = getButtonTextAndPath(location.pathname).text
   const buttonPath =  getButtonTextAndPath(location.pathname).path
   return (
