@@ -1,9 +1,7 @@
 // import { useGetDecksQuery } from '@/services/rtk/base-api'
 
 
-import {useEffect, useState} from "react";
-import {DecksTypeItem} from "@/services/api/authTypes";
-import {authStore} from "@/store/authStore/authStore";
+
 
 
 

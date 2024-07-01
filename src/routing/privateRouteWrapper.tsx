@@ -1,10 +1,12 @@
 import  {FC} from 'react';
 import {Navigate, Outlet} from "react-router-dom";
+import {SIGN_IN} from "@/routing/routesList/Routes";
 
 type TPrivateRouteWrapperProps = {
   isAuth: boolean;
 };
 
 export const PrivateRouteWrapper: FC<TPrivateRouteWrapperProps> = ({isAuth}) => {
-  return isAuth ? <Outlet/> : <Navigate to={'/login'}/>;
+  console.log(isAuth)
+  return isAuth ? <Outlet/> : <Navigate to={SIGN_IN}/>;
 }

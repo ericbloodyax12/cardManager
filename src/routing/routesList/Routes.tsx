@@ -30,12 +30,7 @@ const getButtonInfo = (routeName: string) =>  {
   : { buttonText: 'SignIn', navigateTo: SIGN_IN}
 }
 export const routesConfig: RouteConfigType[] = [
-  {
-    routeName: "main",
-    path: '/',
-    element: <Decks />,
-    private: true,
-  },
+
   {
     routeName: "login",
     path: SIGN_IN,
@@ -81,7 +76,8 @@ export const routesConfig: RouteConfigType[] = [
     routeName: "testComponentsPage",
     path: '/test_page',
     element: <TestComponentsPage />,
-    private: false
+    private: false,
+    buttonInfo: getButtonInfo("testComponentsPage"),
   },
 
 
