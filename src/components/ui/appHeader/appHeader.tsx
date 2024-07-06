@@ -4,6 +4,7 @@ import {Typography} from "@/components/ui/typography";
 import {useLocation, useMatches, useNavigate} from "react-router-dom";
 import {Avatar} from "@/components/assets/Avatar/avatar";
 import {TButtonInfo} from "@/routing/routesList/Routes";
+import {SwitchComponent} from "@/components/ui/switch/switch";
 
 
 type HeaderWithButtonProps = {
@@ -26,13 +27,13 @@ export const AppHeader = ({title, isAuth, avatarUrl = ""}: HeaderWithButtonProps
 
   return (
       <header className={s.header}>
-        <Typography variant={"large"} className={s.logo}>{title}</Typography>
+        <Typography variant={"large"}>{title}</Typography>
         {
           (isAuth)
               ? <div className={s.AvatarContainer}>
-                <Typography variant={"subtitle1"}>as</Typography>
-                <Avatar initialImageUrl={avatarUrl} alt="User Avatar"/>
-
+                <Typography className={s.avatarWrapper} variant={"subtitle1"}>as
+                <Avatar  initialImageUrl={avatarUrl} alt="User Avatar"/>
+                </Typography>
               </div>
               : <Button
                   variant={"secondary"}
@@ -42,6 +43,7 @@ export const AppHeader = ({title, isAuth, avatarUrl = ""}: HeaderWithButtonProps
                 {buttonInfo?.buttonText}
               </Button>
         }
+            <SwitchComponent />
       </header>
   )
 }
