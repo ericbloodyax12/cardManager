@@ -7,8 +7,18 @@ import {CreateNewPassword} from "@/components/auth/createNewPassword/createNewPa
 import {CheckEmail} from "@/pages/publicPages/checkEmail/checkEmailPage";
 import {TestComponentsPage} from "@/pages/testPages/testComponentsPage";
 
-export const SIGN_IN = '/sign_in';
-export const SIGN_UP = '/sign_up';
+
+export const paths = {
+  SIGN_IN: '/sign_in',
+  SIGN_UP: '/sign_up',
+  FORGOT_PASSWORD:'/forgot_password',
+  CHECK_EMAIL_PAGE:'/checkEmailPage',
+  DECKS:'/decks',
+  EDIT_MAIN_PROFILE:'/edit_main_profile',
+  CREATE_NEW_PASSWORD: '/createNewPassword',
+
+
+}
 
 type RouteConfigType = {
   routeName: string,
@@ -26,50 +36,50 @@ export type TButtonInfo = {
 }
 const getButtonInfo = (routeName: string) =>  {
   return (routeName === 'login')
-  ? { buttonText: 'Sign Up', navigateTo: SIGN_UP}
-  : { buttonText: 'Sign In', navigateTo: SIGN_IN}
+  ? { buttonText: 'Sign Up', navigateTo: paths.SIGN_UP}
+  : { buttonText: 'Sign In', navigateTo: paths.SIGN_IN}
 }
 export const routesConfig: RouteConfigType[] = [
 
   {
     routeName: "login",
-    path: SIGN_IN,
+    path: paths.SIGN_IN,
     element: <SignIn />,
     buttonInfo: getButtonInfo("login"),
   },
   {
     routeName: "forgot_password",
-    path: '/forgot_password',
+    path: paths.FORGOT_PASSWORD,
     element: <ForgotPassword />,
     buttonInfo: getButtonInfo("forgot_password"),
   },
   {
     routeName: "sign_up",
-    path: SIGN_UP,
+    path: paths.SIGN_UP,
     element: <SignUp/>,
     buttonInfo: getButtonInfo("sign_up"),
   },
   {
     routeName: "checkEmailPage",
-    path: '/checkEmailPage',
+    path: paths.CHECK_EMAIL_PAGE,
     element: <CheckEmail />,
     buttonInfo: getButtonInfo("checkEmailPage"),
   },
   {
     routeName: "decks",
-    path: '/decks',
+    path: paths.DECKS,
     element: <Decks />,
     private: true,
   },
   {
     routeName: "edit_main_profile",
-    path: '/edit_main_profile',
+    path: paths.EDIT_MAIN_PROFILE,
     element: <EditProfileMainPage name = {"Eric"} email = {"as@gmail.com"} />,
     private: true,
   },
   {
     routeName: "createNewPassword",
-    path: '/createNewPassword',
+    path: paths.CREATE_NEW_PASSWORD,
     element: <CreateNewPassword />,
     private: true,
   }, {

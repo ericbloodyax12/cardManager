@@ -7,21 +7,26 @@
   width: 100%; // Adjust based on your design
   height: 60px; // Adjust based on your design
   margin-bottom: 30px; //component has margin-bottom:30px on default for auth forms
-  padding: 0 100px;
+  padding: 0 80px;
 
 
   background-color: var(--color-dark-700); // Assuming a dark background
+}
+
+.AppHeader_divWrapper {
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
 
 .avatarWrapper {
  display: flex;
   gap: 4px;
   align-items: center;
-  margin-left: 1000px
   }
 
 .button {
-    margin-left: 1000px;
+    //
   }
 
 .AvatarContainer {
