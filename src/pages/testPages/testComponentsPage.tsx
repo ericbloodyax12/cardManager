@@ -1,11 +1,4 @@
-
-
-
-
-
-
-
-import {MainLayoutWrapper} from "@/pages/mainLayoutWrapper/mainLayoutWrapper";
+import {SwitchComponent} from "@/components/ui/switch/switch";
 
 
 export const TestComponentsPage = () => {
@@ -16,6 +9,6 @@ export const TestComponentsPage = () => {
   // ]
 
   return (
-      <MainLayoutWrapper isAuth={false}/>
+      <SwitchComponent/>
   )
 }

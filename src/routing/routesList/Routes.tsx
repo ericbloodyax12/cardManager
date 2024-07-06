@@ -26,8 +26,8 @@ export type TButtonInfo = {
 }
 const getButtonInfo = (routeName: string) =>  {
   return (routeName === 'login')
-  ? { buttonText: 'SignUp', navigateTo: SIGN_UP}
-  : { buttonText: 'SignIn', navigateTo: SIGN_IN}
+  ? { buttonText: 'Sign Up', navigateTo: SIGN_UP}
+  : { buttonText: 'Sign In', navigateTo: SIGN_IN}
 }
 export const routesConfig: RouteConfigType[] = [
 
@@ -76,7 +76,6 @@ export const routesConfig: RouteConfigType[] = [
     routeName: "testComponentsPage",
     path: '/test_page',
     element: <TestComponentsPage />,
-    private: false,
     buttonInfo: getButtonInfo("testComponentsPage"),
   },
 

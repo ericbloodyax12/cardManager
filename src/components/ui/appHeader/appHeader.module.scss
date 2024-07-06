@@ -13,12 +13,15 @@
   background-color: var(--color-dark-700); // Assuming a dark background
 }
 
-  .logo {
-
+.avatarWrapper {
+ display: flex;
+  gap: 4px;
+  align-items: center;
+  margin-left: 1000px
   }
 
-  .button {
-
+.button {
+    margin-left: 1000px;
   }
 
 .AvatarContainer {
