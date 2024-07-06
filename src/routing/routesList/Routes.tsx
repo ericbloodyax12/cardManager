@@ -11,13 +11,11 @@ import {TestComponentsPage} from "@/pages/testPages/testComponentsPage";
 export const paths = {
   SIGN_IN: '/sign_in',
   SIGN_UP: '/sign_up',
-  FORGOT_PASSWORD:'/forgot_password',
-  CHECK_EMAIL_PAGE:'/checkEmailPage',
-  DECKS:'/decks',
-  EDIT_MAIN_PROFILE:'/edit_main_profile',
+  FORGOT_PASSWORD: '/forgot_password',
+  CHECK_EMAIL_PAGE: '/checkEmailPage',
+  DECKS: '/decks',
+  EDIT_MAIN_PROFILE: '/edit_main_profile',
   CREATE_NEW_PASSWORD: '/createNewPassword',
-
-
 }
 
 type RouteConfigType = {
@@ -31,26 +29,26 @@ type RouteConfigType = {
   }
 }
 export type TButtonInfo = {
-    buttonText: string;
-    navigateTo: string
+  buttonText: string;
+  navigateTo: string
 }
-const getButtonInfo = (routeName: string) =>  {
+const getButtonInfo = (routeName: string) => {
   return (routeName === 'login')
-  ? { buttonText: 'Sign Up', navigateTo: paths.SIGN_UP}
-  : { buttonText: 'Sign In', navigateTo: paths.SIGN_IN}
+      ? {buttonText: 'Sign Up', navigateTo: paths.SIGN_UP}
+      : {buttonText: 'Sign In', navigateTo: paths.SIGN_IN}
 }
 export const routesConfig: RouteConfigType[] = [
 
   {
     routeName: "login",
     path: paths.SIGN_IN,
-    element: <SignIn />,
+    element: <SignIn/>,
     buttonInfo: getButtonInfo("login"),
   },
   {
     routeName: "forgot_password",
     path: paths.FORGOT_PASSWORD,
-    element: <ForgotPassword />,
+    element: <ForgotPassword/>,
     buttonInfo: getButtonInfo("forgot_password"),
   },
   {
@@ -62,33 +60,32 @@ export const routesConfig: RouteConfigType[] = [
   {
     routeName: "checkEmailPage",
     path: paths.CHECK_EMAIL_PAGE,
-    element: <CheckEmail />,
+    element: <CheckEmail/>,
     buttonInfo: getButtonInfo("checkEmailPage"),
   },
   {
     routeName: "decks",
     path: paths.DECKS,
-    element: <Decks />,
+    element: <Decks/>,
     private: true,
   },
   {
     routeName: "edit_main_profile",
     path: paths.EDIT_MAIN_PROFILE,
-    element: <EditProfileMainPage name = {"Eric"} email = {"as@gmail.com"} />,
+    element: <EditProfileMainPage name={"Eric"} email={"as@gmail.com"}/>,
     private: true,
   },
   {
     routeName: "createNewPassword",
     path: paths.CREATE_NEW_PASSWORD,
-    element: <CreateNewPassword />,
+    element: <CreateNewPassword/>,
     private: true,
   }, {
     routeName: "testComponentsPage",
     path: '/test_page',
-    element: <TestComponentsPage />,
+    element: <TestComponentsPage/>,
     buttonInfo: getButtonInfo("testComponentsPage"),
   },
-
 
 
 ]

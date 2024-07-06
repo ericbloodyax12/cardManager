@@ -10,13 +10,13 @@ isAuth: boolean
 }>;
 
 export const MainLayoutWrapper: FC<TMainLayoutWrapperProps> = ({isAuth}) => {
-  const { theme } = useTheme();
+  const { themeClassName } = useTheme();
 
 const mainLayoutContainerCN = [
     s["main-layout-container"],
-    s[theme],
-
+    s[themeClassName],
 ].join(" ")
+
   return (
       <div className={mainLayoutContainerCN}>
         <div className={s["main-layout-container__header"]}>

@@ -34,13 +34,12 @@ export const TextField = forwardRef<HTMLInputElement, InputProps>((props, ref) =
   // const handleShowPasswordClicked = () => {
   //   setShowPassword(value => !value)
   // }
-
   const inputClassName = clsx(
     s.input,
     s[variant],
     className,
     fullWidth && s.fullWidth,
-    errorMessage && s.error
+    errorMessage && s.error,
   )
 
   return (
