@@ -28,22 +28,26 @@ export const AppHeader = ({title, isAuth, avatarUrl = ""}: HeaderWithButtonProps
   return (
       <header className={s.header}>
         <Typography variant={"large"}>{title}</Typography>
-        {
-          (isAuth)
-              ? <div className={s.AvatarContainer}>
-                <Typography className={s.avatarWrapper} variant={"subtitle1"}>as
-                <Avatar  initialImageUrl={avatarUrl} alt="User Avatar"/>
-                </Typography>
-              </div>
-              : <Button
-                  variant={"secondary"}
-                  className={s.button}
-                  onClick={(() => navigate(buttonInfo.navigateTo))}
-              >
-                {buttonInfo?.buttonText}
-              </Button>
-        }
-            <SwitchComponent />
+        <div className={s.AppHeader_divWrapper}>
+          <SwitchComponent />
+          {
+            (isAuth)
+                ? <div className={s.AvatarContainer}>
+                  <Typography className={s.avatarWrapper} variant={"subtitle1"}>as
+                    <Avatar  initialImageUrl={avatarUrl} alt="User Avatar"/>
+                  </Typography>
+                </div>
+                : <Button
+                    variant={"secondary"}
+                    className={s.button}
+                    onClick={(() => navigate(buttonInfo.navigateTo))}
+                >
+                  {buttonInfo?.buttonText}
+                </Button>
+          }
+        </div>
+
+
       </header>
   )
 }
