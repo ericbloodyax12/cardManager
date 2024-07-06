@@ -1,5 +1,5 @@
 import {FC, ReactNode, useState,} from 'react';
-import { ThemeContext} from '@/contexts/themeContext/themeContext';
+import {ThemeContext, TThemeClassName} from '@/contexts/themeContext/themeContext';
 
 
 type TThemeProviderProps = {
@@ -8,12 +8,12 @@ type TThemeProviderProps = {
 };
 
 export const ThemeProvider: FC<TThemeProviderProps> = ({children}) => {
-  const [theme, setTheme] = useState("")
+  const [themeClassName, setThemeClassName] = useState<TThemeClassName>('darkMode')
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'whiteMode' ? 'darkMode' : 'whiteMode'));
+    setThemeClassName((prevTheme) => (prevTheme === 'whiteMode' ? 'darkMode' : 'whiteMode'));
   };
   return (
-      <ThemeContext.Provider value={{theme,toggleTheme}}>
+      <ThemeContext.Provider value={{themeClassName, toggleTheme}}>
         {children}
       </ThemeContext.Provider>
   );

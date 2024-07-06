@@ -2,13 +2,15 @@ import {createContext, useContext} from 'react';
 
 
 
+export type TThemeClassName = "whiteMode" | "darkMode";
 
 type ThemeContextType = {
- theme: string
+ themeClassName: TThemeClassName
  toggleTheme: () => void;
 }
+
 const defaultThemeContext: ThemeContextType = {
- theme: 'whiteMode',
+ themeClassName: 'whiteMode',
  toggleTheme: () => {}
 };
 export const ThemeContext = createContext<ThemeContextType>(defaultThemeContext);

@@ -14,11 +14,13 @@ import {useNavigate} from "react-router-dom";
 import {Card} from "@/components/ui/card";
 
 import s from './login-form.module.scss'
+ // todo ask for useRef
 
 export type FormValuesType = z.infer<typeof loginSchema> // Для того что бы не писать типы для формы вручную - z.infer
 
 export const LoginForm = () => {
     const navigate = useNavigate()
+
   const {
     control,
     formState: { errors },
@@ -31,11 +33,18 @@ export const LoginForm = () => {
     resolver: zodResolver(loginSchema),
   })
 
+  // const emailRef = useRef<HTMLInputElement | null>(null);
+  // const handleFocusEmail = () => {
+  //   if (emailRef.current) {
+  //     emailRef.current.focus(); // Установка фокуса на поле email при необходимости
+  //   }
+  // };
   const onSubmit = (data: FormValuesType) => {
     console.log('data form Login onSubmit',data)
+
   }
-
-
+  //
+  // console.log("this is focus", handleFocusEmail())
 
   return (
 
@@ -47,6 +56,7 @@ export const LoginForm = () => {
                   {...register('email')}
                   errorMessage={errors.email?.message}
                   label={'email'}
+                  // R
               />
               <TextField
                   className={s.textField}
