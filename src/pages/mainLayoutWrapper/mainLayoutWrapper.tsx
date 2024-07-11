@@ -23,7 +23,7 @@ const mainLayoutContainerCN = [
           <AppHeader title={"Barsegyan&Co"} isAuth={isAuth} />
         </div>
         <div className={s["main-layout-container__content"]}>
-          <Outlet context={2}/>
+          <Outlet />
         </div>
       </div>
   );
