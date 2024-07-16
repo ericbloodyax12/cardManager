@@ -14,7 +14,7 @@ import {useNavigate} from "react-router-dom";
 import {Card} from "@/components/ui/card";
 
 import s from './login-form.module.scss'
- // todo ask for useRef
+ // ++++++todo ask for useRef
 
 export type FormValuesType = z.infer<typeof loginSchema> // Для того что бы не писать типы для формы вручную - z.infer
 
