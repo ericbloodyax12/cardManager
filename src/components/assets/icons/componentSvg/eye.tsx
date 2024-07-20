@@ -5,7 +5,7 @@ export const EyeIcon = (props: EyeIconPropsType) => {
   return (
     <svg
       className={props.className}
-      fill={'currentColor'}
+      fill={'green'}
       height={'20'}
       viewBox={'0 0 24 24'}
       width={'20'}
@@ -21,7 +21,7 @@ export const EyeIcon = (props: EyeIconPropsType) => {
       </g>
       <defs>
         <clipPath id={'clip0_5661_1894'}>
-          <path d={'M0 0H24V24H0z'} fill={'currentColor'}></path>
+          <path d={'M0 0H24V24H0z'} fill={'green'}></path>
         </clipPath>
       </defs>
     </svg>
