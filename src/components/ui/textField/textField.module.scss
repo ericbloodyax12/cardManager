@@ -60,6 +60,8 @@
 
   color: var(--color-dark-100);
 
+  background-color:  transparent !important;
+
   &:focus-visible {
     outline: var(--outline-focus);
   }

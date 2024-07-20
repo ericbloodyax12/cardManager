@@ -1,3 +1,6 @@
+@import "@/styles/themes/whiteMode";
+@import "@/styles/themes/darkMode";
+
 .main-layout-container{
   display: grid;
   grid-template-columns: 100%;
@@ -36,32 +39,28 @@
 //  background-color: var(--color-dark-900) ;
 //}
 
-.whiteMode div, .whiteMode p, .whiteMode label,  {
-  color: var(--color-dark-900) ;
-  background-color: var(--color-light-100);
+
+
+  body div.whiteMode, body div.whiteMode *  {
+  color: $color-white;
+  background-color: $background-white;
 }
 
-//.darkMode div, .darkMode p, .darkMode label {
-//  color: var(--color-light-100);
-//  background-color: var(--color-dark-900);
-//}
-
-.whiteMode header {
-  background-color: var(--color-light-100);
+  body div.darkMode, body div.darkMode * {
+  color: $color-dark;
+  background-color: $background-dark;
 }
 
-.whiteMode body  {
-  background-color: var(--color-light-100);
-}
+  body div.darkMode button {
+    color: $color-white;
+    background-color: var(--color-accent-500);
+ }
 
-.whiteMode, .whiteMode body,  {
-  color: var(--color-dark-900);
-  background-color: var(--color-light-100);
-}
+  body div.whiteMode button {
+    color: $color-dark;
+    background-color: var(--color-success-500);
+  }
 
-//.darkMode header {
-//  background-color: var(--color-dark-900);
-//}
 
 
 
