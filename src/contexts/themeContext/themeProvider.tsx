@@ -11,6 +11,10 @@ export const ThemeProvider: FC<TThemeProviderProps> = ({children}) => {
   const [themeClassName, setThemeClassName] = useState<TThemeClassName>('darkMode')
 
 
+  const handleBeforeUnload = () => {
+    localStorage.setItem('themeClassStorageName', themeClassName);
+  }
+
   useEffect(() => {
     const savedTheme = localStorage.getItem('themeClassStorageName') as TThemeClassName;
     if (savedTheme) {
@@ -19,8 +23,12 @@ export const ThemeProvider: FC<TThemeProviderProps> = ({children}) => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('themeClassStorageName', themeClassName);
-  }, [themeClassName]);
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    }
+  });
+
 
   const toggleTheme = () => {
     setThemeClassName((prevTheme) => (prevTheme === 'whiteMode' ? 'darkMode' : 'whiteMode'));
