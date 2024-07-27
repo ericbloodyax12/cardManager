@@ -1,14 +1,14 @@
-import {AuthResponseType, CreateUserResponseType} from "@/services/api/authTypes";
+import { CreateUserResponseType} from "@/services/api/authTypes";
+import {ApiService} from "@/services/api-service";
 
-class AuthServices {
+class AuthServices extends ApiService {
+
   private readonly baseUrl = 'https://api.flashcards.andrii.es'
 
-  async getIsAuth(): Promise<AuthResponseType> {
+  async getIsAuth(): Promise<void> {
     const authPath = '/v1/auth/me'
-    const res = await fetch(this.baseUrl + authPath)
-    return (res.status === 200)
-        ? await res.json()
-        : await res.json()
+    this.get({path: authPath})
+
   }
 
   async postCreateUser(email: string, password: string): Promise<CreateUserResponseType> {
@@ -27,7 +27,7 @@ class AuthServices {
   }
 
 } //как сделать аналог as const для классов
-export const authServices = new AuthServices()
+export const authServices = new AuthServices([],[],'https://api.flashcards.andrii.es')
 
 
 
