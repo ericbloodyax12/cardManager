@@ -14,6 +14,8 @@ import {useNavigate} from "react-router-dom";
 import {Card} from "@/components/ui/card";
 
 import s from './login-form.module.scss'
+import {authServices} from "@/services/api/auth-services";
+
  // ++++++todo ask for useRef
 
 export type FormValuesType = z.infer<typeof loginSchema> // Для того что бы не писать типы для формы вручную - z.infer
@@ -39,7 +41,9 @@ export const LoginForm = () => {
   //     emailRef.current.focus(); // Установка фокуса на поле email при необходимости
   //   }
   // };
+
   const onSubmit = (data: FormValuesType) => {
+      authServices.getIsAuth()
     console.log('data form Login onSubmit',data)
 
   }
