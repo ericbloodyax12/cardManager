@@ -1,4 +1,4 @@
-import qs from 'qs';
+import * as qs from 'qs';
 import { toast } from 'react-toastify';
 import { urlJoin } from 'url-join-ts';
 
@@ -68,7 +68,7 @@ export class ApiService extends ErrorService implements IApiService {
             method,
             body:stringifiedBody,
             credentials: options?.credentials ?? 'include',
-          });
+          } as RequestInit);
     } catch (e: any) { // тут обрабатываются ошибки сети
       displayError();
       throw new Error(e);
