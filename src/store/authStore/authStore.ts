@@ -1,4 +1,3 @@
-
 import {CreateUserResponseType} from "@/services/api/authTypes";
 import {UserTokensInfoI} from "@/dto/auth/auth-dto";
 import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
@@ -9,6 +8,7 @@ class AuthStore {
   private _userTokens: UserTokensInfoI | undefined = undefined
 
   constructor() {
+
   }
 
   // async setAuthState(setStateCallBack:  Dispatch<SetStateAction<boolean>>) {
@@ -21,14 +21,21 @@ class AuthStore {
   get UserTokens() {
     return this._userTokens
   }
+
   get IsAuth() {
+    if (this._userTokens?.accessToken) {
+      this._isAuth = true
+    } else {
+      this._isAuth = false
+    }
     return this._isAuth
   }
 
-  set UserTokens(userTokens: UserTokensInfoI | undefined) {
+  public setUserTokens(userTokens: UserTokensInfoI | undefined) {
     StorageHelper.setData({name: StorageTypeNames.UserToken, data: userTokens})
     this._userTokens = userTokens
   }
+
   set IsAuth(isAuth: boolean) {
     this._isAuth = isAuth
   }
@@ -39,6 +46,7 @@ class AuthStore {
   // }
 
 }
+
 export const authStore = new AuthStore();
 
 

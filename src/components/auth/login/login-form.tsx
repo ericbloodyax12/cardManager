@@ -51,7 +51,7 @@ export const LoginForm = () => {
     try {
       const {email,password,rememberMe} = data
       const userTokens = await authServices.signIn(email,password,rememberMe)
-       authStore.UserTokens = userTokens
+       authStore.setUserTokens(userTokens)
        navigate(paths.DECKS)
     }
     catch (e) {
