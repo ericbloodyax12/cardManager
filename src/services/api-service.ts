@@ -60,12 +60,13 @@ export class ApiService extends ErrorService implements IApiService {
     const resultHeaders = this.getRequestHeaders(headers); // todo: переместить в requestBehaviors
     await Promise.all(this.requestBehaviors.map((behavior) => behavior({ path, body, method, headers, options })));
     let baseResponse: Response | null = null;
+    const stringifiedBody = JSON.stringify(body)
     try {
       baseResponse = await fetch(urlJoin(options?.baseUrl ?? this.ApiUrl, path),
           {
             headers: resultHeaders,
             method,
-            body,
+            body:stringifiedBody,
             credentials: options?.credentials ?? 'include',
           });
     } catch (e: any) { // тут обрабатываются ошибки сети
@@ -76,25 +77,25 @@ export class ApiService extends ErrorService implements IApiService {
   }
 
   private async ResponseHandler<T>(
-      responce: Response,
+      response: Response,
       options?: TRequestOptions
   ): Promise<T> {
-    if (!responce.ok) {
+    if (!response.ok) {
       const behaviors = [
         super.UnauthorizeProcessingCookiesBehavior,
         super.InternalServerErrorProcessingBehavior,
       ];
-      await Promise.all(behaviors.concat(this.responseBehaviors).map((behavior) => behavior(responce, options?.isHideErrorCallback)));
+      await Promise.all(behaviors.concat(this.responseBehaviors).map((behavior) => behavior(response, options?.isHideErrorCallback)));
       throw new Error();
     } else {
-      if (responce.status === 204) {
+      if (response.status === 204) {
         return {} as T;
       }
       const data = options?.isBlob
-          ? await responce.blob()
+          ? await response.blob()
           : (options?.isText)
-              ? await responce.text()
-              : await responce.json();
+              ? await response.text()
+              : await response.json();
       return data as T;
     }
   }
