@@ -10,8 +10,9 @@ import {z} from "zod";
 import {TextField} from "@/components/ui/textField";
 import {Button} from "@/components/ui/button";
 import {useNavigate} from "react-router-dom";
-import {authStore} from "@/store/authStore/authStore";
+
 import {toast} from "react-toastify";
+import {authServices} from "@/services/api/auth-services";
 
 export type FormValuesType = z.infer<typeof signUpSchema>
 export const SignUpForm = () => {
@@ -27,12 +28,12 @@ export const SignUpForm = () => {
 
     const onSubmit = async (data: FormValuesType) => {
             const {email, password} = data;
-            const formData = new FormData();
-            formData.append('email', email);
-            formData.append('password', password);
+            // const formData = new FormData();
+            // formData.append('email', email);
+            // formData.append('password', password);
 
        try {
-            await authStore.createUser(email,password)
+            await authServices.postCreateUser(email,password)
            navigate('/login')
          toast.success("Registration is success", {
            position: "top-left"

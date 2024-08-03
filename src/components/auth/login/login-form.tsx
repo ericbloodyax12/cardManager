@@ -15,6 +15,7 @@ import {Card} from "@/components/ui/card";
 
 import s from './login-form.module.scss'
 import {authServices} from "@/services/api/auth-services";
+import {useEffect} from "react";
 
  // ++++++todo ask for useRef
 
@@ -41,11 +42,14 @@ export const LoginForm = () => {
   //     emailRef.current.focus(); // Установка фокуса на поле email при необходимости
   //   }
   // };
-
-  const onSubmit = (data: FormValuesType) => {
-      authServices.getIsAuth()
+  useEffect(() => {
+    authServices.getIsAuth()
+  }, []);
+  const onSubmit = async (data: FormValuesType) => {
+      const {email,password,rememberMe} = data
+     await authServices.signIn(email,password,rememberMe)
+      navigate("/")
     console.log('data form Login onSubmit',data)
-
   }
   //
   // console.log("this is focus", handleFocusEmail())
