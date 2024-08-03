@@ -7,13 +7,14 @@ import {routesConfig, paths} from "@/routing/routesList/Routes";
 import {Decks} from "@/pages/decks";
 import {SignIn} from "@/pages/publicPages/signIn/signIn";
 import {ThemeProvider} from "@/contexts/themeContext/themeProvider";
-import {authStore} from "@/store/authStore/authStore";
-
-export const isAuth = authStore.IsAuth;
-console.log(isAuth)
+import {observer} from "mobx-react-lite";
+import {useStores} from "@/contexts/storeContext/storeContext";
 
 
-export const RouterWrapper = () => {
+
+export const RouterWrapper = observer(() => {
+  const {authStore} = useStores()
+  const isAuth = authStore.IsAuth
   const router = createBrowserRouter([
     {
       path: "/",
@@ -44,4 +45,4 @@ export const RouterWrapper = () => {
   return (
       <RouterProvider router={router}/>
   );
-}
+})
