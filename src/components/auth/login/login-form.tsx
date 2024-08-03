@@ -16,6 +16,8 @@ import {Card} from "@/components/ui/card";
 import s from './login-form.module.scss'
 import {authServices} from "@/services/api/auth-services";
 import {useEffect} from "react";
+import {paths} from "@/routing/routesList/Routes";
+import {authStore} from "@/store/authStore/authStore";
 
  // ++++++todo ask for useRef
 
@@ -46,10 +48,16 @@ export const LoginForm = () => {
     authServices.getIsAuth()
   }, []);
   const onSubmit = async (data: FormValuesType) => {
+    try {
       const {email,password,rememberMe} = data
-     await authServices.signIn(email,password,rememberMe)
-      navigate("/")
-    console.log('data form Login onSubmit',data)
+      const userTokens = await authServices.signIn(email,password,rememberMe)
+       authStore.UserTokens = userTokens
+       navigate(paths.DECKS)
+    }
+    catch (e) {
+      throw new Error("ошибка логинизации")
+    }
+
   }
   //
   // console.log("this is focus", handleFocusEmail())
