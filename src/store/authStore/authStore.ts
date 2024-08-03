@@ -1,6 +1,7 @@
 import {CreateUserResponseType} from "@/services/api/authTypes";
 import {UserTokensInfoI} from "@/dto/auth/auth-dto";
 import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
+import {makeAutoObservable} from "mobx";
 
 class AuthStore {
   currentUserData: CreateUserResponseType | undefined = undefined;
@@ -8,7 +9,7 @@ class AuthStore {
   private _userTokens: UserTokensInfoI | undefined = undefined
 
   constructor() {
-
+    makeAutoObservable(this)
   }
 
   // async setAuthState(setStateCallBack:  Dispatch<SetStateAction<boolean>>) {
