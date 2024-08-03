@@ -1,5 +1,6 @@
 
 import {ApiService} from "@/services/api-service";
+import {SignInResponseI, UserTokensInfoI} from "@/dto/auth/auth-dto";
 
 
 class AuthServices extends ApiService {
@@ -18,11 +19,11 @@ class AuthServices extends ApiService {
 
     await super.post({path: signUpPath, body: body})
   }
-  async signIn(email: string, password: string, rememberMe: boolean): Promise<void> {
+  async signIn(email: string, password: string, rememberMe: boolean): Promise<UserTokensInfoI> {
     const signInPath = '/v1/auth/login'
     const body = {email, password,rememberMe}
 
-    await super.post({path: signInPath, body})
+   return await super.post({path: signInPath, body})
   }
 
 } //как сделать аналог as const для классов
