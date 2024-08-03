@@ -1,6 +1,6 @@
 
 import {ApiService} from "@/services/api-service";
-import {SignInResponseI, UserTokensInfoI} from "@/dto/auth/auth-dto";
+import { UserTokensInfoI} from "@/dto/auth/auth-dto";
 
 
 class AuthServices extends ApiService {

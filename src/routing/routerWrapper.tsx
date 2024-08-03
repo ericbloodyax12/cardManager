@@ -7,38 +7,40 @@ import {routesConfig, paths} from "@/routing/routesList/Routes";
 import {Decks} from "@/pages/decks";
 import {SignIn} from "@/pages/publicPages/signIn/signIn";
 import {ThemeProvider} from "@/contexts/themeContext/themeProvider";
+import {authStore} from "@/store/authStore/authStore";
 
-export const isAuth = false;
+export const isAuth = authStore.IsAuth;
+console.log(isAuth)
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    handle: {buttonText: "Sign Up", navigateTo: paths.SIGN_UP},
-    element:
-        <ThemeProvider>
-          <MainLayoutWrapper isAuth={isAuth}/>
-        </ThemeProvider>,
-    children: [
-      ...routesConfig.map(route => ({
-        path: route.path,
-        handle: route.buttonInfo,
-        element: route.private ? <PrivateRouteWrapper isAuth={isAuth}/> : route.element,
-      })),
-      // Указываем маршрут по умолчанию
-      {
-
-        index: true,
-        element: isAuth ? <Decks/> : <SignIn/>, // компонент, который будет отображаться по умолчанию
-      }
-    ],
-  },
-  {
-    path: "*",
-    element: isAuth ? <Navigate to="/"/> : <Navigate to={paths.SIGN_IN}/>,
-  },
-]);
 
 export const RouterWrapper = () => {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      handle: {buttonText: "Sign Up", navigateTo: paths.SIGN_UP},
+      element:
+          <ThemeProvider>
+            <MainLayoutWrapper isAuth={isAuth}/>
+          </ThemeProvider>,
+      children: [
+        ...routesConfig.map(route => ({
+          path: route.path,
+          handle: route.buttonInfo,
+          element: route.private ? <PrivateRouteWrapper isAuth={isAuth}/> : route.element,
+        })),
+        // Указываем маршрут по умолчанию
+        {
+
+          index: true,
+          element: isAuth ? <Decks/> : <SignIn/>, // компонент, который будет отображаться по умолчанию
+        }
+      ],
+    },
+    {
+      path: "*",
+      element: isAuth ? <Navigate to="/"/> : <Navigate to={paths.SIGN_IN}/>,
+    },
+  ]);
   return (
       <RouterProvider router={router}/>
   );
