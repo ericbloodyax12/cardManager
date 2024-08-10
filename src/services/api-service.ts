@@ -11,17 +11,14 @@ import { ErrorService } from './error-service';
 
 export class ApiService extends ErrorService implements IApiService {
 
-  public readonly ApiUrl: string;
-
   constructor(
       private responseBehaviors: ResponceBehavior[] = [],
       private requestBehaviors: RequestBehavior[] = [],
-      baseUrl: string
+      public readonly ApiUrl: string
   ) {
     super();
-    this.ApiUrl = baseUrl
-  }
 
+  }
   public async get<T>(requestData: TRequest): Promise<T> {
     return await this.RequestHandler<T>(requestData.path, 'GET', undefined, requestData.headers, requestData.options);
   }
