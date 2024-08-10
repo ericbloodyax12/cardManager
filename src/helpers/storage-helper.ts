@@ -38,18 +38,7 @@ export class StorageHelper {
     this._storage.setItem(type.name, JSON.stringify(type.data));
   }
 
-  static remove(type: StorageType): void;
-  static remove(type: StorageTypeNames): void;
-  static remove(type: StorageType | StorageTypeNames) {
-    let name: string | null = null;
-    if (typeof type === 'string')
-      name = type;
-    else
-      name = type.name;
-
-    const obj = this._storage.getItem(name);
-    if (!obj)
-      return;
+  static remove(name: StorageTypeNames) {
     this._storage.removeItem(name);
   }
 }

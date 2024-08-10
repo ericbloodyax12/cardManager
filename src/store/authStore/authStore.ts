@@ -6,10 +6,15 @@ import {makeAutoObservable} from "mobx";
 class AuthStore {
   currentUserData: CreateUserResponseType | undefined = undefined;
   private _isAuth: boolean = false;
-  private _userTokens: UserTokensInfoI | undefined = undefined
-
+  private _userTokens: UserTokensInfoI | null = null
   constructor() {
     makeAutoObservable(this)
+    const data = StorageHelper.getData<StorageTypeNames.UserToken>(StorageTypeNames.UserToken);
+
+    if (data) {
+      this._userTokens = data as UserTokensInfoI; // Явное приведение к типу
+    }
+
   }
 
   // async setAuthState(setStateCallBack:  Dispatch<SetStateAction<boolean>>) {
@@ -37,9 +42,15 @@ class AuthStore {
     this._userTokens = userTokens
   }
 
-  set IsAuth(isAuth: boolean) {
+  setIsAuth(isAuth: boolean) {
     this._isAuth = isAuth
   }
+
+  logOut() {
+    StorageHelper.remove(StorageTypeNames.UserToken)
+    this._userTokens = null
+  }
+
 
   // async createUser(email:string, password:string) {
   //   const userData = await authServices.postCreateUser(email, password)
@@ -49,5 +60,6 @@ class AuthStore {
 }
 
 export const authStore = new AuthStore();
+
 
 

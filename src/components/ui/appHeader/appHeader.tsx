@@ -5,6 +5,9 @@ import {useLocation, useMatches, useNavigate} from "react-router-dom";
 import {Avatar} from "@/components/assets/Avatar/avatar";
 import {TButtonInfo} from "@/routing/routesList/Routes";
 import {SwitchComponent} from "@/components/ui/switch/switch";
+import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
+
+import {useStores} from "@/contexts/storeContext/storeContext";
 
 
 type HeaderWithButtonProps = {
@@ -16,6 +19,7 @@ export const AppHeader = ({title, isAuth, avatarUrl = ""}: HeaderWithButtonProps
   const matchRoutes = useMatches();
   const {pathname: currentPathName} = useLocation();
   const navigate = useNavigate();
+  const {authStore} = useStores()
 
   const currentRouteInfo = matchRoutes.find(
       route => {
@@ -35,6 +39,7 @@ export const AppHeader = ({title, isAuth, avatarUrl = ""}: HeaderWithButtonProps
                 ? <div className={s.AvatarContainer}>
                   <Typography className={s.avatarWrapper} variant={"subtitle1"}>as
                     <Avatar  initialImageUrl={avatarUrl} alt="User Avatar"/>
+                    <Button onClick={(e) => {authStore.logOut()}}>logout</Button>
                   </Typography>
                 </div>
                 : <Button

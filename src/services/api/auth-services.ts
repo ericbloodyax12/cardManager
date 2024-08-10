@@ -1,6 +1,7 @@
 
 import {ApiService} from "@/services/api-service";
 import { UserTokensInfoI} from "@/dto/auth/auth-dto";
+import {apiConfig} from "../../../configs/apiConfig";
 
 
 class AuthServices extends ApiService {
@@ -27,7 +28,7 @@ class AuthServices extends ApiService {
   }
 
 } //как сделать аналог as const для классов
-export const authServices = new AuthServices([],[],'https://api.flashcards.andrii.es')
+export const authServices = new AuthServices([],[], apiConfig.baseUrl)
 
 
 
