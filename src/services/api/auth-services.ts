@@ -14,7 +14,7 @@ class AuthServices extends ApiService {
 
   }
 
-  async postCreateUser(email: string, password: string): Promise<void> {
+  async signUp(email: string, password: string): Promise<void> {
     const signUpPath = '/v1/auth/sign-up'
     const body = {email, password}
 

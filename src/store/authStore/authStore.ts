@@ -2,6 +2,8 @@ import {CreateUserResponseType} from "@/services/api/authTypes";
 import {UserTokensInfoI} from "@/dto/auth/auth-dto";
 import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
 import {makeAutoObservable} from "mobx";
+import {authServices} from "@/services/api/auth-services";
+import {toast} from "react-toastify";
 
 class AuthStore {
   currentUserData: CreateUserResponseType | undefined = undefined;
@@ -50,6 +52,21 @@ class AuthStore {
     StorageHelper.remove(StorageTypeNames.UserToken)
     this._userTokens = null
   }
+
+  async signUp(email: string, password: string) {
+    try {
+      await authServices.signUp(email,password)
+      this._isAuth = true;
+
+    }
+    catch (e: any) {
+      const errorMessage = e.message
+      console.error(errorMessage)
+    }
+  }
+
+
+
 
 
   // async createUser(email:string, password:string) {
