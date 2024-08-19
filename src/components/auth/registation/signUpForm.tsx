@@ -13,6 +13,7 @@ import {useNavigate} from "react-router-dom";
 
 import {toast} from "react-toastify";
 import {authServices} from "@/services/api/auth-services";
+import {authStore} from "@/store/authStore/authStore";
 
 export type FormValuesType = z.infer<typeof signUpSchema>
 export const SignUpForm = () => {
@@ -33,7 +34,7 @@ export const SignUpForm = () => {
             // formData.append('password', password);
 
        try {
-            await authServices.postCreateUser(email,password)
+            await authStore.signUp(email,password)
            navigate('/login')
          toast.success("Registration is success", {
            position: "top-left"
@@ -41,7 +42,6 @@ export const SignUpForm = () => {
        }
        catch (e: any) {
          const errorMessage = e.message
-           console.error(e.message)
          toast.error(errorMessage, {
            position: "top-left"
          })
