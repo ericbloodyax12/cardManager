@@ -19,7 +19,7 @@ import {useEffect} from "react";
 import {paths} from "@/routing/routesList/Routes";
 import {authStore} from "@/store/authStore/authStore";
 
- // ++++++todo ask for useRef
+
 
 export type FormValuesType = z.infer<typeof loginSchema> // Для того что бы не писать типы для формы вручную - z.infer
 

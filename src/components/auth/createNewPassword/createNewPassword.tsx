@@ -6,16 +6,22 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import {Typography} from "@/components/ui/typography";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {Card} from "@/components/ui/card";
 
 import s from './createNewPassword.module.scss'
 import {newPasswordSchema} from "@/components/auth/createNewPassword/helpers/newPasswordSchema";
+import {authStore} from "@/store/authStore/authStore";
+import {paths} from "@/routing/routesList/Routes";
+import {toast} from "react-toastify";
+import {useState} from "react";
 
 export type FormValuesType = z.infer<typeof newPasswordSchema> // Для того что бы не писать типы для формы вручную - z.infer
 
 export const CreateNewPassword = () => {
     const navigate = useNavigate()
+    const params = useParams();
+    const [isSubmitting, setIsSubmitting] = useState(false)
   const {
     formState: { errors },
     handleSubmit,
@@ -26,10 +32,25 @@ export const CreateNewPassword = () => {
     },
     resolver: zodResolver(newPasswordSchema),
   })
+    console.log(params)
+  const onSubmit = async (data: FormValuesType) => {
+      const {password} = data
+      try {
 
-  const onSubmit = (data: FormValuesType) => {
-    console.log('data form newPassword onSubmit',data)
-    navigate('/login')
+          await authStore.resetPassword(params!.id,password)
+          setIsSubmitting(true)
+          navigate(paths.SIGN_IN)
+          toast.success("New Password is success", {
+              position: "top-left"
+          })
+      }
+      catch (e: any) {
+          const errorMessage = e.message
+          toast.error(errorMessage, {
+              position: "top-left"
+          })
+      }
+
   }
 
   return (
@@ -52,7 +73,11 @@ export const CreateNewPassword = () => {
 
 
 
-              <Button className={s.submit} type={'submit'} fullWidth={true}>
+              <Button className={s.submit}
+                      type={'submit'}
+                      fullWidth={true}
+                      disabled={isSubmitting}
+              >
                  Create New Password
               </Button>
           </form>

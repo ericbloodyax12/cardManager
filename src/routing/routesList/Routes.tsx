@@ -3,9 +3,9 @@ import {SignIn} from "@/pages/publicPages/signIn/signIn";
 import {Decks} from "@/pages/decks";
 import {EditProfileMainPage} from "@/pages/editProfilePages/editProfileMainPage/editProfileMainPage";
 import {SignUp} from "@/pages/publicPages/signUp/signUp";
-import {CreateNewPassword} from "@/components/auth/createNewPassword/createNewPassword";
 import {CheckEmail} from "@/pages/publicPages/checkEmail/checkEmailPage";
 import {TestComponentsPage} from "@/pages/testPages/testComponentsPage";
+import {CreateNewPasswordPage} from "@/pages/publicPages/createNewPassword/createNewPasswordPage";
 
 
 export const paths = {
@@ -15,7 +15,7 @@ export const paths = {
   CHECK_EMAIL_PAGE: '/checkEmailPage',
   DECKS: '/decks',
   EDIT_MAIN_PROFILE: '/edit_main_profile',
-  CREATE_NEW_PASSWORD: '/createNewPassword',
+  CREATE_NEW_PASSWORD: '/recover-password/:id',
 }
 
 type RouteConfigType = {
@@ -52,6 +52,12 @@ export const routesConfig: RouteConfigType[] = [
     buttonInfo: getButtonInfo("forgot_password"),
   },
   {
+    routeName: "create_new_password",
+    path: paths.CREATE_NEW_PASSWORD,
+    element: <CreateNewPasswordPage/>,
+    buttonInfo: getButtonInfo("forgot_password"),
+  },
+  {
     routeName: "sign_up",
     path: paths.SIGN_UP,
     element: <SignUp/>,
@@ -75,12 +81,7 @@ export const routesConfig: RouteConfigType[] = [
     element: <EditProfileMainPage name={"Eric"} email={"as@gmail.com"}/>,
     private: true,
   },
-  {
-    routeName: "createNewPassword",
-    path: paths.CREATE_NEW_PASSWORD,
-    element: <CreateNewPassword/>,
-    private: true,
-  }, {
+   {
     routeName: "testComponentsPage",
     path: '/test_page',
     element: <TestComponentsPage/>,

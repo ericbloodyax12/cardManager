@@ -20,6 +20,16 @@ class AuthServices extends ApiService {
 
     await super.post({path: signUpPath, body: body})
   }
+  async forgotPassword(email: string): Promise<void> {
+    const forgotPasswordPath = '/v1/auth/recover-password'
+    const body = {email}
+    await super.post({path: forgotPasswordPath, body: body})
+  }
+  async resetPassword(id:string, password: string): Promise<void> {
+    const resetPasswordPath = `/v1/auth/reset-password/${id}`
+    const body = {password}
+    await super.post({path: resetPasswordPath, body: body})
+  }
   async signIn(email: string, password: string, rememberMe: boolean): Promise<UserTokensInfoI> {
     const signInPath = '/v1/auth/login'
     const body = {email, password,rememberMe}
