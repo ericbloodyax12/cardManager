@@ -54,7 +54,7 @@ export class ApiService extends ErrorService implements IApiService {
       headers?: { [key: string]: string },
       options?: TRequestOptions
   ): Promise<T> {
-    const resultHeaders = this.getRequestHeaders(headers); // todo: переместить в requestBehaviors
+    const resultHeaders = this.getRequestHeaders(headers);
     await Promise.all(this.requestBehaviors.map((behavior) => behavior({ path, body, method, headers, options })));
     let baseResponse: Response | null = null;
     const stringifiedBody = JSON.stringify(body)
@@ -82,8 +82,28 @@ export class ApiService extends ErrorService implements IApiService {
         super.UnauthorizeProcessingCookiesBehavior,
         super.InternalServerErrorProcessingBehavior,
       ];
-      await Promise.all(behaviors.concat(this.responseBehaviors).map((behavior) => behavior(response, options?.isHideErrorCallback)));
-      throw new Error();
+
+      // await Promise.all(behaviors.concat(this.responseBehaviors).map((behavior) => behavior(response, options?.isHideErrorCallback)));
+      let errorMessage = 'An error occurred'; // Сообщение по умолчанию
+      try {
+        const errorData = await response.json();
+        if (errorData && errorData.message) {
+          errorMessage = errorData.message; // Если есть поле message, то выводим его
+        }
+      } catch (e) {
+        console.error('Failed to parse error response:', e);
+      }
+
+      // Выводим пользователю только сообщение
+      toast.error(errorMessage, {
+        style: {
+          marginTop:"50px"
+        }
+      });
+
+      throw new Error(errorMessage);
+
+
     } else {
       if (response.status === 204) {
         return {} as T;
@@ -125,7 +145,7 @@ export class ApiService extends ErrorService implements IApiService {
       if (obj[prop] === null || obj[prop] === undefined) {
         delete obj[prop];
       }
-    } // todo: топорный вариант, попробовать через TS переписать
+    }
     const str = qs.stringify(obj,
         { allowDots: true }
     );

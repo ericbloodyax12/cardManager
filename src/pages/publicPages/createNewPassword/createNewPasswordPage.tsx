@@ -7,7 +7,6 @@ import {CreateNewPassword} from "@/components/auth/createNewPassword/createNewPa
 export const CreateNewPasswordPage = () => {
     return (
         <div className={s.cNPContainer}>
-
           <CreateNewPassword/>
         </div>
 

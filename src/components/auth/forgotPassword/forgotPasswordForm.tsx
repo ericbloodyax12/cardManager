@@ -10,12 +10,16 @@ import {forgotPasswordSchema} from "@/components/auth/forgotPassword/helpers/for
 import {TextField} from "@/components/ui/textField";
 import {Button} from "@/components/ui/button";
 import {useState} from "react";
+import {paths} from "@/routing/routesList/Routes";
+import {authStore} from "@/store/authStore/authStore";
+import {toast} from "react-toastify";
 
 export type FormValuesType = z.infer<typeof forgotPasswordSchema> // Для того что бы не писать типы для формы вручную - z.infer
 
 export const ForgotPasswordForm = () => {
     const navigate = useNavigate()
     const [isSubmitting, setIsSubmitting] = useState(false)
+
     const {
         formState: { errors },
         handleSubmit,
@@ -24,10 +28,25 @@ export const ForgotPasswordForm = () => {
         resolver: zodResolver(forgotPasswordSchema),
     })
 
-    const onSubmit = (data: FormValuesType) => {
-        console.log('isSubmitting',isSubmitting)
-        setIsSubmitting(true)
-        console.log(data)
+    const onSubmit = async (data: FormValuesType) => {
+        const {email} = data
+        try {
+            await authStore.forgotPassword(email)
+            setIsSubmitting(true)
+            navigate(paths.CHECK_EMAIL_PAGE, { state: { email: data.email } })
+            toast.success("Submit is success", {
+                position: "top-left"
+            })
+        }
+        catch (e: any) {
+            const errorMessage = e.message
+            toast.error(errorMessage, {
+                position: "top-left"
+            })
+        }
+
+
+
     }
 
     return (
@@ -41,16 +60,13 @@ export const ForgotPasswordForm = () => {
                     label={'email'}
                 />
                 <div className={s.bodyContainer}>
-                    <Typography variant={"body2"} className={s.body}>
+                    <Typography variant={"body2"} className={s.bodyText}>
                         Enter your email address and we will send you further instructions
                     </Typography>
                 </div>
                 <Button className={s.submit}
                         type={'submit'}
                         fullWidth={true}
-                        onClick={() => {
-                            navigate('/check_email')
-                }}
                         disabled={isSubmitting}
                 >
                     Send Instructions

@@ -3,12 +3,11 @@ import {UserTokensInfoI} from "@/dto/auth/auth-dto";
 import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
 import {makeAutoObservable} from "mobx";
 import {authServices} from "@/services/api/auth-services";
-import {toast} from "react-toastify";
 
 class AuthStore {
   currentUserData: CreateUserResponseType | undefined = undefined;
   private _isAuth: boolean = false;
-  private _userTokens: UserTokensInfoI | null = null
+  private _userTokens: UserTokensInfoI | null | undefined = null
   constructor() {
     makeAutoObservable(this)
     const data = StorageHelper.getData<StorageTypeNames.UserToken>(StorageTypeNames.UserToken);
@@ -65,15 +64,29 @@ class AuthStore {
     }
   }
 
-
-
-
+  async forgotPassword(email:string) {
+    try {
+      await authServices.forgotPassword(email)
+    }
+    catch (e: any) {
+      const errorMessage = e.message
+      console.error(errorMessage)
+    }
+  }
+  async resetPassword(id:string, password:string) {
+    try {
+      await authServices.resetPassword(id,password)
+    }
+    catch (e: any) {
+      const errorMessage = e.message
+      console.error(errorMessage)
+    }
+  }
 
   // async createUser(email:string, password:string) {
   //   const userData = await authServices.postCreateUser(email, password)
   //   this.currentUserData = userData;
   // }
-
 }
 
 export const authStore = new AuthStore();

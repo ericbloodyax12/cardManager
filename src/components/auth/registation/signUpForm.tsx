@@ -12,7 +12,6 @@ import {Button} from "@/components/ui/button";
 import {useNavigate} from "react-router-dom";
 
 import {toast} from "react-toastify";
-import {authServices} from "@/services/api/auth-services";
 import {authStore} from "@/store/authStore/authStore";
 
 export type FormValuesType = z.infer<typeof signUpSchema>
@@ -32,7 +31,6 @@ export const SignUpForm = () => {
             // const formData = new FormData();
             // formData.append('email', email);
             // formData.append('password', password);
-
        try {
             await authStore.signUp(email,password)
            navigate('/login')
