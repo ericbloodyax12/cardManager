@@ -4,9 +4,10 @@ import {useEffect} from "react";
 
 import s from './decks.module.scss'
 import {useStores} from "@/contexts/storeContext/storeContext";
-import {Column} from "primereact/column";
-import {DataTable} from "primereact/datatable";
-import {Paginator} from "primereact/paginator";
+
+
+
+import {DataTableComponent} from "@/components/ui/dataTable/dataTable";
 
 export const Decks = observer(() => {
   console.log("decks component is here")
@@ -34,13 +35,8 @@ export const Decks = observer(() => {
   }
   console.log("decks component is here")
   return (
-      <div>
-        <DataTable value={decks} paginator={false} responsiveLayout="scroll">
-          <Column field="name" header=" Name"/>
-          <Column field="cardsCount" header="Cards Count"/>
-          <Column field="updated" header="Last Updated"/>
-          <Column field="author.name" header="Created by"/>
-        </DataTable>
+      <div className={s.divMainContainer}>
+        <DataTableComponent items={decks}/>
 
         {/*<Paginator*/}
         {/*    first={(pagination.currentPage - 1) * pagination.itemsPerPage}*/}
