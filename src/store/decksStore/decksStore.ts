@@ -1,9 +1,12 @@
 import {makeAutoObservable} from "mobx";
 import {decksService} from "@/services/api/deck-service/decks-service";
+import {DeckModelView} from "@/models-view/deck-view";
+
+
 
 class DecksStore {
-    decks = [];
-    loading = false;
+    decks: DeckModelView[] = [];
+    loading: boolean = false;
     error: string | null = null;
     // pagination = {
     //     currentPage: 1,
@@ -15,7 +18,7 @@ class DecksStore {
         makeAutoObservable(this);
     }
 
-    async getDecks() {
+    async getDecks(): Promise<DeckModelView[] | undefined> {
         this.loading = true;
         this.error = null;
         try {
@@ -24,11 +27,13 @@ class DecksStore {
             //     itemsPerPage: this.pagination.itemsPerPage,
             // };
             const data = await decksService.getDecks();
-                this.decks = data.items || [];
+            const decksView = DeckModelView.Map(data.items)
+                this.decks = decksView;
                 // this.pagination = data.pagination;
                 this.loading = false;
-
-        } catch (error: any) {
+            return decksView
+        }
+        catch (error: any) {
                 this.error = error.message || 'Something went wrong';
                 this.loading = false;
         }
