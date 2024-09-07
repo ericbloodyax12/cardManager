@@ -28,6 +28,7 @@ export const AppHeader = ({title, isAuth, avatarUrl = ""}: HeaderWithButtonProps
   );
 
   const buttonInfo = currentRouteInfo?.handle as TButtonInfo;
+    console.log('AppHeader isAuth:',isAuth)
 
   return (
       <header className={s.header}>

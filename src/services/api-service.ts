@@ -83,7 +83,7 @@ export class ApiService extends ErrorService implements IApiService {
         super.InternalServerErrorProcessingBehavior,
       ];
 
-      // await Promise.all(behaviors.concat(this.responseBehaviors).map((behavior) => behavior(response, options?.isHideErrorCallback)));
+      await Promise.all(behaviors.concat(this.responseBehaviors).map((behavior) => behavior(response, options?.isHideErrorCallback)));
       let errorMessage = 'An error occurred'; // Сообщение по умолчанию
       try {
         const errorData = await response.json();

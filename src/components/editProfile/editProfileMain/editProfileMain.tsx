@@ -6,6 +6,7 @@ import image010 from "../../assets/images/010.jpg"
 import {EditIcon} from "@/components/assets/icons/componentSvg/editIcon";
 import {Button} from "@/components/ui/button";
 import s from "./editProfileMain.module.scss";
+import {authStore} from "@/store/authStore/authStore";
 
 export type EditProfilePropsType = {
   name: string;
@@ -26,7 +27,11 @@ export const EditProfileMain = ({name = "Eric", email = "as@gmail.com"} : EditPr
           </button>
         </div>
         <Typography variant={"body2"}>{email}</Typography>
-        <Button withIcon={true} variant={"secondary"}><Typography variant={"subtitle2"}>Logout</Typography></Button>
+        <Button withIcon={true}
+                variant={"secondary"}
+                onClick={(e) => {authStore.logOut()}}
+        >
+            <Typography variant={"subtitle2"}>Logout</Typography></Button>
       </Card>
   )
 }

@@ -44,9 +44,7 @@ export const LoginForm = () => {
   //     emailRef.current.focus(); // Установка фокуса на поле email при необходимости
   //   }
   // };
-  useEffect(() => {
-    authServices.getIsAuth()
-  }, []);
+
   const onSubmit = async (data: FormValuesType) => {
     try {
       const {email,password,rememberMe} = data

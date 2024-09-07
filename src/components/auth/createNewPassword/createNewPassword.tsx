@@ -1,20 +1,21 @@
 import { useForm } from 'react-hook-form'
+import {toast} from "react-toastify";
+import {useState} from "react";
 
-import { Button } from '@/components/ui/button'
 import { TextField } from '@/components/ui/textField'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
+import { Button } from '@/components/ui/button'
 import {Typography} from "@/components/ui/typography";
 import {useNavigate, useParams} from "react-router-dom";
 import {Card} from "@/components/ui/card";
 
-import s from './createNewPassword.module.scss'
 import {newPasswordSchema} from "@/components/auth/createNewPassword/helpers/newPasswordSchema";
 import {authStore} from "@/store/authStore/authStore";
 import {paths} from "@/routing/routesList/Routes";
-import {toast} from "react-toastify";
-import {useState} from "react";
+
+import s from './createNewPassword.module.scss'
 
 export type FormValuesType = z.infer<typeof newPasswordSchema> // Для того что бы не писать типы для формы вручную - z.infer
 
@@ -36,13 +37,18 @@ export const CreateNewPassword = () => {
   const onSubmit = async (data: FormValuesType) => {
       const {password} = data
       try {
+            if (params.id) {
+                await authStore.resetPassword(params.id,password)
+                setIsSubmitting(true)
+                navigate(paths.SIGN_IN)
+                toast.success("New Password is success", {
+                    position: "top-left"
+                })
+            } else {
+                toast.error("invalid token (reset param)")
+            }
 
-          await authStore.resetPassword(params!.id,password)
-          setIsSubmitting(true)
-          navigate(paths.SIGN_IN)
-          toast.success("New Password is success", {
-              position: "top-left"
-          })
+
       }
       catch (e: any) {
           const errorMessage = e.message

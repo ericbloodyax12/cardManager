@@ -7,10 +7,10 @@ import {apiConfig} from "../../../configs/apiConfig";
 class AuthServices extends ApiService {
 
   async getIsAuth(bearerToken?: string): Promise<void> {
-    const bearerExampleToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzMTY4OWE4NS00MzcxLTRjM2QtOGE0Yy03N2Q3ODJlZDk2MGQiLCJkYXRlIjoiMjAyNC0wNy0yOVQxNDowMTo0Mi45NTZaIiwiaWF0IjoxNzIyMjYxNzAyLCJleHAiOjE3MjIzNDgxMDJ9.bkIPpQka5U3LINKGHnJrIv7HOxJ7fXTYCr09A-7EXLI"
+
     console.log(bearerToken)
     const authPath = '/v1/auth/me'
-    await super.get({path: authPath, headers: {Authorization:`Bearer ${bearerExampleToken}`}} ) // or this.
+    await super.get({path: authPath, headers: {Authorization:`Bearer ${bearerToken}`}} ) // or this.
 
   }
 
