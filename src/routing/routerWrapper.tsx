@@ -24,11 +24,25 @@ export const RouterWrapper = observer(() => {
             <MainLayoutWrapper isAuth={isAuth}/>
           </ThemeProvider>,
       children: [
-        ...routesConfig.map(route => ({
-          path: route.path,
-          handle: route.buttonInfo,
-          element: route.private ? <PrivateRouteWrapper isAuth={isAuth}/> : route.element,
-        })),
+        ...routesConfig.map(route =>
+          route.private
+              ? {
+            path: route.path,
+                element:  <PrivateRouteWrapper isAuth={isAuth}/>,
+                children: [
+                  {
+                    path: "", // Путь по умолчанию для приватного маршрута
+                    element: route.element
+                  }
+                ]
+              }
+              : {
+            path: route.path,
+                handle: route.buttonInfo,
+                element:  route.element
+          }
+
+        ),
         // Указываем маршрут по умолчанию
         {
 
