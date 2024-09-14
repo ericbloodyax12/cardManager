@@ -1,49 +1,57 @@
 import {decksStore} from "@/store/decksStore/decksStore";
 import {observer} from "mobx-react-lite";
-import {useEffect} from "react";
 
 import s from './decks.module.scss'
-import {useStores} from "@/contexts/storeContext/storeContext";
+
 
 
 
 import {DataTableComponent} from "@/components/ui/dataTable/dataTable";
+import {useEffect} from "react";
+import {Paginator} from "primereact/paginator";
 
 export const Decks = observer(() => {
-  console.log("decks component is here")
-  const {authStore} = useStores()
-  const isAuth = authStore.IsAuth
-  console.log('isAuth in Decks',isAuth)
-  useEffect(() => {
-    decksStore.getDecks();
-  }, []);
+
   const {
     decks,
-    // pagination,
-    // setPage,
+    pagination,
+
   } = decksStore;
-  // const onPageChange = (e) => {
-  //   setPage(e.page + 1); // PrimeReact paginator начинается с 0, поэтому прибавляем 1
-  // };
 
-  if (decksStore.loading) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
 
-  if (decksStore.error) {
-    return <div>Error: {decksStore.error}</div>;
-  }
-  console.log("decks component is here")
+    decksStore.getDecks(pagination.currentPage, pagination.itemsPerPage);
+  }, [pagination.currentPage, pagination.itemsPerPage]);
+
+
+  const onPageChange = (e: any) => {
+    console.log("Page change event:", e);
+      console.log("e.itmesperPge", e.rows)
+
+    const curretntPage = e.page+1 // PrimeReact paginator начинает с 0, поэтому прибавляем 1
+    if (pagination.currentPage !== curretntPage) {
+        decksStore.setPage(curretntPage);
+    } else if (pagination.itemsPerPage !== e.rows)  {
+        decksStore.setItemsPerPage(e.rows);
+    }
+  };
+
+
   return (
       <div className={s.divMainContainer}>
-        <DataTableComponent items={decks}/>
+          <div className={s.divMainContainer__dataTable}>
+              <DataTableComponent items={decks}/>
 
-        {/*<Paginator*/}
-        {/*    first={(pagination.currentPage - 1) * pagination.itemsPerPage}*/}
-        {/*    rows={pagination.itemsPerPage}*/}
-        {/*    totalRecords={pagination.totalItems}*/}
-        {/*    onPageChange={onPageChange}*/}
-        {/*/>*/}
+          </div>
+          <Paginator
+              first={(pagination.currentPage - 1) * pagination.itemsPerPage}
+              rows={pagination.itemsPerPage}
+              totalRecords={pagination.totalItems}
+              onPageChange={onPageChange}
+              rowsPerPageOptions={[5, 10, 25, 50]}
+              className={s.paginator}
+          />
       </div>
+
   );
 });

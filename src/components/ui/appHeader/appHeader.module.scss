@@ -1,4 +1,6 @@
 
+
+
 .header {
   display: flex;
   align-items: center;
@@ -8,7 +10,7 @@
   height: 60px; // Adjust based on your design
   padding: 0 80px;
 
-  background-color: var(--color-dark-700); // Assuming a dark background
+  background-color:  var(--color-dark-700) ; // Assuming a dark background
   box-shadow: 0 4px 4px rgb(0 0 0 / 10%);
 }
 
@@ -16,12 +18,14 @@
   display: flex;
   gap: 20px;
   align-items: center;
+
 }
 
 .avatarWrapper {
  display: flex;
   gap: 4px;
   align-items: center;
+
   }
 
 .button {

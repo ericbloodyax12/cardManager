@@ -3,10 +3,8 @@ import { toast } from 'react-toastify';
 import { urlJoin } from 'url-join-ts';
 
 
-
 import type { IApiService, RequestBehavior, ResponceBehavior, TMethod, TRequest, TRequestOptions } from './types';
 import { ErrorService } from './error-service';
-
 
 
 export class ApiService extends ErrorService implements IApiService {
@@ -39,7 +37,8 @@ export class ApiService extends ErrorService implements IApiService {
     return await this.RequestHandler(path, 'PATCH', body, headers, options);
   }
 
-  public sendBeacon(url: string, body: any) { // todo: натянуть на общую логику обработки запросов и ответов
+
+  public sendBeacon(url: string, body: any) {
     const headers = {
       type: this.DEFAULT_HEADER,
     };
@@ -54,7 +53,7 @@ export class ApiService extends ErrorService implements IApiService {
       headers?: { [key: string]: string },
       options?: TRequestOptions
   ): Promise<T> {
-    const resultHeaders = this.getRequestHeaders(headers);
+    const resultHeaders = this.getRequestHeaders(headers)|| {};
     await Promise.all(this.requestBehaviors.map((behavior) => behavior({ path, body, method, headers, options })));
     let baseResponse: Response | null = null;
     const stringifiedBody = JSON.stringify(body)

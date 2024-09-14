@@ -1,5 +1,7 @@
 import { StatusCodes } from 'http-status-codes/build/cjs/status-codes';
 import { toast } from 'react-toastify';
+import {authServices} from "@/services/api/auth-services";
+import {urlJoin} from "url-join-ts";
 
 export interface IServerErrorModel {
   Text: string;
@@ -7,7 +9,6 @@ export interface IServerErrorModel {
   isDebugMode?: boolean;
   StackTrace?: string;
 }
-
 
 export class ErrorService {
   protected async InternalServerErrorProcessingBehavior(
@@ -35,7 +36,6 @@ export class ErrorService {
       toast.error(error_5xx_message);
       return;
     }
-
 
     const errorText = await response.text();
     let error: IServerErrorModel | null = null;
@@ -83,11 +83,29 @@ export class ErrorService {
       isHideErrorCallback?: (statusCode: number) => boolean,
   ): Promise<void> {
     if (response.status === StatusCodes.UNAUTHORIZED) {
-      if (isHideErrorCallback && !isHideErrorCallback(response.status)) {
-        toast.warning("Ошибка авторизации");
+      const accessToken = localStorage.getItem("accessToken");
+      const refreshToken = localStorage.getItem("refreshToken");
+
+      if (accessToken && refreshToken) {
+        try {
+          // Если токены есть, пытаемся обновить их
+          const newTokens = await authServices.refreshAccessToken();
+          authServices.setUserTokens(newTokens); // сохраняем новые токены
+
+          // Перезагружаем страницу или повторяем запрос
+          window.location.reload();
+        } catch (refreshError) {
+          // Если обновление токенов не удалось (например, refreshToken просрочен), перенаправляем на страницу логина
+          this.goToLogin();
+        }
+      } else {
+        if (isHideErrorCallback && !isHideErrorCallback(response.status)) {
+          toast.warning("Ошибка авторизации");
+        }
+        // StorageHelper.remove(StorageTypeNames.User);
+        this.goToLogin();
       }
-      // StorageHelper.remove(StorageTypeNames.User);
-      this.goToLogin();
+
     }
   }
 
