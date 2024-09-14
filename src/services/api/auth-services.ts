@@ -1,17 +1,33 @@
-
 import {ApiService} from "@/services/api-service";
-import { UserTokensInfoI} from "@/dto/auth/auth-dto";
+import {UserTokensInfoI} from "@/dto/auth/auth-dto";
 import {apiConfig} from "../../../configs/apiConfig";
+import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
 
 
 class AuthServices extends ApiService {
 
   async getIsAuth(bearerToken?: string): Promise<void> {
-
     console.log(bearerToken)
     const authPath = '/v1/auth/me'
     await super.get({path: authPath, headers: {Authorization:`Bearer ${bearerToken}`}} ) // or this.
 
+  }
+  async refreshAccessToken(): Promise<UserTokensInfoI> {
+    const refreshToken = StorageHelper.getData(StorageTypeNames.UserToken);
+
+    if (!refreshToken) {
+      throw new Error("Refresh token missing");
+    }
+
+    const refreshTokenPath = '/v2/auth/refresh-token';
+    const refreshedToken = await super.post<UserTokensInfoI>({ path: refreshTokenPath })
+    await this.getIsAuth(refreshedToken.accessToken);
+    return refreshedToken
+  }
+
+  public setUserTokens(userTokens: UserTokensInfoI) {
+    localStorage.setItem("accessToken", userTokens.accessToken);
+    localStorage.setItem("refreshToken", userTokens.refreshToken);
   }
 
   async signUp(email: string, password: string): Promise<void> {

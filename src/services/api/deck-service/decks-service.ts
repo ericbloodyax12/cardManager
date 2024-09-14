@@ -8,9 +8,10 @@ import {DecksResponse} from "@/dto/decks/decks-dto";
 
 class DecksService extends ApiService {
 
-    async getDecks(bearerToken?: string):Promise<DecksResponse>{
+    async getDecks(currentPage: number, itemsPerPage: number,bearerToken?: string):Promise<DecksResponse>{
         const decksPath = '/v1/decks'
-        const response = await super.get<DecksResponse>({path: decksPath, headers: {Authorization:`Bearer ${bearerToken}`}} )
+        const queryParams = `?currentPage=${currentPage}&itemsPerPage=${itemsPerPage}`;
+        const response = await super.get<DecksResponse>({path: decksPath+ queryParams, headers: {Authorization:`Bearer ${bearerToken}`}} )
 
         return response;
     }

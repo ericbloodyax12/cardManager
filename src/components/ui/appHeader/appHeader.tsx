@@ -28,19 +28,19 @@ export const AppHeader = ({title, isAuth, avatarUrl = ""}: HeaderWithButtonProps
   );
 
   const buttonInfo = currentRouteInfo?.handle as TButtonInfo;
-    console.log('AppHeader isAuth:',isAuth)
+
 
   return (
       <header className={s.header}>
         <Typography variant={"large"}>{title}</Typography>
         <div className={s.AppHeader_divWrapper}>
-          <SwitchComponent />
+          <SwitchComponent  />
           {
             (isAuth)
                 ? <div className={s.AvatarContainer}>
                   <Typography className={s.avatarWrapper} variant={"subtitle1"}>as
                     <Avatar  initialImageUrl={avatarUrl} alt="User Avatar"/>
-                    <Button onClick={(e) => {authStore.logOut()}}>logout</Button>
+                    <Button onClick={() => {authStore.logOut()}}>logout</Button>
                   </Typography>
                 </div>
                 : <Button
