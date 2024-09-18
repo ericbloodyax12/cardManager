@@ -1,4 +1,4 @@
-import {decksStore} from "@/store/decksStore/decksStore";
+
 import {observer} from "mobx-react-lite";
 
 import s from './decks.module.scss'
@@ -12,8 +12,10 @@ import {Paginator} from "primereact/paginator";
 import {useStores} from "@/contexts/storeContext/storeContext";
 
 export const Decks = observer(() => {
-    const authStore = useStores()
-    console.log(authStore?.UserTokensUpdateCount)
+  const {  decksStore} = useStores()!
+
+  console.log('decksStore.UserTokensUpdateCount', decksStore.UserTokensUpdateCount);
+
   const {
     decks,
     pagination,

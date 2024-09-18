@@ -17,7 +17,7 @@ import {useStores} from "@/contexts/storeContext/storeContext";
 
 export type FormValuesType = z.infer<typeof signUpSchema>
 export const SignUpForm = () => {
-    const authStore = useStores()
+    const { authStore } = useStores()!
     const navigate = useNavigate()
 
     const {

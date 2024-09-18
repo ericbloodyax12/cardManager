@@ -20,7 +20,7 @@ export type FormValuesType = z.infer<typeof forgotPasswordSchema> // Для то
 export const ForgotPasswordForm = () => {
     const navigate = useNavigate()
     const [isSubmitting, setIsSubmitting] = useState(false)
-const authStore = useStores()
+    const { authStore } = useStores()!
 
     const {
         formState: { errors },

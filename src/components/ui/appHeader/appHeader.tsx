@@ -19,7 +19,7 @@ export const AppHeader = ({title, isAuth, avatarUrl = ""}: HeaderWithButtonProps
   const matchRoutes = useMatches();
   const {pathname: currentPathName} = useLocation();
   const navigate = useNavigate();
-  const authStore = useStores()
+  const { authStore } = useStores()!
 
   const currentRouteInfo = matchRoutes.find(
       route => {

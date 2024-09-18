@@ -21,7 +21,7 @@ import {useStores} from "@/contexts/storeContext/storeContext";
 export type FormValuesType = z.infer<typeof newPasswordSchema> // Для того что бы не писать типы для формы вручную - z.infer
 
 export const CreateNewPassword = () => {
-    const authStore = useStores()
+    const { authStore } = useStores()!
     const navigate = useNavigate()
     const params = useParams();
     const [isSubmitting, setIsSubmitting] = useState(false)

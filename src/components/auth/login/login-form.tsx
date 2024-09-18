@@ -27,7 +27,7 @@ export type FormValuesType = z.infer<typeof loginSchema> // Для того чт
 
 export const LoginForm = () => {
     const navigate = useNavigate()
-    const authStore = useStores()
+    const { authStore } = useStores()!
   const {
     control,
     formState: { errors },

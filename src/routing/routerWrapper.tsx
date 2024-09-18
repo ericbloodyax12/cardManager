@@ -13,7 +13,7 @@ import {useStores} from "@/contexts/storeContext/storeContext";
 
 
 export const RouterWrapper = observer(() => {
-  const authStore = useStores()
+  const { authStore } = useStores()!
   const isAuth = authStore?.IsAuth
 
     console.log("tokens:",authStore?.UserTokens)
