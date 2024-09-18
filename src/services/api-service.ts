@@ -8,13 +8,16 @@ import { ErrorService } from './error-service';
 
 
 export class ApiService extends ErrorService implements IApiService {
-
+  private responseBehaviors: ResponceBehavior[] = []
+  private requestBehaviors: RequestBehavior[] = []
   constructor(
-      private responseBehaviors: ResponceBehavior[] = [],
-      private requestBehaviors: RequestBehavior[] = [],
+      responseBehaviors:ResponceBehavior[],
+      requestBehaviors: RequestBehavior[],
       public readonly ApiUrl: string
   ) {
     super();
+   this.responseBehaviors = responseBehaviors;
+   this.requestBehaviors = requestBehaviors;
 
   }
   public async get<T>(requestData: TRequest): Promise<T> {
@@ -78,11 +81,12 @@ export class ApiService extends ErrorService implements IApiService {
   ): Promise<T> {
     if (!response.ok) {
       const behaviors = [
-        super.UnauthorizeProcessingCookiesBehavior,
+        super.UnauthorizedProcessingCookiesBehavior,
         super.InternalServerErrorProcessingBehavior,
       ];
-
-      await Promise.all(behaviors.concat(this.responseBehaviors).map((behavior) => behavior(response, options?.isHideErrorCallback)));
+      const allBehaviors = behaviors.concat(this.responseBehaviors)
+      debugger
+      await Promise.all(allBehaviors.map((behavior) => behavior(response, options?.isHideErrorCallback)));
       let errorMessage = 'An error occurred'; // Сообщение по умолчанию
       try {
         const errorData = await response.json();

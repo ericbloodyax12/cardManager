@@ -7,27 +7,24 @@ import s from './decks.module.scss'
 
 
 import {DataTableComponent} from "@/components/ui/dataTable/dataTable";
-import {useEffect} from "react";
+import { useEffect} from "react";
 import {Paginator} from "primereact/paginator";
+import {useStores} from "@/contexts/storeContext/storeContext";
 
 export const Decks = observer(() => {
-
+    const authStore = useStores()
+    console.log(authStore?.UserTokensUpdateCount)
   const {
     decks,
     pagination,
-
   } = decksStore;
 
   useEffect(() => {
-
     decksStore.getDecks(pagination.currentPage, pagination.itemsPerPage);
   }, [pagination.currentPage, pagination.itemsPerPage]);
 
 
   const onPageChange = (e: any) => {
-    console.log("Page change event:", e);
-      console.log("e.itmesperPge", e.rows)
-
     const curretntPage = e.page+1 // PrimeReact paginator начинает с 0, поэтому прибавляем 1
     if (pagination.currentPage !== curretntPage) {
         decksStore.setPage(curretntPage);

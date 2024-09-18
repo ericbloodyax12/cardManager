@@ -14,10 +14,12 @@ import {useNavigate} from "react-router-dom";
 import {Card} from "@/components/ui/card";
 
 import s from './login-form.module.scss'
-import {authServices} from "@/services/api/auth-services";
-import {useEffect} from "react";
+
+
 import {paths} from "@/routing/routesList/Routes";
-import {authStore} from "@/store/authStore/authStore";
+
+import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
+import {useStores} from "@/contexts/storeContext/storeContext";
 
 
 
@@ -25,7 +27,7 @@ export type FormValuesType = z.infer<typeof loginSchema> // Для того чт
 
 export const LoginForm = () => {
     const navigate = useNavigate()
-
+    const authStore = useStores()
   const {
     control,
     formState: { errors },
@@ -48,8 +50,7 @@ export const LoginForm = () => {
   const onSubmit = async (data: FormValuesType) => {
     try {
       const {email,password,rememberMe} = data
-      const userTokens = await authServices.signIn(email,password,rememberMe)
-       authStore.setUserTokens(userTokens)
+       authStore?.signIn(email,password,rememberMe)
        navigate(paths.DECKS)
     }
     catch (e) {

@@ -1,13 +1,16 @@
 import {ApiService} from "@/services/api-service";
 import {UserTokensInfoI} from "@/dto/auth/auth-dto";
-import {apiConfig} from "../../../configs/apiConfig";
+
 import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
+import {RequestBehavior, ResponceBehavior} from "@/services/types";
 
 
-class AuthServices extends ApiService {
+export class AuthServices extends ApiService {
+ constructor( responseBehaviors: ResponceBehavior[], requestBehaviors: RequestBehavior[],ApiUrl: string) {
 
+   super(responseBehaviors,requestBehaviors,ApiUrl);
+ }
   async getIsAuth(bearerToken?: string): Promise<void> {
-    console.log(bearerToken)
     const authPath = '/v1/auth/me'
     await super.get({path: authPath, headers: {Authorization:`Bearer ${bearerToken}`}} ) // or this.
 
@@ -18,16 +21,18 @@ class AuthServices extends ApiService {
     if (!refreshToken) {
       throw new Error("Refresh token missing");
     }
-
     const refreshTokenPath = '/v2/auth/refresh-token';
-    const refreshedToken = await super.post<UserTokensInfoI>({ path: refreshTokenPath })
-    await this.getIsAuth(refreshedToken.accessToken);
+    const refreshedToken = await super.post<UserTokensInfoI>({
+          path: refreshTokenPath,
+          headers: {Authorization:`Bearer ${refreshToken.refreshToken}`}
+    }
+    )
+    // await this.getIsAuth(refreshedToken.accessToken);
     return refreshedToken
   }
 
-  public setUserTokens(userTokens: UserTokensInfoI) {
-    localStorage.setItem("accessToken", userTokens.accessToken);
-    localStorage.setItem("refreshToken", userTokens.refreshToken);
+  public updateUserTokens(userTokens: UserTokensInfoI) {
+    StorageHelper.setData({name:StorageTypeNames.UserToken, data:userTokens})
   }
 
   async signUp(email: string, password: string): Promise<void> {
@@ -54,7 +59,7 @@ class AuthServices extends ApiService {
   }
 
 } //как сделать аналог as const для классов
-export const authServices = new AuthServices([],[], apiConfig.baseUrl)
+
 
 
 
