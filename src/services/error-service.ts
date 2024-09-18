@@ -1,7 +1,8 @@
-import { StatusCodes } from 'http-status-codes/build/cjs/status-codes';
-import { toast } from 'react-toastify';
-import {authServices} from "@/services/api/auth-services";
-import {urlJoin} from "url-join-ts";
+import {StatusCodes} from 'http-status-codes/build/cjs/status-codes';
+import {toast} from 'react-toastify';
+import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
+
+// import {urlJoin} from "url-join-ts";
 
 export interface IServerErrorModel {
   Text: string;
@@ -78,35 +79,40 @@ export class ErrorService {
     }
   }
 
-  protected async UnauthorizeProcessingCookiesBehavior(
+  protected async UnauthorizedProcessingCookiesBehavior(
       response: Response,
       isHideErrorCallback?: (statusCode: number) => boolean,
   ): Promise<void> {
-    if (response.status === StatusCodes.UNAUTHORIZED) {
-      const accessToken = localStorage.getItem("accessToken");
-      const refreshToken = localStorage.getItem("refreshToken");
-
-      if (accessToken && refreshToken) {
-        try {
-          // Если токены есть, пытаемся обновить их
-          const newTokens = await authServices.refreshAccessToken();
-          authServices.setUserTokens(newTokens); // сохраняем новые токены
-
-          // Перезагружаем страницу или повторяем запрос
-          window.location.reload();
-        } catch (refreshError) {
-          // Если обновление токенов не удалось (например, refreshToken просрочен), перенаправляем на страницу логина
-          this.goToLogin();
-        }
-      } else {
-        if (isHideErrorCallback && !isHideErrorCallback(response.status)) {
-          toast.warning("Ошибка авторизации");
-        }
-        // StorageHelper.remove(StorageTypeNames.User);
-        this.goToLogin();
-      }
-
-    }
+    // if (response.status === StatusCodes.UNAUTHORIZED) {
+    //
+    //
+    //   const tokens = StorageHelper.getData(StorageTypeNames.UserToken)
+    //   console.log("UnauthorizedProcessingCookiesBehaviorrr");
+    //   console.log('перед проверкой токенов');
+    //
+    //   if (tokens) {
+    //     console.log("here2")
+    //     debugger
+    //     try {
+    //         // Если токены есть, пытаемся обновить их
+    //       const newTokens = await authServices.refreshAccessToken();
+    //
+    //       authServices.updateUserTokens(newTokens); // сохраняем новые токены
+    //
+    //
+    //     } catch (refreshError) {
+    //       // Если обновление токенов не удалось (например, refreshToken просрочен), перенаправляем на страницу логина
+    //       this.goToLogin();
+    //     }
+    //   } else {
+    //     if (isHideErrorCallback && !isHideErrorCallback(response.status)) {
+    //       toast.warning("Ошибка авторизации");
+    //     }
+    //     // StorageHelper.remove(StorageTypeNames.User);
+    //     this.goToLogin();
+    //   }
+    //
+    // }
   }
 
   public goToLogin() {

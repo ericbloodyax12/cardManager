@@ -12,10 +12,12 @@ import {Button} from "@/components/ui/button";
 import {useNavigate} from "react-router-dom";
 
 import {toast} from "react-toastify";
-import {authStore} from "@/store/authStore/authStore";
+import {useStores} from "@/contexts/storeContext/storeContext";
+
 
 export type FormValuesType = z.infer<typeof signUpSchema>
 export const SignUpForm = () => {
+    const authStore = useStores()
     const navigate = useNavigate()
 
     const {
@@ -32,7 +34,7 @@ export const SignUpForm = () => {
             // formData.append('email', email);
             // formData.append('password', password);
        try {
-            await authStore.signUp(email,password)
+            await authStore?.signUp(email,password)
            navigate('/login')
          toast.success("Registration is success", {
            position: "top-left"

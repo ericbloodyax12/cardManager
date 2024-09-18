@@ -11,11 +11,13 @@ export interface ILoadedReferences {
 export enum StorageTypeNames {
   UserToken = 'userToken'
 
+
   // ConfigGuid = 'configGuid' // гуид конфигурации из-под которой был выполнен последний успешный вход
 }
 
 export type StorageType =
     {name: StorageTypeNames.UserToken, data: UserTokensInfoI | undefined}
+
 // | { name: StorageTypeNames.ConfigGuid, data: string }
 // | { name: StorageTypeNames.GantTaskInfo, data: { [key: string]: {currentSelectedTask?: TTaskType, expandedTasksKeys?: string[]} }}
 // | { name: StorageTypeNames.GanttDiagramPosition, data: {[key: string]: {scaleType?: TScaleTypes, position?: {top: number; left: number}, scaleElementWidth?: number}}}

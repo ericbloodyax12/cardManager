@@ -13,24 +13,24 @@ import {useStores} from "@/contexts/storeContext/storeContext";
 
 
 export const RouterWrapper = observer(() => {
-  const {authStore} = useStores()
-  const isAuth = authStore.IsAuth
+  const authStore = useStores()
+  const isAuth = authStore?.IsAuth
 
-    console.log("tokens:",authStore.UserTokens)
+    console.log("tokens:",authStore?.UserTokens)
   const router = createBrowserRouter([
     {
       path: "/",
       handle: {buttonText: "Sign Up", navigateTo: paths.SIGN_UP},
       element:
           <ThemeProvider>
-            <MainLayoutWrapper isAuth={isAuth}/>
+            <MainLayoutWrapper isAuth={isAuth ?? false}/>
           </ThemeProvider>,
       children: [
         ...routesConfig.map(route =>
           route.private
               ? {
             path: route.path,
-                element:  <PrivateRouteWrapper isAuth={isAuth}/>,
+                element:  <PrivateRouteWrapper isAuth={isAuth ?? false}/>,
                 children: [
                   {
                     path: "", // Путь по умолчанию для приватного маршрута

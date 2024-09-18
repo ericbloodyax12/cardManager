@@ -19,7 +19,7 @@ export const AppHeader = ({title, isAuth, avatarUrl = ""}: HeaderWithButtonProps
   const matchRoutes = useMatches();
   const {pathname: currentPathName} = useLocation();
   const navigate = useNavigate();
-  const {authStore} = useStores()
+  const authStore = useStores()
 
   const currentRouteInfo = matchRoutes.find(
       route => {
@@ -40,7 +40,7 @@ export const AppHeader = ({title, isAuth, avatarUrl = ""}: HeaderWithButtonProps
                 ? <div className={s.AvatarContainer}>
                   <Typography className={s.avatarWrapper} variant={"subtitle1"}>as
                     <Avatar  initialImageUrl={avatarUrl} alt="User Avatar"/>
-                    <Button onClick={() => {authStore.logOut()}}>logout</Button>
+                    <Button onClick={() => {authStore?.logOut()}}>logout</Button>
                   </Typography>
                 </div>
                 : <Button

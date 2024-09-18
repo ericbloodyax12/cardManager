@@ -11,14 +11,16 @@ import {TextField} from "@/components/ui/textField";
 import {Button} from "@/components/ui/button";
 import {useState} from "react";
 import {paths} from "@/routing/routesList/Routes";
-import {authStore} from "@/store/authStore/authStore";
+
 import {toast} from "react-toastify";
+import {useStores} from "@/contexts/storeContext/storeContext";
 
 export type FormValuesType = z.infer<typeof forgotPasswordSchema> // Для того что бы не писать типы для формы вручную - z.infer
 
 export const ForgotPasswordForm = () => {
     const navigate = useNavigate()
     const [isSubmitting, setIsSubmitting] = useState(false)
+const authStore = useStores()
 
     const {
         formState: { errors },
@@ -31,7 +33,7 @@ export const ForgotPasswordForm = () => {
     const onSubmit = async (data: FormValuesType) => {
         const {email} = data
         try {
-            await authStore.forgotPassword(email)
+            await authStore?.forgotPassword(email)
             setIsSubmitting(true)
             navigate(paths.CHECK_EMAIL_PAGE, { state: { email: data.email } })
             toast.success("Submit is success", {

@@ -12,14 +12,16 @@ import {useNavigate, useParams} from "react-router-dom";
 import {Card} from "@/components/ui/card";
 
 import {newPasswordSchema} from "@/components/auth/createNewPassword/helpers/newPasswordSchema";
-import {authStore} from "@/store/authStore/authStore";
+
 import {paths} from "@/routing/routesList/Routes";
 
 import s from './createNewPassword.module.scss'
+import {useStores} from "@/contexts/storeContext/storeContext";
 
 export type FormValuesType = z.infer<typeof newPasswordSchema> // Для того что бы не писать типы для формы вручную - z.infer
 
 export const CreateNewPassword = () => {
+    const authStore = useStores()
     const navigate = useNavigate()
     const params = useParams();
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -38,7 +40,7 @@ export const CreateNewPassword = () => {
       const {password} = data
       try {
             if (params.id) {
-                await authStore.resetPassword(params.id,password)
+                await authStore?.resetPassword(params.id,password)
                 setIsSubmitting(true)
                 navigate(paths.SIGN_IN)
                 toast.success("New Password is success", {

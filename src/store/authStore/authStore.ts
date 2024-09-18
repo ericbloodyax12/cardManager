@@ -2,31 +2,45 @@ import {CreateUserResponseType} from "@/services/api/authTypes";
 import {UserTokensInfoI} from "@/dto/auth/auth-dto";
 import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
 import {makeAutoObservable} from "mobx";
-import {authServices} from "@/services/api/auth-services";
+import {AuthServices} from "@/services/api/auth-services";
+import {apiConfig} from "../../../configs/apiConfig";
 
-class AuthStore {
+export class AuthStore {
   currentUserData: CreateUserResponseType | undefined = undefined;
   private _isAuth: boolean = false;
   private _userTokens: UserTokensInfoI | null | undefined = null
+  private _userTokensUpdateCount: number = 0
+  private readonly _authService: AuthServices
+
   constructor() {
     makeAutoObservable(this)
+      const authService = new AuthServices([this.SetTokensUpdateCount],[], apiConfig.baseUrl)
     const data = StorageHelper.getData<StorageTypeNames.UserToken>(StorageTypeNames.UserToken);
+    this._authService = authService
 
     if (data) {
       this._userTokens = data as UserTokensInfoI; // Явное приведение к типу
     }
 
   }
-
+    async SetTokensUpdateCount(response: Response, isHideErrorCallback?: (statusCode: number) => boolean){
+        console.log("SetTokensUpdateCount",response,isHideErrorCallback)
+    }
   // async setAuthState(setStateCallBack:  Dispatch<SetStateAction<boolean>>) {
   //   console.log(this.isAuth)
   //   this.isAuth
   //   const isAuthorized = !!isAuth.id
   //   setStateCallBack(isAuthorized)
   // }
-  //
+
   get UserTokens() {
     return this._userTokens
+  }
+  get AuthService() {
+    return this._authService
+  }
+ get UserTokensUpdateCount() {
+    return this._userTokensUpdateCount
   }
 
   get IsAuth() {
@@ -52,9 +66,15 @@ class AuthStore {
     this._userTokens = null
   }
 
+  async signIn(email:string,password:string,rememberMe:boolean) {
+      const userTokens= await this._authService.signIn(email,password,rememberMe)
+      this.setUserTokens(userTokens)
+  }
+
+
   async signUp(email: string, password: string) {
     try {
-      await authServices.signUp(email,password)
+      await this._authService.signUp(email,password)
       this._isAuth = true;
 
     }
@@ -66,7 +86,7 @@ class AuthStore {
 
   async forgotPassword(email:string) {
     try {
-      await authServices.forgotPassword(email)
+      await this._authService.forgotPassword(email)
     }
     catch (e: any) {
       const errorMessage = e.message
@@ -75,7 +95,7 @@ class AuthStore {
   }
   async resetPassword(id:string, password:string) {
     try {
-      await authServices.resetPassword(id,password)
+      await this._authService.resetPassword(id,password)
     }
     catch (e: any) {
       const errorMessage = e.message
@@ -89,7 +109,7 @@ class AuthStore {
   // }
 }
 
-export const authStore = new AuthStore();
+
 
 
 
