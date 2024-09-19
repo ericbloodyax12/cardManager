@@ -66,6 +66,7 @@ export class AuthStore {
 
   async signIn(email:string,password:string,rememberMe:boolean) {
       const userTokens= await this._authService.signIn(email,password,rememberMe)
+    console.log("usersTokens signIn store", userTokens)
       this.setUserTokens(userTokens)
   }
 
