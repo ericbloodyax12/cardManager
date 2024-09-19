@@ -18,7 +18,7 @@ import s from './login-form.module.scss'
 
 import {paths} from "@/routing/routesList/Routes";
 
-import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
+
 import {useStores} from "@/contexts/storeContext/storeContext";
 
 
@@ -48,7 +48,9 @@ export const LoginForm = () => {
   // };
 
   const onSubmit = async (data: FormValuesType) => {
+      console.log("onsubmit")
     try {
+        console.log("onsubmit try")
       const {email,password,rememberMe} = data
        authStore?.signIn(email,password,rememberMe)
        navigate(paths.DECKS)
@@ -71,7 +73,7 @@ export const LoginForm = () => {
                   {...register('email')}
                   errorMessage={errors.email?.message}
                   label={'email'}
-                  // R
+                  autoComplete="email"
               />
               <TextField
                   className={s.textField}
@@ -79,6 +81,7 @@ export const LoginForm = () => {
                   errorMessage={errors.password?.message}
                   label={'password'}
                   variant={'password'}
+                  autoComplete="new-password"
               />
               <ControlledCheckboxComponent control={control}/>
 

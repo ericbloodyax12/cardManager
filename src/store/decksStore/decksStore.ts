@@ -43,7 +43,7 @@ export class DecksStore {
 
       if (tokens) {
         console.log("here2")
-        debugger
+
         try {
           // Если токены есть, пытаемся обновить их
           const newTokens = await this._authService.refreshAccessToken();
