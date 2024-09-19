@@ -1,6 +1,6 @@
-import {StatusCodes} from 'http-status-codes/build/cjs/status-codes';
+
 import {toast} from 'react-toastify';
-import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
+
 
 // import {urlJoin} from "url-join-ts";
 
@@ -80,8 +80,8 @@ export class ErrorService {
   }
 
   protected async UnauthorizedProcessingCookiesBehavior(
-      response: Response,
-      isHideErrorCallback?: (statusCode: number) => boolean,
+      // response: Response,
+      // isHideErrorCallback?: (statusCode: number) => boolean,
   ): Promise<void> {
     // if (response.status === StatusCodes.UNAUTHORIZED) {
     //
