@@ -14,7 +14,7 @@ export type EditProfilePropsType = {
     email: string
 }
 export const EditProfileMain = ({name = "Eric", email = "as@gmail.com"}: EditProfilePropsType) => {
-    const authStore = useStores()
+    const { authStore } = useStores()!
     return (
         <Card className={s.cardContainer}>
             <Typography variant={"h1"}>Personal Information</Typography>

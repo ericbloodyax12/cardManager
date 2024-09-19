@@ -9,12 +9,16 @@ export class AuthStore {
   currentUserData: CreateUserResponseType | undefined = undefined;
   private _isAuth: boolean = false;
   private _userTokens: UserTokensInfoI | null | undefined = null
-  private _userTokensUpdateCount: number = 0
-  private readonly _authService: AuthServices
+
+  private readonly _authService: AuthServices;
+
+  public get AuthService() {
+    return this._authService;
+  }
 
   constructor() {
     makeAutoObservable(this)
-      const authService = new AuthServices([this.SetTokensUpdateCount],[], apiConfig.baseUrl)
+      const authService = new AuthServices([],[], apiConfig.baseUrl)
     const data = StorageHelper.getData<StorageTypeNames.UserToken>(StorageTypeNames.UserToken);
     this._authService = authService
 
@@ -23,9 +27,7 @@ export class AuthStore {
     }
 
   }
-    async SetTokensUpdateCount(response: Response, isHideErrorCallback?: (statusCode: number) => boolean){
-        console.log("SetTokensUpdateCount",response,isHideErrorCallback)
-    }
+
   // async setAuthState(setStateCallBack:  Dispatch<SetStateAction<boolean>>) {
   //   console.log(this.isAuth)
   //   this.isAuth
@@ -36,12 +38,8 @@ export class AuthStore {
   get UserTokens() {
     return this._userTokens
   }
-  get AuthService() {
-    return this._authService
-  }
- get UserTokensUpdateCount() {
-    return this._userTokensUpdateCount
-  }
+
+
 
   get IsAuth() {
     if (this._userTokens?.accessToken) {
