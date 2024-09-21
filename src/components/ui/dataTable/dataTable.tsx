@@ -27,6 +27,7 @@ export const DataTableComponent: React.FC<TDataTableComponentProps> = observer( 
     const onRowSelect = (e:DataTableSelectEvent) => {
         setSelectedDeck(e.data);
         setDialogVisible(true)
+        console.log(e)
     };
 
     const hideDialog = () => {
@@ -48,7 +49,7 @@ export const DataTableComponent: React.FC<TDataTableComponentProps> = observer( 
                 <Column field="updated" header="Last Updated"/>
                 <Column field="author.name" header="Created by"/>
             </DataTable>
-            <Dialog className={"div-Dialog"} header="Card" visible={isDialogVisible} style={{width: '50vw'}} onHide={hideDialog} >
+            <Dialog className={"div-Dialog"} header="Card" visible={isDialogVisible} style={{width: '70vw'}} onHide={hideDialog} >
                 <div className={"div-Dialog__div"}>
                     <p><strong>Name:</strong> {selectedDeck?.name}</p>
                     <p><strong>Cards Count:</strong> {selectedDeck?.cardsCount}</p>

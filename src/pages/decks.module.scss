@@ -8,6 +8,12 @@
   height: 100%;
 }
 
+.divMainContainer__dataTable__div{
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 20px;
+}
+
 .paginator {
   display: flex;
   gap:20px;
