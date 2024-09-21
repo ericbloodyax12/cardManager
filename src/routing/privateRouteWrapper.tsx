@@ -4,7 +4,6 @@ import {paths} from "@/routing/routesList/Routes";
 
 type TPrivateRouteWrapperProps = {
   isAuth: boolean;
-
 };
 
 export const PrivateRouteWrapper: FC<TPrivateRouteWrapperProps> = ({isAuth}) => {

@@ -16,7 +16,7 @@ export const RouterWrapper = observer(() => {
   const { authStore } = useStores()!
   const isAuth = authStore?.IsAuth
 
-    console.log("tokens:",authStore?.UserTokens)
+
   const router = createBrowserRouter([
     {
       path: "/",
