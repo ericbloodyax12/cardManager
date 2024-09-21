@@ -35,7 +35,7 @@ export const LoginForm = () => {
     register,
   } = useForm<FormValuesType>({
     defaultValues: {
-      rememberMe: false,
+      rememberMe: true,
     },
     resolver: zodResolver(loginSchema),
   })
