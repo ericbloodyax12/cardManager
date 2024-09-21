@@ -1,4 +1,4 @@
-import {createContext, ReactNode, useContext} from 'react';
+import {createContext, ReactNode, useContext, useMemo} from 'react';
 import {AuthStore} from "@/store/authStore/authStore";
 import {DecksStore} from "@/store/decksStore/decksStore";
 
@@ -13,12 +13,16 @@ const storesContext = createContext< TStoreProviderContext|undefined >(undefined
 export const StoreProvider = ({children}: { children: ReactNode }) => {
 
     const authStore = new AuthStore();
-    const decksStore = new DecksStore(authStore.AuthService);
+    const decksStore = new DecksStore();
+    const cachedContextValue = useMemo(() => {
+        return {
+            authStore,
+            decksStore
+        }
+    },[])
+
     return (
-        <storesContext.Provider value={{
-          authStore,
-          decksStore
-        }}>
+        <storesContext.Provider value={cachedContextValue}>
             {children}
         </storesContext.Provider>
     )

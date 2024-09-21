@@ -9,3 +9,9 @@ export const loginSchema = z.object({
   password: passwordSchema,
   rememberMe: rememberMeSchema,
 })
+export type LoginSchema = {
+    email: string,
+    password: string,
+    rememberMe: boolean,
+
+}

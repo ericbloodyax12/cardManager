@@ -39,9 +39,10 @@ export const AppHeader = ({title, isAuth, avatarUrl = ""}: HeaderWithButtonProps
             (isAuth)
                 ? <div className={s.AvatarContainer}>
                   <Typography className={s.avatarWrapper} variant={"subtitle1"}>as
+
+                  </Typography>
                     <Avatar  initialImageUrl={avatarUrl} alt="User Avatar"/>
                     <Button onClick={() => {authStore?.logOut()}}>logout</Button>
-                  </Typography>
                 </div>
                 : <Button
                     variant={"secondary"}

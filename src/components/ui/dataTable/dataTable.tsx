@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import {Column} from "primereact/column";
 import {DataTable, DataTableSelectEvent} from "primereact/datatable";
-import {DeckModelView} from "@/models-view/deck-view";
-
 import {observer} from "mobx-react-lite";
 import {Dialog} from "primereact/dialog";
+
+
+import {DeckModelView} from "@/models-view/deck-view";
 import {useStores} from "@/contexts/storeContext/storeContext";
 
 import './dataTable.scss'

@@ -17,7 +17,7 @@ export class AuthStore {
   }
 
   constructor() {
-    makeAutoObservable(this)
+    makeAutoObservable(this, {signIn: false})
       const authService = new AuthServices([],[], apiConfig.baseUrl)
     const data = StorageHelper.getData<StorageTypeNames.UserToken>(StorageTypeNames.UserToken);
     this._authService = authService
@@ -42,17 +42,12 @@ export class AuthStore {
 
 
   get IsAuth() {
-    if (this._userTokens?.accessToken) {
-      this._isAuth = true
-    } else {
-      this._isAuth = false
-    }
     return this._isAuth
   }
 
   public setUserTokens(userTokens: UserTokensInfoI | undefined) {
     StorageHelper.setData({name: StorageTypeNames.UserToken, data: userTokens})
-    this._userTokens = userTokens
+    // this._userTokens = userTokens
   }
 
   setIsAuth(isAuth: boolean) {
@@ -62,19 +57,20 @@ export class AuthStore {
   logOut() {
     StorageHelper.remove(StorageTypeNames.UserToken)
     this._userTokens = null
+    this.setIsAuth(false)
   }
 
   async signIn(email:string,password:string,rememberMe:boolean) {
       const userTokens= await this._authService.signIn(email,password,rememberMe)
-    console.log("usersTokens signIn store", userTokens)
       this.setUserTokens(userTokens)
+
   }
 
 
   async signUp(email: string, password: string) {
     try {
       await this._authService.signUp(email,password)
-      this._isAuth = true;
+
 
     }
     catch (e: any) {

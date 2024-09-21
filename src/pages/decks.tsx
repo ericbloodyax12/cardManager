@@ -1,19 +1,21 @@
+import React, {useEffect, useState} from "react"
 import {observer} from "mobx-react-lite";
-
-import {DataTableComponent} from "@/components/ui/dataTable/dataTable";
-import React, {useEffect, useState} from "react";
-import {Paginator} from "primereact/paginator";
-import {useStores} from "@/contexts/storeContext/storeContext";
-import {Button} from "@/components/ui/button";
 import {Dialog} from "primereact/dialog";
+import {Paginator} from "primereact/paginator";
+
+
+import {useStores} from "@/contexts/storeContext/storeContext";
+import {DataTableComponent} from "@/components/ui/dataTable/dataTable";
+import {Button} from "@/components/ui/button";
 
 import s from './decks.module.scss'
+
 
 export const Decks = observer(() => {
     const {decksStore} = useStores()!
     const [NewDeck, setNewDeck] = useState();
     const [isDialogVisible, setDialogVisible] = useState(false)
-    console.log('decksStore.UserTokensUpdateCount', decksStore.UserTokensUpdateCount);
+
 
     const {
         decks,

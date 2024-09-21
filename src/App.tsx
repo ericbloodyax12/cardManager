@@ -7,7 +7,6 @@ import {StoreProvider} from "@/contexts/storeContext/storeContext";
 export function App() {
   return (
 
-
       <StoreProvider>
         <RouterWrapper/>
         <ToastContainer />
