@@ -26,12 +26,7 @@ export const DialogContainer: FC<TDialogsProps> = observer(({dialogStore}) => {
 
       onHide={() => dialogStore.closeDialog()}
     >
-      <div>
-        <p><strong>Name:</strong> as</p>
-        <p><strong>Cards Count:</strong> sa</p>
-        <p><strong>Last Updated:</strong>ass</p>
-        <p><strong>Created by:</strong> ssa</p>
-      </div>
+      there will be content
     </Dialog>
   );
 })
