@@ -1,67 +1,72 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Column} from "primereact/column";
-import {DataTable, DataTableSelectEvent} from "primereact/datatable";
+import {DataTable, DataTableRowClickEvent} from "primereact/datatable";
 import {observer} from "mobx-react-lite";
-import {Dialog} from "primereact/dialog";
 
 
+import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
 import {DeckModelView} from "@/models-view/deck-view";
-import {useStores} from "@/contexts/storeContext/storeContext";
+
 
 import './dataTable.scss'
 
+
 type TDataTableComponentProps = {
-    items: DeckModelView[]
+  items: DeckModelView[]
 }
 
-export const DataTableComponent: React.FC<TDataTableComponentProps> = observer( ({
-                                                                                     items
-                                                                                 }) => {
-    const {  decksStore} = useStores()!
-    const {
-        decks
-    } = decksStore
-    console.log(decks)
-    const  [selectedDeck, setSelectedDeck] = useState<DeckModelView | null>(null);
-    const [isDialogVisible, setDialogVisible] = useState(false)
+export const DataTableComponent: React.FC<TDataTableComponentProps> = observer(({
+  items
+}) => {
 
-    const onRowSelect = (e:DataTableSelectEvent) => {
-        setSelectedDeck(e.data);
-        setDialogVisible(true)
-        console.log(e)
-    };
+  const {dialogStore} = useDialogs();
 
-    const hideDialog = () => {
-        setDialogVisible(false);
-        setSelectedDeck(null);
-    };
+  const decksInfoDialogContent = (selectedDeck: DeckModelView) => {
 
-    return (
-        <div>
-            <DataTable value={items}
-                       showGridlines
-                       paginator={false}
-                responsiveLayout="scroll"
-                       selectionMode="single"
-                       onRowSelect={onRowSelect}
-            >
-                <Column field="name" header=" Name"/>
-                <Column field="cardsCount" header="Cards Count"/>
-                <Column field="updated" header="Last Updated"/>
-                <Column field="author.name" header="Created by"/>
-            </DataTable>
-            <Dialog className={"div-Dialog"} header="Card" visible={isDialogVisible} style={{width: '70vw'}} onHide={hideDialog} >
-                <div className={"div-Dialog__div"}>
-                    <p><strong>Name:</strong> {selectedDeck?.name}</p>
-                    <p><strong>Cards Count:</strong> {selectedDeck?.cardsCount}</p>
-                    <p><strong>Last Updated:</strong> {selectedDeck?.updated}</p>
-                    <p><strong>Created by:</strong> {selectedDeck?.author.name}</p>
-                </div>
+    return <div>
+      <p><strong>Name:</strong> {selectedDeck?.name}</p>
+      <p><strong>Cards Count:</strong> {selectedDeck?.cardsCount}</p>
+      <p><strong>Last Updated:</strong> {selectedDeck?.updated}</p>
+      <p><strong>Created by:</strong> {selectedDeck?.author.name}</p>
+    </div>
+  }
 
-            </Dialog>
+  const onRowDoubleClick = (e: DataTableRowClickEvent) => {
+    const deckDataInfo = e.data as DeckModelView;
+    dialogStore.openNewDialog({
+      headerTitle: `Deck's info ${deckDataInfo.name}`,
+      isVisible: true,
+      dialogContent: () => decksInfoDialogContent(deckDataInfo)
+    })
+  };
 
-        </div>
-    );
+  return (
+    <div>
+      <DataTable value={items}
+                 showGridlines
+                 paginator={false}
+                 responsiveLayout="scroll"
+                 selectionMode="single"
+
+                 onRowDoubleClick={onRowDoubleClick}
+      >
+        <Column field="name" header=" Name"/>
+        <Column field="cardsCount" header="Cards Count"/>
+        <Column field="updated" header="Last Updated"/>
+        <Column field="author.name" header="Created by"/>
+      </DataTable>
+      {/*<Dialog className={"div-Dialog"} header="Card" visible={isDialogVisible} style={{width: '70vw'}} onHide={hideDialog} >*/}
+      {/*    <div className={"div-Dialog__div"}>*/}
+      {/*        <p><strong>Name:</strong> {selectedDeck?.name}</p>*/}
+      {/*        <p><strong>Cards Count:</strong> {selectedDeck?.cardsCount}</p>*/}
+      {/*        <p><strong>Last Updated:</strong> {selectedDeck?.updated}</p>*/}
+      {/*        <p><strong>Created by:</strong> {selectedDeck?.author.name}</p>*/}
+      {/*    </div>*/} todo @bars - подумать как передать контент
+
+
+
+    </div>
+  );
 })
 
 
