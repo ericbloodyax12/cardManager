@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Column} from "primereact/column";
 import {DataTable, DataTableRowClickEvent} from "primereact/datatable";
 import {observer} from "mobx-react-lite";
@@ -21,11 +21,22 @@ export const DataTableComponent: React.FC<TDataTableComponentProps> = observer((
 
   const {dialogStore} = useDialogs();
 
+  const decksInfoDialogContent = (selectedDeck: DeckModelView) => {
+
+    return <div>
+      <p><strong>Name:</strong> {selectedDeck?.name}</p>
+      <p><strong>Cards Count:</strong> {selectedDeck?.cardsCount}</p>
+      <p><strong>Last Updated:</strong> {selectedDeck?.updated}</p>
+      <p><strong>Created by:</strong> {selectedDeck?.author.name}</p>
+    </div>
+  }
+
   const onRowDoubleClick = (e: DataTableRowClickEvent) => {
     const deckDataInfo = e.data as DeckModelView;
     dialogStore.openNewDialog({
       headerTitle: `Deck's info ${deckDataInfo.name}`,
-      isVisible: true
+      isVisible: true,
+      dialogContent: () => decksInfoDialogContent(deckDataInfo)
     })
   };
 

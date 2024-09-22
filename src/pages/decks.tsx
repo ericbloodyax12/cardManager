@@ -41,6 +41,7 @@ export const Decks = observer(() => {
       dialogStore.openNewDialog({
         headerTitle: 'Create New Deck',
         isVisible: true,
+        dialogContent: () => <div>Test</div>
       })
     };
 

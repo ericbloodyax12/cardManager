@@ -1,8 +1,10 @@
 import {makeAutoObservable} from "mobx";
+import {ReactNode} from "react";
 
 type TDialogState = {
   isVisible: boolean;
-  headerTitle: string;
+  headerTitle?: string;
+  dialogContent: () => ReactNode;
 }
 export class DialogStore {
   private _dialogState: TDialogState | null = null;

@@ -17,6 +17,7 @@ export const DialogContainer: FC<TDialogsProps> = observer(({dialogStore}) => {
   if (dialogState === null) return <></>
   {/** ВНИМАНИЕ !!! ПРАВИЛА ХУКОВ !!!**/}
 
+  console.log('dialogState.dialogContent', dialogState.dialogContent)
   return (
     <Dialog
       className={'dialog-root-container'}
@@ -27,6 +28,7 @@ export const DialogContainer: FC<TDialogsProps> = observer(({dialogStore}) => {
       onHide={() => dialogStore.closeDialog()}
     >
       there will be content
+      {dialogState.dialogContent()}
     </Dialog>
   );
 })
