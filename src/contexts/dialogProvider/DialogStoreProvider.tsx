@@ -1,7 +1,9 @@
 import {FC, ReactNode} from 'react';
 
-import {DialogStore} from '@/store/dialogStore/dialogStore'
-import {DialogContainer} from "@/contexts/dialogStore/DialogContainer";
+
+import {DialogStore} from '@/store/dialogStore/dialogStore';
+import {DialogContainer} from "@/components/dialogContainer";
+
 import {DialogStoreContext} from './DialogStoreContext';
 
 type TDialogsProviderProps = {

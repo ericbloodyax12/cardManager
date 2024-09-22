@@ -1,18 +1,31 @@
 import {FC} from 'react';
-
-import {DialogStore} from '@/store/dialogStore/dialogStore'
 import {Dialog} from "primereact/dialog";
 import {observer} from "mobx-react-lite";
+
+import {DialogStore} from '@/store/dialogStore/dialogStore'
+
+import './index.scss';
 
 type TDialogsProps = {
   dialogStore: DialogStore;
 };
 
 export const DialogContainer: FC<TDialogsProps> = observer(({dialogStore}) => {
-  console.log('dialogStore.IsDialogVisible', dialogStore.IsDialogVisible)
+
+  const dialogState = dialogStore.DialogState;
+
+  if (dialogState === null) return <></>
+  {/** ВНИМАНИЕ !!! ПРАВИЛА ХУКОВ !!!**/}
+
   return (
-    <Dialog header="New Card" visible={dialogStore.IsDialogVisible} style={{width: '70vw'}}
-            onHide={() => dialogStore.setIsDialogVisible(false)}>
+    <Dialog
+      className={'dialog-root-container'}
+      header={dialogState.headerTitle}
+      visible={dialogState.isVisible}
+      style={{width: '70vw'}}
+
+      onHide={() => dialogStore.closeDialog()}
+    >
       <div>
         <p><strong>Name:</strong> as</p>
         <p><strong>Cards Count:</strong> sa</p>

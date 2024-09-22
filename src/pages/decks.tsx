@@ -1,9 +1,9 @@
-import {useEffect, useState} from "react"
+import {useEffect} from "react"
 import {observer} from "mobx-react-lite";
 import {Paginator} from "primereact/paginator";
 
 import {Button} from "@/components/ui/button";
-import {useDialogs} from "@/contexts/dialogStore/DialogStoreContext";
+import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
 import {useStores} from "@/contexts/storeContext/storeContext";
 import {DataTableComponent} from "@/components/ui/dataTable/dataTable";
 
@@ -38,7 +38,10 @@ export const Decks = observer(() => {
 
 
     const addNewDeck = () => {
-      dialogStore.setIsDialogVisible(true)
+      dialogStore.openNewDialog({
+        headerTitle: 'Create New Deck',
+        isVisible: true,
+      })
     };
 
     return (
