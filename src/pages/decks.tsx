@@ -1,20 +1,20 @@
-import React, {useEffect, useState} from "react"
+import {useEffect} from "react"
 import {observer} from "mobx-react-lite";
-import {Dialog} from "primereact/dialog";
 import {Paginator} from "primereact/paginator";
 
-
+import {Button} from "@/components/ui/button";
+import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
 import {useStores} from "@/contexts/storeContext/storeContext";
 import {DataTableComponent} from "@/components/ui/dataTable/dataTable";
-import {Button} from "@/components/ui/button";
 
 import s from './decks.module.scss'
 
-
 export const Decks = observer(() => {
-    const {decksStore} = useStores()!
-    const [NewDeck, setNewDeck] = useState();
-    const [isDialogVisible, setDialogVisible] = useState(false)
+    const { decksStore} = useStores()!
+    const { dialogStore} = useDialogs();
+
+    // const [newDeckModel, setNewDeckModel] = useState(); todo @Erik - реализовать логику и шаблон создания
+
 
 
     const {
@@ -37,15 +37,12 @@ export const Decks = observer(() => {
     };
 
 
-    const addNewDeck = (e: React.MouseEvent<HTMLButtonElement>) => {
-        // setNewDeck(e);
-        setDialogVisible(true)
-        console.log(e)
-    };
-
-    const hideDialog = () => {
-        setDialogVisible(false);
-        // setNewDeck(null);
+    const addNewDeck = () => {
+      dialogStore.openNewDialog({
+        headerTitle: 'Create New Deck',
+        isVisible: true,
+        dialogContent: () => <div>Test</div>
+      })
     };
 
     return (
@@ -55,15 +52,7 @@ export const Decks = observer(() => {
                     <Button onClick={addNewDeck}>Add new Deck</Button>
                 </div>
                 <DataTableComponent items={decks}/>
-                <Dialog header="New Card" visible={isDialogVisible} style={{width: '70vw'}} onHide={hideDialog}>
-                    <div>
-                        <p><strong>Name:</strong> as</p>
-                        <p><strong>Cards Count:</strong> sa</p>
-                        <p><strong>Last Updated:</strong>ass</p>
-                        <p><strong>Created by:</strong> ssa</p>
-                    </div>
 
-                </Dialog>
 
             </div>
             <Paginator
