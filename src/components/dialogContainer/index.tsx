@@ -17,17 +17,15 @@ export const DialogContainer: FC<TDialogsProps> = observer(({dialogStore}) => {
   if (dialogState === null) return <></>
   {/** ВНИМАНИЕ !!! ПРАВИЛА ХУКОВ !!!**/}
 
-  console.log('dialogState.dialogContent', dialogState.dialogContent)
   return (
     <Dialog
       className={'dialog-root-container'}
       header={dialogState.headerTitle}
       visible={dialogState.isVisible}
-      style={{width: '70vw'}}
+
 
       onHide={() => dialogStore.closeDialog()}
     >
-      there will be content
       {dialogState.dialogContent()}
     </Dialog>
   );

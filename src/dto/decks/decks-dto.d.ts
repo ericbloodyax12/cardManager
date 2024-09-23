@@ -32,3 +32,14 @@ export interface DecksResponse {
     pagination: Pagination;
     maxCardsCount: number;
 }
+
+export interface CreateDeckResponse {
+    "id": string,
+    "userId": string,
+    "name": string,
+    "isPrivate": boolean,
+    "cover": string | null,
+    "created": string,
+    "updated": string,
+    "cardsCount": number
+}

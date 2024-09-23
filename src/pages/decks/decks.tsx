@@ -8,6 +8,7 @@ import {useStores} from "@/contexts/storeContext/storeContext";
 import {DataTableComponent} from "@/components/ui/dataTable/dataTable";
 
 import s from './decks.module.scss'
+import {OnRowDoubleClickDataContet} from "@/pages/decks/onRowDoubleClick/onRowDoubleClickDataContet";
 
 export const Decks = observer(() => {
     const { decksStore} = useStores()!
@@ -41,7 +42,7 @@ export const Decks = observer(() => {
       dialogStore.openNewDialog({
         headerTitle: 'Create New Deck',
         isVisible: true,
-        dialogContent: () => <div>Test</div>
+        dialogContent: () => <OnRowDoubleClickDataContet />
       })
     };
 

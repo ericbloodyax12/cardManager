@@ -9,6 +9,7 @@ import {DeckModelView} from "@/models-view/deck-view";
 
 
 import './dataTable.scss'
+import {Data} from "@/components/ui/dataTable/data/data";
 
 
 type TDataTableComponentProps = {
@@ -21,22 +22,12 @@ export const DataTableComponent: React.FC<TDataTableComponentProps> = observer((
 
   const {dialogStore} = useDialogs();
 
-  const decksInfoDialogContent = (selectedDeck: DeckModelView) => {
-
-    return <div>
-      <p><strong>Name:</strong> {selectedDeck?.name}</p>
-      <p><strong>Cards Count:</strong> {selectedDeck?.cardsCount}</p>
-      <p><strong>Last Updated:</strong> {selectedDeck?.updated}</p>
-      <p><strong>Created by:</strong> {selectedDeck?.author.name}</p>
-    </div>
-  }
-
   const onRowDoubleClick = (e: DataTableRowClickEvent) => {
     const deckDataInfo = e.data as DeckModelView;
     dialogStore.openNewDialog({
-      headerTitle: `Deck's info ${deckDataInfo.name}`,
+      headerTitle: `Deck info of : ${deckDataInfo.name}`,
       isVisible: true,
-      dialogContent: () => decksInfoDialogContent(deckDataInfo)
+      dialogContent: () => <Data selectedDeck={deckDataInfo}/>
     })
   };
 
@@ -47,7 +38,6 @@ export const DataTableComponent: React.FC<TDataTableComponentProps> = observer((
                  paginator={false}
                  responsiveLayout="scroll"
                  selectionMode="single"
-
                  onRowDoubleClick={onRowDoubleClick}
       >
         <Column field="name" header=" Name"/>
@@ -55,16 +45,6 @@ export const DataTableComponent: React.FC<TDataTableComponentProps> = observer((
         <Column field="updated" header="Last Updated"/>
         <Column field="author.name" header="Created by"/>
       </DataTable>
-      {/*<Dialog className={"div-Dialog"} header="Card" visible={isDialogVisible} style={{width: '70vw'}} onHide={hideDialog} >*/}
-      {/*    <div className={"div-Dialog__div"}>*/}
-      {/*        <p><strong>Name:</strong> {selectedDeck?.name}</p>*/}
-      {/*        <p><strong>Cards Count:</strong> {selectedDeck?.cardsCount}</p>*/}
-      {/*        <p><strong>Last Updated:</strong> {selectedDeck?.updated}</p>*/}
-      {/*        <p><strong>Created by:</strong> {selectedDeck?.author.name}</p>*/}
-      {/*    </div>*/} todo @bars - подумать как передать контент
-
-
-
     </div>
   );
 })

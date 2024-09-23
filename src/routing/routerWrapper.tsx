@@ -4,7 +4,7 @@ import {MainLayoutWrapper} from "@/pages/mainLayoutWrapper/mainLayoutWrapper";
 
 import {PrivateRouteWrapper} from "@/routing/privateRouteWrapper";
 import {routesConfig, paths} from "@/routing/routesList/Routes";
-import {Decks} from "@/pages/decks";
+import {Decks} from "@/pages/decks/decks";
 import {SignIn} from "@/pages/publicPages/signIn/signIn";
 import {ThemeProvider} from "@/contexts/themeContext/themeProvider";
 import {observer} from "mobx-react-lite";
