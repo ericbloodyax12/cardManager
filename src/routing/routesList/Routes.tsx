@@ -1,6 +1,6 @@
 import {ForgotPassword} from "@/pages/publicPages/forgotPassword/forgotPassword";
 import {SignIn} from "@/pages/publicPages/signIn/signIn";
-import {Decks} from "@/pages/decks";
+import {Decks} from "@/pages/decks/decks";
 import {EditProfileMainPage} from "@/pages/editProfilePages/editProfileMainPage/editProfileMainPage";
 import {SignUp} from "@/pages/publicPages/signUp/signUp";
 import {CheckEmail} from "@/pages/publicPages/checkEmail/checkEmailPage";

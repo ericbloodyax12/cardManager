@@ -13,8 +13,6 @@ type TDialogsProviderProps = {
 export const DialogStoreProvider: FC<TDialogsProviderProps> = ({children}) => {
   const dialogStore = new DialogStore();
 
-  console.log('dialogStore', dialogStore)
-
   return (
     <DialogStoreContext.Provider value={{
       dialogStore: dialogStore

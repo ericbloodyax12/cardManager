@@ -5,15 +5,7 @@ interface Author {
 }
 
 // Тип для колоды
-export interface Deck {
-    id: string;
-    userId: string;
-    name: string;
-    isPrivate: boolean;
-    cover: string | null;
-    created: string;
-    updated: string;
-    cardsCount: number;
+export interface DeckModel extends IDeckBaseModel {
     isFavorite: boolean;
     author: Author;
 }
@@ -28,7 +20,18 @@ interface Pagination {
 
 // Основной тип ответа с сервера
 export interface DecksResponse {
-    items: Deck[];
+    items: DeckModel[];
     pagination: Pagination;
     maxCardsCount: number;
+}
+
+export interface IDeckBaseModel {
+    "id": string,
+    "userId": string,
+    "name": string,
+    "isPrivate": boolean,
+    "cover": string | null,
+    "created": string,
+    "updated": string,
+    "cardsCount": number
 }

@@ -1,4 +1,10 @@
 .dialog-root-container {
-  background-color: #0f9954;
+  display: flex;
+  gap: 10px;
+
+  width: 700px;
+  height: 300px;
   padding: 0.5rem;
+
+  background-color: var(--color-dark-100);
 }

@@ -1,8 +1,8 @@
-import {CreateUserResponseType} from "@/services/api/authTypes";
+import {CreateUserResponseType} from "@/services/api/auth-service/authTypes";
 import {UserTokensInfoI} from "@/dto/auth/auth-dto";
 import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
 import {makeAutoObservable} from "mobx";
-import {AuthServices} from "@/services/api/auth-services";
+import {AuthServices} from "@/services/api/auth-service/auth-services";
 import {apiConfig} from "../../../configs/apiConfig";
 
 export class AuthStore {
