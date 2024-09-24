@@ -1,4 +1,4 @@
-import {Author, Deck} from "@/dto/decks/decks-dto";
+import {Author, DeckModel} from "@/dto/decks/decks-dto";
 
 export class DeckModelView {
     id: string;
@@ -11,7 +11,7 @@ export class DeckModelView {
     cardsCount: number;
     isFavorite: boolean;
     author: Author;
-    constructor(dto: Deck) {
+    constructor(dto: DeckModel) {
         this.id = dto.id
         this.userId = dto.userId
         this.name = dto.name
@@ -24,7 +24,7 @@ export class DeckModelView {
         this.author = dto.author
     }
 
-    static Map(decksDTO: Deck[]) {
+    static Map(decksDTO: DeckModel[]) {
         const decksView = decksDTO.map((dto) => {
             return new DeckModelView(dto)
         })

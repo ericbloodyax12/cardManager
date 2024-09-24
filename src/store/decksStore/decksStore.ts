@@ -2,6 +2,7 @@ import {makeAutoObservable} from "mobx";
 import {DecksService} from "@/services/api/deck-service/decks-service";
 import {DeckModelView} from "@/models-view/deck-view";
 import {apiConfig} from "../../../configs/apiConfig";
+import {IDeckBaseModel} from "@/dto/decks/decks-dto";
 
 
 
@@ -46,6 +47,19 @@ export class DecksStore {
       this.loading = false;
     }
 
+  }
+
+  async createDeck (name:string, bearerToken?: string, cover?: File): Promise<IDeckBaseModel | undefined> {
+
+    try {
+      const data = await this._decksService.createDeck(
+          name
+      )
+      return data
+    }
+    catch (e: any) {
+      this.error = e.message || 'Something went wrong';
+    }
   }
 
   setPage(page: number) {

@@ -9,7 +9,7 @@ import {DeckModelView} from "@/models-view/deck-view";
 
 
 import './dataTable.scss'
-import {Data} from "@/components/ui/dataTable/data/data";
+import {DeckInfoDialog} from "@/components/ui/dataTable/data/deckInfoDialog";
 
 
 type TDataTableComponentProps = {
@@ -27,7 +27,7 @@ export const DataTableComponent: React.FC<TDataTableComponentProps> = observer((
     dialogStore.openNewDialog({
       headerTitle: `Deck info of : ${deckDataInfo.name}`,
       isVisible: true,
-      dialogContent: () => <Data selectedDeck={deckDataInfo}/>
+      dialogContent: () => <DeckInfoDialog selectedDeck={deckDataInfo}/>
     })
   };
 

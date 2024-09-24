@@ -21,10 +21,7 @@ export const LoginForm = () => {
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log("onsubmit")
-
         try {
-            console.log(authStore.signIn)
             const {email, password, rememberMe} = formState!
             await authStore?.signIn(email, password, rememberMe)
             authStore.setIsAuth(true)
@@ -75,7 +72,7 @@ export const LoginForm = () => {
                         navigate('/forgot_password')
                     }}>Forgot Password?</Typography>
                 </div>
-                <Button className={s.submit} type={'submit'} fullWidth={true}>
+                <Button className={s.submit} type={'submit'}>
                     Submit
                 </Button>
                 <div className={s.signUpContainer}>

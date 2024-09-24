@@ -7,7 +7,7 @@ type TDataProps = {
     selectedDeck: DeckModelView
 }
 
-export const Data: React.FC<TDataProps> = ({selectedDeck}) => {
+export const DeckInfoDialog: React.FC<TDataProps> = ({selectedDeck}) => {
     return (
         <div className={"div-root-container"}>
             <p><strong>Name:</strong> {selectedDeck?.name}</p>
