@@ -9,7 +9,7 @@ import {DeckModelView} from "@/models-view/deck-view";
 
 
 import './dataTable.scss'
-import {DeckInfoDialog} from "@/components/ui/dataTable/data/deckInfoDialog";
+import {DeckInfoDialog} from "@/components/ui/dataTable/deckInfoDialog/deckInfoDialog";
 
 
 type TDataTableComponentProps = {
@@ -45,6 +45,7 @@ export const DataTableComponent: React.FC<TDataTableComponentProps> = observer((
         <Column field="updated" header="Last Updated"/>
         <Column field="author.name" header="Created by"/>
       </DataTable>
+
     </div>
   );
 })
