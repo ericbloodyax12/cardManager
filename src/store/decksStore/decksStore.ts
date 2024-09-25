@@ -70,8 +70,8 @@ export class DecksStore {
             return deletedDeck
 
         } catch (e: any) {
-            if (e.response?.status === 403) {
-                this.error = 'You do not have permission to delete this deck.';
+            if (e.response?.status === 403) { //todo исправить сообщение об ошибке
+                this.error = e.message;
             } else {
                 this.error = e.message || 'Something went wrong';
             }

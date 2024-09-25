@@ -10,6 +10,7 @@ import {EditIcon} from "@/components/assets/icons/componentSvg/editIcon";
 import {useStores} from "@/contexts/storeContext/storeContext";
 
 
+
 type TDataProps = {
     selectedDeck: DeckModelView
 }
@@ -19,10 +20,12 @@ export const DeckInfoDialog: React.FC<TDataProps> = ({selectedDeck}) => {
 
     const {decksStore} = useStores()!
 
+
+
     const createButtonIcon = (
         label: string,
         iconComponent: ReactNode,
-        method?: any
+        method?: () => void
     ): ReactNode => {
 
         return (

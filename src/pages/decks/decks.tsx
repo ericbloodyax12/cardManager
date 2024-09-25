@@ -16,8 +16,6 @@ export const Decks = observer(() => {
 
     // const [newDeckModel, setNewDeckModel] = useState(); todo @Erik - реализовать логику и шаблон создания
 
-
-
     const {
         decks,
         pagination,
