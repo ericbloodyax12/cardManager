@@ -18,6 +18,13 @@ export class DecksService extends ApiService {
         return response;
     }
 
+    async deleteDeck(deckId: string): Promise<IDeckBaseModel> {
+
+        const decksPath = `/v1/decks/${deckId}`
+        const res = await super.delete<IDeckBaseModel>({path: decksPath});
+
+        return res
+    }
     async createDeck(name:string, bearerToken?: string, cover?: File): Promise<IDeckBaseModel>{
 
         const path = '/v1/decks'
@@ -40,7 +47,7 @@ export class DecksService extends ApiService {
         //     headers: headers
         // } )
 
-        const response = await fetch('https://api.flashcards.andrii.es/v1/decks',
+        const response = await fetch(`https://api.flashcards.andrii.es${path}`,
             {
                 headers: headers,
                 method: "POST",

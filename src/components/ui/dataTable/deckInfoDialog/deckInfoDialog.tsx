@@ -7,14 +7,17 @@ import {DeleteIcon} from "@/components/assets/icons/componentSvg/deleteIcon";
 import './deckInfoDialog.scss'
 import {PlayIcon} from "@/components/assets/icons/componentSvg/playIcon";
 import {EditIcon} from "@/components/assets/icons/componentSvg/editIcon";
+import {useStores} from "@/contexts/storeContext/storeContext";
 
 
 type TDataProps = {
     selectedDeck: DeckModelView
 }
 
+
 export const DeckInfoDialog: React.FC<TDataProps> = ({selectedDeck}) => {
 
+    const {decksStore} = useStores()!
 
     const createButtonIcon = (
         label: string,
@@ -28,7 +31,6 @@ export const DeckInfoDialog: React.FC<TDataProps> = ({selectedDeck}) => {
                     {iconComponent}
                 </div>
             </button>
-
     )
     }
 
@@ -39,10 +41,11 @@ export const DeckInfoDialog: React.FC<TDataProps> = ({selectedDeck}) => {
             <p><strong>Cards Count:</strong> {selectedDeck?.cardsCount}</p>
             <p><strong>Last Updated:</strong> {selectedDeck?.updated}</p>
             <p><strong>Created by:</strong> {selectedDeck?.author.name}</p>
+
                 <div className={"div-ButtonIconsWrapper"} >
                     {createButtonIcon("learn",<PlayIcon/>)}
                     {createButtonIcon("edit",<EditIcon/>)}
-                    {createButtonIcon("delete",<DeleteIcon/>)}
+                    {createButtonIcon("delete",<DeleteIcon/>,() => decksStore.deleteDeck(selectedDeck?.id))}
                 </div>
         </div>
     );
