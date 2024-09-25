@@ -46,9 +46,7 @@ export const OnRowDoubleClickDataContent: React.FC<TOnRowDoubleClickDataContetPr
 
                 </TextField>
                 <Button type={'submit'} variant={"primary"}>Create</Button>
-                <Button>learn</Button>
-                <Button>update</Button>
-                <Button>delete</Button>
+
             </form>
         </div>
 );

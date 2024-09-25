@@ -59,7 +59,7 @@ export const LoginForm = () => {
                         })
                     }}
                 />
-                <CheckboxComponent onCheckedChange={(e) => {
+                <CheckboxComponent checked={true} withLabel={true} label={"Remember Me"} onCheckedChange={(e) => {
                     setFormState({
                         ...formState,
                         rememberMe: !!e

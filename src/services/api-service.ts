@@ -123,7 +123,7 @@ export class ApiService extends ErrorService implements IApiService {
   private getRequestHeaders(headers: { [key: string]: string } = { 'Content-Type': this.DEFAULT_HEADER }) {
     if (!('Content-Type' in headers)) {
       headers['Content-Type'] = this.DEFAULT_HEADER;
-    } else if (headers['Content-Type'] === 'multipart/form-data') {
+    } else if (headers['Content-Type'] === 'multipart/form-deckInfoDialog') {
       delete headers['Content-Type']; // браузер сам поставит заголовок с корректным boundary
     }
     return Object.keys(headers).length !== 0 ? headers : undefined;

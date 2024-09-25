@@ -2,7 +2,7 @@
 import {ApiService} from "@/services/api-service";
 
 import {DecksResponse, IDeckBaseModel} from "@/dto/decks/decks-dto";
-import {urlJoin} from "url-join-ts";
+
 
 
 
@@ -33,7 +33,7 @@ export class DecksService extends ApiService {
             Authorization: bearerToken ? `Bearer ${bearerToken}` : '',
         };
         console.log(formData, "test")
-        // const response = await super.post<IDeckBaseModel>({ //todo из за  const stringifiedBody = JSON.stringify(body) cервер неправиправильно обрабатывает контент type  тип multi form data поставить флаг можно в сервайсе на этот кейс
+        // const response = await super.post<IDeckBaseModel>({ //todo из за  const stringifiedBody = JSON.stringify(body) cервер неправиправильно обрабатывает контент type  тип multi form deckInfoDialog поставить флаг можно в сервайсе на этот кейс
 
         //     path:path,
         //     body: formData,
