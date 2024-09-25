@@ -18,9 +18,9 @@ export enum StorageTypeNames {
 export type StorageType =
     {name: StorageTypeNames.UserToken, data: UserTokensInfoI | undefined}
 
-// | { name: StorageTypeNames.ConfigGuid, data: string }
-// | { name: StorageTypeNames.GantTaskInfo, data: { [key: string]: {currentSelectedTask?: TTaskType, expandedTasksKeys?: string[]} }}
-// | { name: StorageTypeNames.GanttDiagramPosition, data: {[key: string]: {scaleType?: TScaleTypes, position?: {top: number; left: number}, scaleElementWidth?: number}}}
+// | { name: StorageTypeNames.ConfigGuid, deckInfoDialog: string }
+// | { name: StorageTypeNames.GantTaskInfo, deckInfoDialog: { [key: string]: {currentSelectedTask?: TTaskType, expandedTasksKeys?: string[]} }}
+// | { name: StorageTypeNames.GanttDiagramPosition, deckInfoDialog: {[key: string]: {scaleType?: TScaleTypes, position?: {top: number; left: number}, scaleElementWidth?: number}}}
     ;
 
 
