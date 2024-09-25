@@ -2,32 +2,29 @@
 import {ApiService} from "@/services/api-service";
 
 import {DecksResponse, IDeckBaseModel} from "@/dto/decks/decks-dto";
+import {urlJoin} from "url-join-ts";
 
 
 
 
 
 export class DecksService extends ApiService {
-
-    async getDecks(currentPage: number, itemsPerPage: number,bearerToken?: string):Promise<DecksResponse>{
-        const decksPath = '/v1/decks'
+    private _path = '/v1/decks'
+  async getDecks(currentPage: number, itemsPerPage: number,bearerToken?: string):Promise<DecksResponse>{
         const queryParams = `?currentPage=${currentPage}&itemsPerPage=${itemsPerPage}`;
-        console.log('bearerToken',bearerToken)
-        const response = await super.get<DecksResponse>({path: decksPath+ queryParams, headers: {Authorization:`Bearer ${bearerToken}`}} )
-
+        const path = urlJoin(this._path, queryParams);
+        const response = await super.get<DecksResponse>({path: path, headers: {Authorization:`Bearer ${bearerToken}`}} )
         return response;
     }
 
     async deleteDeck(deckId: string): Promise<IDeckBaseModel> {
-
-        const decksPath = `/v1/decks/${deckId}`
+        const decksPath = `${this._path}/${deckId}`
         const res = await super.delete<IDeckBaseModel>({path: decksPath});
-
         return res
     }
     async createDeck(name:string, bearerToken?: string, cover?: File): Promise<IDeckBaseModel>{
 
-        const path = '/v1/decks'
+
         const formData = new FormData();
         console.log(name)
         formData.set('name', name);
@@ -47,7 +44,7 @@ export class DecksService extends ApiService {
         //     headers: headers
         // } )
 
-        const response = await fetch(`https://api.flashcards.andrii.es${path}`,
+        const response = await fetch(`https://api.flashcards.andrii.es${this._path}`,
             {
                 headers: headers,
                 method: "POST",

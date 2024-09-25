@@ -61,12 +61,10 @@ export class DecksStore {
         }
     }
 
-    async deleteDeck(id: string, bearerToken?: string): Promise<IDeckBaseModel | undefined> {
+    async deleteDeck(id: string): Promise<IDeckBaseModel | undefined> {
 
         try {
-            const deletedDeck = await this._decksService.deleteDeck(
-                id
-            )
+            const deletedDeck = await this._decksService.deleteDeck(id)
             return deletedDeck
 
         } catch (e: any) {
