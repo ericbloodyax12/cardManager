@@ -56,10 +56,12 @@ export class ApiService extends ErrorService implements IApiService {
       headers?: { [key: string]: string },
       options?: TRequestOptions
   ): Promise<T> {
-    const resultHeaders = this.getRequestHeaders(headers)|| {};
+    const isBodyFormData = body instanceof FormData;
+    const resultHeaders = this.getRequestHeaders(headers, isBodyFormData)|| {};
     await Promise.all(this.requestBehaviors.map((behavior) => behavior({ path, body, method, headers, options })));
     let baseResponse: Response | null = null;
-    const stringifiedBody = JSON.stringify(body)
+
+    const stringifiedBody = (isBodyFormData) ? body : JSON.stringify(body)
     try {
       baseResponse = await fetch(urlJoin(options?.baseUrl ?? this.ApiUrl, path),
           {
@@ -120,11 +122,11 @@ export class ApiService extends ErrorService implements IApiService {
     }
   }
 
-  private getRequestHeaders(headers: { [key: string]: string } = { 'Content-Type': this.DEFAULT_HEADER }) {
-    if (!('Content-Type' in headers)) {
+  private getRequestHeaders(headers: { [key: string]: string  } = { 'Content-Type': this.DEFAULT_HEADER }, isBodyFormData: boolean) {
+    if (isBodyFormData) {
+      delete headers['Content-Type'];   // браузер сам поставит заголовок с корректным boundary
+    } else if ( !('Content-Type' in headers)) {
       headers['Content-Type'] = this.DEFAULT_HEADER;
-    } else if (headers['Content-Type'] === 'multipart/form-deckInfoDialog') {
-      delete headers['Content-Type']; // браузер сам поставит заголовок с корректным boundary
     }
     return Object.keys(headers).length !== 0 ? headers : undefined;
   }

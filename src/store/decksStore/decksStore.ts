@@ -16,7 +16,7 @@ export class DecksStore {
     get UserTokensUpdateCount() {
         return this._userTokensUpdateCount
     }
-    get decks(): DeckModelView[] {
+    get Decks(): DeckModelView[] {
         return this._decks;
     }
     private setDecks(decks: DeckModelView[]): void {
@@ -81,12 +81,9 @@ export class DecksStore {
         }
     }
 
-    async updateDeck(deckId: string, bearerToken?: string, name?: string, cover?: File | undefined, isPrivate?: boolean) {
+    async updateDeck(payload: {deckId: string, name?: string, cover?: File | undefined, isPrivate?: boolean, bearerToken?: string}) {
         try {
-            const updatedDeck = await this._decksService.updateDeck(
-                deckId,
-                name
-            )
+            const updatedDeck = await this._decksService.updateDeck(payload)
             return updatedDeck
 
         } catch (e: any) {
