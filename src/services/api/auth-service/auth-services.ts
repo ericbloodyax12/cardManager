@@ -10,7 +10,7 @@ export class AuthServices extends ApiService {
 
    super(responseBehaviors,requestBehaviors,ApiUrl);
  }
-  async getIsAuth(bearerToken?: string): Promise<void> {
+  async getCurrentUserData(bearerToken?: string): Promise<void> {
     const authPath = '/v1/auth/me'
     await super.get({path: authPath, headers: {Authorization:`Bearer ${bearerToken}`}} ) // or this.
 
