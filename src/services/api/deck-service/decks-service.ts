@@ -57,35 +57,37 @@ export class DecksService extends ApiService {
 
     }
 
-    async updateDeck(deckId: string, bearerToken?:string, name?:string, cover?: File | undefined, isPrivate?: boolean ): Promise<IDeckBaseModel> {
-        const updatePath = `${this.decksPath}/${deckId}`
+    async updateDeck(payload: {deckId: string, bearerToken?:string, name?:string, cover?: File | undefined, isPrivate?: boolean} ): Promise<IDeckBaseModel> {
+        const updatePath = `${this.decksPath}/${payload.deckId}`
         const headers = {
-            Authorization: bearerToken ? `Bearer ${bearerToken}` : '',
+            Authorization: payload.bearerToken ? `Bearer ${payload.bearerToken}` : '',
         }
         const formData = new FormData();
-        const appendFormData = (key: string, value: any ) => {
+        const appendFormData = (key: string, value: string | File | undefined ) => {
+
             if (value !== undefined && value !== null) {
                 formData.append(key, value);
             }
         };
-        appendFormData('name', name);
-        appendFormData('isPrivate', isPrivate !== undefined ? String(isPrivate) : null);
-        appendFormData('cover', cover);
 
-        const response = await fetch(`https://api.flashcards.andrii.es${updatePath}`,
-            {
-                headers: headers,
-                method: "PATCH",
-                body:formData,
-                credentials: "include",
-            });
+        appendFormData('name', payload.name);
+        // appendFormData('isPrivate', isPrivate !== undefined ? String(isPrivate) : null);
+        // appendFormData('cover', cover);
 
-        // const res = await super.patch<IDeckBaseModel>({
-        //     path: updatePath,
-        //     body: formData,
-        //     headers
-        // });
-        return response as any
+            // const response = await fetch(`https://api.flashcards.andrii.es${updatePath}`,
+            //     {
+            //         headers: headers,
+            //         method: "PATCH",
+            //         body:formData,
+            //         credentials: "include",
+            //     });
+
+        const res = await super.patch<IDeckBaseModel>({
+            path: updatePath,
+            body: formData,
+            headers
+        });
+        return res as any
     }
 
 
