@@ -8,6 +8,8 @@ import './deckInfoDialog.scss'
 import {PlayIcon} from "@/components/assets/icons/componentSvg/playIcon";
 import {EditIcon} from "@/components/assets/icons/componentSvg/editIcon";
 import {useStores} from "@/contexts/storeContext/storeContext";
+import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
+import {UpdateInfoDialog} from "@/components/ui/dataTable/deckInfoDialog/updateInfoDialog/updateInfoDialog";
 
 
 
@@ -19,7 +21,7 @@ type TDataProps = {
 export const DeckInfoDialog: React.FC<TDataProps> = ({selectedDeck}) => {
 
     const {decksStore} = useStores()!
-
+    const {dialogStore} = useDialogs()
 
 
     const createButtonIcon = (
@@ -47,7 +49,14 @@ export const DeckInfoDialog: React.FC<TDataProps> = ({selectedDeck}) => {
 
                 <div className={"div-ButtonIconsWrapper"} >
                     {createButtonIcon("learn",<PlayIcon/>)}
-                    {createButtonIcon("edit",<EditIcon/>)}
+                    {createButtonIcon("edit",<EditIcon/>, () => dialogStore.openNewDialog(
+                            {
+                                headerTitle: `Deck info of : ${selectedDeck.name}`,
+                                isVisible: true,
+                                dialogContent: () => <UpdateInfoDialog selectedDeck={selectedDeck}/>,
+                            }
+                    )
+                    )}
                     {createButtonIcon("delete",<DeleteIcon/>,() => decksStore.deleteDeck(selectedDeck?.id))}
                 </div>
         </div>

@@ -9,25 +9,24 @@ import {DecksResponse, IDeckBaseModel} from "@/dto/decks/decks-dto";
 
 export class DecksService extends ApiService {
 
+    private decksPath = '/v1/decks'
+
     async getDecks(currentPage: number, itemsPerPage: number,bearerToken?: string):Promise<DecksResponse>{
-        const decksPath = '/v1/decks'
         const queryParams = `?currentPage=${currentPage}&itemsPerPage=${itemsPerPage}`;
         console.log('bearerToken',bearerToken)
-        const response = await super.get<DecksResponse>({path: decksPath+ queryParams, headers: {Authorization:`Bearer ${bearerToken}`}} )
-
+        const response = await super.get<DecksResponse>({
+            path: this.decksPath+ queryParams,
+            headers: {Authorization:`Bearer ${bearerToken}`}
+        } )
         return response;
     }
 
     async deleteDeck(deckId: string): Promise<IDeckBaseModel> {
-
-        const decksPath = `/v1/decks/${deckId}`
-        const res = await super.delete<IDeckBaseModel>({path: decksPath});
-
+        const deletePath = `${this.decksPath}/${deckId}`
+        const res = await super.delete<IDeckBaseModel>({path: deletePath});
         return res
     }
     async createDeck(name:string, bearerToken?: string, cover?: File): Promise<IDeckBaseModel>{
-
-        const path = '/v1/decks'
         const formData = new FormData();
         console.log(name)
         formData.set('name', name);
@@ -47,7 +46,7 @@ export class DecksService extends ApiService {
         //     headers: headers
         // } )
 
-        const response = await fetch(`https://api.flashcards.andrii.es${path}`,
+        const response = await fetch(`https://api.flashcards.andrii.es${this.decksPath}`,
             {
                 headers: headers,
                 method: "POST",
@@ -56,6 +55,30 @@ export class DecksService extends ApiService {
             });
         return  response as any
 
+    }
+
+    async updateDeck(deckId: string, bearerToken?:string, name?:string, cover?: File | undefined, isPrivate?: boolean ): Promise<IDeckBaseModel> {
+        const updatePath = `${this.decksPath}/${deckId}`
+        const headers = {
+            Authorization: bearerToken ? `Bearer ${bearerToken}` : '',
+        }
+        const formData = new FormData();
+        const appendFormData = (key: string, value: any ) => {
+            if (value !== undefined && value !== null) {
+                formData.append(key, value);
+            }
+        };
+        appendFormData('name', name);
+        appendFormData('isPrivate', isPrivate !== undefined ? String(isPrivate) : null);
+        appendFormData('cover', cover);
+
+
+        const res = await super.patch<IDeckBaseModel>({
+            path: updatePath,
+            body: formData,
+            headers
+        });
+        return res
     }
 
 
