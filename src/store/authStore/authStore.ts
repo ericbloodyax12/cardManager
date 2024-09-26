@@ -70,8 +70,6 @@ export class AuthStore {
   async signUp(email: string, password: string) {
     try {
       await this._authService.signUp(email,password)
-
-
     }
     catch (e: any) {
       const errorMessage = e.message

@@ -7,7 +7,7 @@ import {IDeckBaseModel} from "@/dto/decks/decks-dto";
 
 export class DecksStore {
     private _decksService: DecksService
-    decks: DeckModelView[] = [];
+    private _decks: DeckModelView[] = [];
     loading: boolean = false;
     error: string | null = null;
 
@@ -16,6 +16,13 @@ export class DecksStore {
     get UserTokensUpdateCount() {
         return this._userTokensUpdateCount
     }
+    get decks(): DeckModelView[] {
+        return this._decks;
+    }
+    private setDecks(decks: DeckModelView[]): void {
+        this._decks = decks;
+    }
+
 
     pagination = {
         currentPage: 1,
@@ -38,7 +45,7 @@ export class DecksStore {
                 itemsPerPage
             );
             const decksView = DeckModelView.Map(data.items)
-            this.decks = decksView;
+            this.setDecks(decksView)
             this.pagination = data.pagination;
 
             return decksView
@@ -52,9 +59,7 @@ export class DecksStore {
     async createDeck(name: string, bearerToken?: string, cover?: File): Promise<IDeckBaseModel | undefined> {
 
         try {
-            const data = await this._decksService.createDeck(
-                name
-            )
+            const data = await this._decksService.createDeck(name)
             return data
         } catch (e: any) {
             this.error = e.message || 'Something went wrong';
@@ -64,9 +69,7 @@ export class DecksStore {
     async deleteDeck(id: string, bearerToken?: string): Promise<IDeckBaseModel | undefined> {
 
         try {
-            const deletedDeck = await this._decksService.deleteDeck(
-                id
-            )
+            const deletedDeck = await this._decksService.deleteDeck(id)
             return deletedDeck
 
         } catch (e: any) {
@@ -75,6 +78,22 @@ export class DecksStore {
             } else {
                 this.error = e.message || 'Something went wrong';
             }
+        }
+    }
+
+    async updateDeck(deckId: string, bearerToken?:string, name?:string, cover?: File | undefined, isPrivate?: boolean) {
+        try {
+            const updatedDeck = await this._decksService.updateDeck(
+                deckId,
+                bearerToken,
+                name,
+                cover,
+                isPrivate
+            )
+            return updatedDeck
+
+        } catch (e: any) {
+            this.error = e.message || 'Something went wrong';
         }
     }
 
