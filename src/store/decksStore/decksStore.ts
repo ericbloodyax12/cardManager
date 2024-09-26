@@ -81,14 +81,11 @@ export class DecksStore {
         }
     }
 
-    async updateDeck(deckId: string, bearerToken?:string, name?:string, cover?: File | undefined, isPrivate?: boolean) {
+    async updateDeck(deckId: string, bearerToken?: string, name?: string, cover?: File | undefined, isPrivate?: boolean) {
         try {
             const updatedDeck = await this._decksService.updateDeck(
                 deckId,
-                bearerToken,
-                name,
-                cover,
-                isPrivate
+                name
             )
             return updatedDeck
 

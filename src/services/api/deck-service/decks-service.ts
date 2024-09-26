@@ -72,13 +72,20 @@ export class DecksService extends ApiService {
         appendFormData('isPrivate', isPrivate !== undefined ? String(isPrivate) : null);
         appendFormData('cover', cover);
 
+        const response = await fetch(`https://api.flashcards.andrii.es${updatePath}`,
+            {
+                headers: headers,
+                method: "PATCH",
+                body:formData,
+                credentials: "include",
+            });
 
-        const res = await super.patch<IDeckBaseModel>({
-            path: updatePath,
-            body: formData,
-            headers
-        });
-        return res
+        // const res = await super.patch<IDeckBaseModel>({
+        //     path: updatePath,
+        //     body: formData,
+        //     headers
+        // });
+        return response as any
     }
 
 
