@@ -10,6 +10,7 @@ import {EditIcon} from "@/components/assets/icons/componentSvg/editIcon";
 import {useStores} from "@/contexts/storeContext/storeContext";
 import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
 import {UpdateInfoDialog} from "@/components/ui/dataTable/deckInfoDialog/updateInfoDialog/updateInfoDialog";
+import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
 
 
 
@@ -22,6 +23,9 @@ export const DeckInfoDialog: React.FC<TDataProps> = ({selectedDeck}) => {
 
     const {decksStore} = useStores()!
     const {dialogStore} = useDialogs()
+
+
+    const tokensData = StorageHelper.getData(StorageTypeNames.UserToken)
 
 
     const createButtonIcon = (
@@ -57,7 +61,10 @@ export const DeckInfoDialog: React.FC<TDataProps> = ({selectedDeck}) => {
                             }
                     )
                     )}
-                    {createButtonIcon("delete",<DeleteIcon/>,() => decksStore.deleteDeck(selectedDeck?.id))}
+                    {createButtonIcon("delete",<DeleteIcon/>,() => {
+                      return  decksStore.deleteDeck(selectedDeck?.id,tokensData!.accessToken,selectedDeck)
+                    }
+                    )}
                 </div>
         </div>
     );
