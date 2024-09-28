@@ -21,13 +21,14 @@ export const LoginForm = () => {
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+
         try {
             const {email, password, rememberMe} = formState!
             const tokens = await authStore?.signIn(email, password, rememberMe)
-            authStore.setIsAuth(true)
             const userInfoData = await authStore.getUserInfoData(tokens)
             decksStore.setUserInfoData(userInfoData)
             navigate(paths.DECKS)
+            authStore.setIsAuth(true) // todo rout wrapper  реагирует раньше чем  navigate
         } catch (e) {
             throw new Error("ошибка логинизации")
         }
