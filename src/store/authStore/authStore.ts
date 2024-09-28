@@ -39,8 +39,6 @@ export class AuthStore {
     return this._userTokens
   }
 
-
-
   get IsAuth() {
     return this._isAuth
   }
@@ -60,10 +58,14 @@ export class AuthStore {
     this.setIsAuth(false)
   }
 
-  async signIn(email:string,password:string,rememberMe:boolean) {
+  async getUserInfoData(userTokens: UserTokensInfoI | undefined) {
+    return await this._authService.getCurrentUserData(userTokens?.accessToken)
+  }
+
+  async signIn(email:string,password:string,rememberMe:boolean): Promise<UserTokensInfoI> {
       const userTokens= await this._authService.signIn(email,password,rememberMe)
       this.setUserTokens(userTokens)
-
+      return userTokens
   }
 
 

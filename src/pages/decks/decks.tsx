@@ -21,7 +21,7 @@ export const Decks = observer(() => {
         pagination,
     } = decksStore;
 
-    useEffect(() => {
+    useEffect( () => {
         decksStore.getDecks(pagination.currentPage, pagination.itemsPerPage);
     }, [pagination.currentPage, pagination.itemsPerPage]);
 

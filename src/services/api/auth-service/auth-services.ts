@@ -1,5 +1,5 @@
 import {ApiService} from "@/services/api-service";
-import {UserTokensInfoI} from "@/dto/auth/auth-dto";
+import {IUserInfo, UserTokensInfoI} from "@/dto/auth/auth-dto";
 
 import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
 import {RequestBehavior, ResponceBehavior} from "@/services/types";
@@ -10,10 +10,9 @@ export class AuthServices extends ApiService {
 
    super(responseBehaviors,requestBehaviors,ApiUrl);
  }
-  async getCurrentUserData(bearerToken?: string): Promise<void> {
+  async getCurrentUserData(bearerToken?: string): Promise<IUserInfo> {
     const authPath = '/v1/auth/me'
-    await super.get({path: authPath, headers: {Authorization:`Bearer ${bearerToken}`}} ) // or this.
-
+      return await super.get({path: authPath, headers: {Authorization:`Bearer ${bearerToken}`}} )
   }
   async refreshAccessToken(): Promise<UserTokensInfoI> {
     const refreshToken = StorageHelper.getData(StorageTypeNames.UserToken);
@@ -54,7 +53,6 @@ export class AuthServices extends ApiService {
   async signIn(email: string, password: string, rememberMe: boolean): Promise<UserTokensInfoI> {
     const signInPath = '/v1/auth/login'
     const body = {email, password,rememberMe}
-      console.log("in auth service request for signIn ", body)
    return await super.post({path: signInPath, body})
   }
 
