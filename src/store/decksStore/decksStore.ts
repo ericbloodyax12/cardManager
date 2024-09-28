@@ -1,4 +1,6 @@
 import {makeAutoObservable} from "mobx";
+import {toast} from "react-toastify";
+
 import {DecksService} from "@/services/api/deck-service/decks-service";
 import {AuthServices} from "@/services/api/auth-service/auth-services";
 import {DeckModelView} from "@/models-view/deck-view";
@@ -12,6 +14,7 @@ export class DecksStore {
     private _decksService: DecksService;
     private _authService: AuthServices;
     private _decks: DeckModelView[] = [];
+    private _userDataInfo: IUserInfo | undefined = undefined;
     private _userTokens: UserTokensInfoI | null | undefined = null
     loading: boolean = false;
     error: string | null = null;
@@ -28,6 +31,9 @@ export class DecksStore {
         this._decks = decks;
     }
 
+    public setUserInfoData(userInfoData: IUserInfo){
+        this._userDataInfo = userInfoData;
+    }
 
     pagination = {
         currentPage: 1,
@@ -77,8 +83,8 @@ export class DecksStore {
     }
 
     async deleteDeck(id: string, bearerToken: string, delitingDeckInfo: DeckModelView): Promise<IDeckBaseModel | undefined> {
-        const currentUserData = await this._authService.getCurrentUserData(this._userTokens?.accessToken)
-        if (currentUserData.id === delitingDeckInfo.author.id) {
+
+        if (this._userDataInfo?.id === delitingDeckInfo.author.id) {
             try {
                 const deletedDeck = await this._decksService.deleteDeck(id, bearerToken)
                 return deletedDeck
@@ -90,9 +96,8 @@ export class DecksStore {
                     this.error = e.message || 'Something went wrong';
                 }
             }
-
         } else {
-            throw new Error("You can't delete decks that don't belong to you")
+            toast.warn("You can't delete decks that don't belong to you")
         }
 
     }

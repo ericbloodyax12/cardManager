@@ -53,7 +53,6 @@ export class AuthServices extends ApiService {
   async signIn(email: string, password: string, rememberMe: boolean): Promise<UserTokensInfoI> {
     const signInPath = '/v1/auth/login'
     const body = {email, password,rememberMe}
-      console.log("in auth service request for signIn ", body)
    return await super.post({path: signInPath, body})
   }
 
