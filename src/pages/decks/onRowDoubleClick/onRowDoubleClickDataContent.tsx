@@ -4,6 +4,7 @@ import {Button} from "@/components/ui/button";
 import "./onRowDoubleClickDataContent.scss"
 import s from "@/components/auth/login/login-form.module.scss";
 import {useStores} from "@/contexts/storeContext/storeContext";
+import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
 
 
 type TOnRowDoubleClickDataContetProps = {
@@ -12,6 +13,7 @@ type TOnRowDoubleClickDataContetProps = {
 
 export const OnRowDoubleClickDataContent: React.FC<TOnRowDoubleClickDataContetProps> = ({}) => {
     const {decksStore} = useStores()!
+    const {dialogStore} = useDialogs()
     const [formState, setFormState] = useState<{name:string}>({ name: '' })
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -21,6 +23,7 @@ export const OnRowDoubleClickDataContent: React.FC<TOnRowDoubleClickDataContetPr
             const {name} = formState!
             console.log("its name:", name)
             await decksStore.createDeck(name)
+            dialogStore.closeDialog()
 
         } catch (e) {
             throw new Error("ошибка создания")
@@ -30,7 +33,6 @@ export const OnRowDoubleClickDataContent: React.FC<TOnRowDoubleClickDataContetPr
 
     return (
         <div className="onRowDoubleClickDataContent-DivContainer">
-
 
             <form className={s.formContainer} onSubmit={onSubmit}>
                 <TextField id="onRowDoubleClickDataContet"
@@ -43,7 +45,6 @@ export const OnRowDoubleClickDataContent: React.FC<TOnRowDoubleClickDataContetPr
                                })
                            }}
                 >
-
                 </TextField>
                 <Button type={'submit'} variant={"primary"}>Create</Button>
 

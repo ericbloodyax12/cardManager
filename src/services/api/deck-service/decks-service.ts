@@ -21,9 +21,9 @@ export class DecksService extends ApiService {
         return response;
     }
 
-    async deleteDeck(deckId: string): Promise<IDeckBaseModel> {
+    async deleteDeck(deckId: string, bearerToken: string ): Promise<IDeckBaseModel> {
         const deletePath = `${this.decksPath}/${deckId}`
-        const res = await super.delete<IDeckBaseModel>({path: deletePath});
+        const res = await super.delete<IDeckBaseModel>({path: deletePath, headers: {Authorization:`Bearer ${bearerToken}`}});
         return res
     }
     async createDeck(name:string, bearerToken?: string, cover?: File): Promise<IDeckBaseModel>{

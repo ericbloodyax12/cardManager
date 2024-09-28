@@ -15,7 +15,7 @@ import s from './login-form.module.scss'
 
 export const LoginForm = () => {
     const navigate = useNavigate()
-    const {authStore} = useStores()!
+    const {authStore, decksStore} = useStores()!
 
     const [formState, setFormState] = useState<LoginSchema>({email: "", password: "", rememberMe: true})
 
@@ -23,8 +23,10 @@ export const LoginForm = () => {
         e.preventDefault()
         try {
             const {email, password, rememberMe} = formState!
-            await authStore?.signIn(email, password, rememberMe)
+            const tokens = await authStore?.signIn(email, password, rememberMe)
             authStore.setIsAuth(true)
+            const userInfoData = await authStore.getUserInfoData(tokens)
+            decksStore.setUserInfoData(userInfoData)
             navigate(paths.DECKS)
         } catch (e) {
             throw new Error("ошибка логинизации")
