@@ -24,6 +24,7 @@ export class AuthStore {
 
     if (data) {
       this._userTokens = data as UserTokensInfoI; // Явное приведение к типу
+      this._isAuth = true;
     }
 
   }
@@ -40,6 +41,7 @@ export class AuthStore {
   }
 
   get IsAuth() {
+
     return this._isAuth
   }
 
@@ -49,6 +51,7 @@ export class AuthStore {
   }
 
   setIsAuth(isAuth: boolean) {
+
     this._isAuth = isAuth
   }
 
