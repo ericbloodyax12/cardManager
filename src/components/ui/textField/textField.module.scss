@@ -5,6 +5,24 @@
   width: 284px;
   height: 36px;
   margin-top: 20px;
+
+
+}
+
+.whiteMode {
+  .input {
+    &:focus {
+      color:var(--color-dark-700);
+    }
+  }
+}
+
+.darkMode {
+  .input {
+    &:focus {
+      color:var(--color-light-100);
+    }
+  }
 }
 
 .inputContainer_icon-button {
@@ -19,8 +37,6 @@
 
 .default {
   @include common-styles-input;
-
-
 
 }
 
