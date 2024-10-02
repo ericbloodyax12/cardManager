@@ -7,6 +7,7 @@ import { Typography } from '@/components/ui/typography'
 import { clsx } from 'clsx'
 
 import s from './textField.module.scss'
+import {useTheme} from "@/contexts/themeContext";
 // todo сделать по умолчанию 100% в ширину, а потом уже подгонять под размеры
 export type InputProps = {
   errorMessage?: string
@@ -27,6 +28,7 @@ export const TextField = forwardRef<HTMLInputElement, InputProps>((props, ref) =
     variant = 'default',
     ...rest
   } = props
+  const {themeClassName} = useTheme()
   const [isShowPassword, setIsShowPassword] = useState(false)
   // const isPassword = type === 'password'
   // const iconToRender = getIcon(isPassword, isShowPassword)
@@ -40,10 +42,11 @@ export const TextField = forwardRef<HTMLInputElement, InputProps>((props, ref) =
     className,
     fullWidth && s.fullWidth,
     errorMessage && s.error,
+    themeClassName === 'whiteMode' ? s.whiteMode : s.darkMode
   )
 
   return (
-    <div className={`${s.inputContainer} ${fullWidth ? s.fullWidth : ''}`}>
+    <div className={clsx(s.inputContainer, fullWidth && s.fullWidth, s[themeClassName])}>
       <Typography as={'p'} className={s.label} variant={'body2'}>
         {label}
       </Typography>
