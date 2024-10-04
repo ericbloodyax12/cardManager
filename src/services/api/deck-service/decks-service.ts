@@ -3,10 +3,6 @@ import {ApiService} from "@/services/api-service";
 
 import {DecksResponse, IDeckBaseModel} from "@/dto/decks/decks-dto";
 
-
-
-
-
 export class DecksService extends ApiService {
 
     private decksPath = '/v1/decks'

@@ -10,14 +10,21 @@ import {DeckModelView} from "@/models-view/deck-view";
 
 import './dataTable.scss'
 import {DeckInfoDialog} from "@/components/ui/dataTable/deckInfoDialog/deckInfoDialog";
+import {CardModelView} from "@/models-view/cards-view";
 
 
 type TDataTableComponentProps = {
-  items: DeckModelView[]
+  items: DeckModelView[] | CardModelView[],
+  header: {
+    first: string,
+    second: string,
+    third: string,
+    fourth: string,
+  }
 }
 
 export const DataTableComponent: React.FC<TDataTableComponentProps> = observer(({
-  items
+  items,header
 }) => {
 
   const {dialogStore} = useDialogs();
@@ -40,15 +47,13 @@ export const DataTableComponent: React.FC<TDataTableComponentProps> = observer((
                  selectionMode="single"
                  onRowDoubleClick={onRowDoubleClick}
       >
-        <Column field="name" header=" Name"/>
-        <Column field="cardsCount" header="Cards Count"/>
-        <Column field="updated" header="Last Updated"/>
-        <Column field="author.name" header="Created by"/>
+        <Column field="name" header={header.first}/>
+        <Column field="cardsCount" header={header.second}/>
+        <Column field="updated" header={header.third}/>
+        <Column field="author.name" header={header.fourth}/>
       </DataTable>
 
     </div>
   );
 })
-
-
 

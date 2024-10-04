@@ -8,13 +8,11 @@ import {useStores} from "@/contexts/storeContext/storeContext";
 import {DataTableComponent} from "@/components/ui/dataTable/dataTable";
 
 import s from './decks.module.scss'
-import {OnRowDoubleClickDataContent} from "@/pages/decks/onRowDoubleClick/onRowDoubleClickDataContent";
+import {AddNewDeck} from "@/pages/decks/addNewDeck/addNewDeck";
 
 export const Decks = observer(() => {
     const { decksStore} = useStores()!
     const { dialogStore} = useDialogs();
-
-    // const [newDeckModel, setNewDeckModel] = useState(); todo @Erik - реализовать логику и шаблон создания
 
     const {
         Decks,
@@ -40,7 +38,7 @@ export const Decks = observer(() => {
       dialogStore.openNewDialog({
         headerTitle: 'Create New Deck',
         isVisible: true,
-        dialogContent: () => <OnRowDoubleClickDataContent />
+        dialogContent: () => <AddNewDeck />
       })
     };
 
@@ -50,9 +48,13 @@ export const Decks = observer(() => {
                 <div className={s.divMainContainer__dataTable__div}>
                     <Button onClick={addNewDeck}>Add new Deck</Button>
                 </div>
-                <DataTableComponent items={Decks}/>
-
-
+                <DataTableComponent items={Decks} header={{
+                    first: "name",
+                    second: "Cards Count",
+                    third: "Last Updated",
+                    fourth: "Created by"
+                }}
+                />
             </div>
             <Paginator
                 first={(pagination.currentPage - 1) * pagination.itemsPerPage}
