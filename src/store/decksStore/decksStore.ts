@@ -81,6 +81,7 @@ export class DecksStore {
 
         try {
             const data = await this._decksService.createDeck(name)
+            toast.success("deck created successfully");
             return data
         } catch (e: any) {
             this.error = e.message || 'Something went wrong';
@@ -91,11 +92,11 @@ export class DecksStore {
         if (this._userDataInfo?.id === delitingDeckInfo.author.id) {
             try {
                 const deletedDeck = await this._decksService.deleteDeck(id, bearerToken)
-                toast.success("deck deleted successfully.");
+                toast.success("deck deleted successfully");
                 return deletedDeck
 
             } catch (e: any) {
-                if (e.response?.status === 403) { //todo исправить сообщение об ошибке
+                if (e.response?.status === 403) {
                     this.error = e.message;
                 } else {
                     this.error = e.message || 'Something went wrong';
@@ -107,13 +108,26 @@ export class DecksStore {
 
     }
 
-    async updateDeck(payload: {deckId: string, name?: string, cover?: File | undefined, isPrivate?: boolean, bearerToken?: string}) {
-        try {
-            const updatedDeck = await this._decksService.updateDeck(payload)
-            return updatedDeck
+    async updateDeck(payload: {
+        deckId: string,
+        name?: string,
+        cover?: File | undefined,
+        isPrivate?: boolean,
+        bearerToken?: string,
+        updatingDeckInfo: DeckModelView
+    }) {
+        if (this._userDataInfo?.id === payload.updatingDeckInfo.author.id) {
+            try {
+                const updatedDeck = await this._decksService.updateDeck(payload)
+                toast.success("deck updated successfully");
+                return updatedDeck
 
-        } catch (e: any) {
-            this.error = e.message || 'Something went wrong';
+            } catch (e: any) {
+                this.error = e.message || 'Something went wrong';
+            }
+
+        } else {
+            toast.warn("You can't update decks that don't belong to you")
         }
     }
 

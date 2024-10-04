@@ -23,7 +23,7 @@ export const UpdateInfoDialog: React.FC<TUpdateInfoDialogProps> = ({selectedDeck
         e.preventDefault()
         try {
             const {name} = formState!
-            await decksStore.updateDeck({deckId: selectedDeck.id, name: name})
+            await decksStore.updateDeck({deckId: selectedDeck.id, name: name, updatingDeckInfo:selectedDeck})
             dialogStore.closeDialog()
         } catch (e) {
             throw new Error("ошибка логинизации")
