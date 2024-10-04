@@ -23,6 +23,7 @@ export const LoginForm = () => {
         e.preventDefault()
 
         try {
+
             const {email, password, rememberMe} = formState!
             const tokens = await authStore?.signIn(email, password, rememberMe)
             const userInfoData = await authStore.getUserInfoData(tokens)

@@ -32,7 +32,8 @@ export class DecksStore {
     }
 
     public setUserInfoData(userInfoData: IUserInfo){
-        this._userDataInfo = userInfoData;
+        StorageHelper.setData({name:StorageTypeNames.UserInfoData, data: userInfoData});
+        // this._userDataInfo = userInfoData;
     }
 
     pagination = {
@@ -49,6 +50,10 @@ export class DecksStore {
         const data = StorageHelper.getData<StorageTypeNames.UserToken>(StorageTypeNames.UserToken);
         if (data) {
             this._userTokens = data as UserTokensInfoI; // Явное приведение к типу
+        }
+        const userInfoData = StorageHelper.getData<StorageTypeNames.UserInfoData>(StorageTypeNames.UserInfoData);
+        if (userInfoData) {
+            this._userDataInfo = userInfoData;
         }
     }
 
@@ -83,10 +88,10 @@ export class DecksStore {
     }
 
     async deleteDeck(id: string, bearerToken: string, delitingDeckInfo: DeckModelView): Promise<IDeckBaseModel | undefined> {
-
         if (this._userDataInfo?.id === delitingDeckInfo.author.id) {
             try {
                 const deletedDeck = await this._decksService.deleteDeck(id, bearerToken)
+                toast.success("deck deleted successfully.");
                 return deletedDeck
 
             } catch (e: any) {

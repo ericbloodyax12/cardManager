@@ -57,6 +57,7 @@ export class AuthStore {
 
   logOut() {
     StorageHelper.remove(StorageTypeNames.UserToken)
+    StorageHelper.remove(StorageTypeNames.UserInfoData)
     this._userTokens = null
     this.setIsAuth(false)
   }
