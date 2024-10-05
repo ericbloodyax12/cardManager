@@ -18,11 +18,17 @@ type TDataTableComponentProps = {
     third: string,
     fourth: string,
   },
+  field: {
+    first: string,
+    second: string,
+    third: string,
+    fourth: string,
+  }
   onRowDoubleClick?: (e: DataTableRowClickEvent) => void
 }
 
 export const DataTableComponent: React.FC<TDataTableComponentProps> = observer(({
-  items,header, onRowDoubleClick
+  items,header, onRowDoubleClick, field
 }) => {
 
 
@@ -35,10 +41,10 @@ export const DataTableComponent: React.FC<TDataTableComponentProps> = observer((
                  selectionMode="single"
                  onRowDoubleClick={onRowDoubleClick}
       >
-        <Column field="name" header={header.first}/>
-        <Column field="cardsCount" header={header.second}/>
-        <Column field="updated" header={header.third}/>
-        <Column field="author.name" header={header.fourth}/>
+        <Column field={field.first} header={header.first}/>
+        <Column field={field.second} header={header.second}/>
+        <Column field={field.third} header={header.third}/>
+        <Column field={field.fourth} header={header.fourth}/>
       </DataTable>
 
     </div>

@@ -63,6 +63,12 @@ export const Decks = observer(() => {
                     <Button onClick={addNewDeck}>Add new Deck</Button>
                 </div>
                 <DataTableComponent items={Decks}
+                                    field={{
+                                        first: "name",
+                                        second: "cardsCount",
+                                        third: "updated",
+                                        fourth: "author.name",
+                                    }}
                                     header={
                                         {
                                             first: "name",
