@@ -17,6 +17,7 @@ export class AuthStore {
   }
 
   constructor() {
+
     makeAutoObservable(this, {signIn: false})
       const authService = new AuthServices([],[], apiConfig.baseUrl)
     const data = StorageHelper.getData<StorageTypeNames.UserToken>(StorageTypeNames.UserToken);
@@ -47,7 +48,7 @@ export class AuthStore {
 
   public setUserTokens(userTokens: UserTokensInfoI | undefined) {
     StorageHelper.setData({name: StorageTypeNames.UserToken, data: userTokens})
-    // this._userTokens = userTokens
+    this._userTokens = userTokens
   }
 
   setIsAuth(isAuth: boolean) {

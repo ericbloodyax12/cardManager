@@ -33,7 +33,7 @@ export class DecksStore {
 
     public setUserInfoData(userInfoData: IUserInfo){
         StorageHelper.setData({name:StorageTypeNames.UserInfoData, data: userInfoData});
-        // this._userDataInfo = userInfoData;
+        this._userDataInfo = userInfoData;
     }
 
     pagination = {
