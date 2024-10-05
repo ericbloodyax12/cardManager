@@ -11,136 +11,133 @@ import {IUserInfo, UserTokensInfoI} from "@/dto/auth/auth-dto";
 
 
 export class DecksStore {
-  private _decksService: DecksService;
-  private _authService: AuthServices;
-  private _decks: DeckModelView[] = [];
-  private _userDataInfo: IUserInfo | undefined = undefined;
-  private _userTokens: UserTokensInfoI | null | undefined = null
-  loading: boolean = false;
-  error: string | null = null;
+    private _decksService: DecksService;
+    private _authService: AuthServices;
+    private _decks: DeckModelView[] = [];
+    private _userDataInfo: IUserInfo | undefined = undefined;
+    private _userTokens: UserTokensInfoI | null | undefined = null
+    loading: boolean = false;
+    error: string | null = null;
 
-  private _userTokensUpdateCount: number = 0
+    private _userTokensUpdateCount: number = 0
 
-  get UserTokensUpdateCount() {
-    return this._userTokensUpdateCount
-  }
-  get Decks(): DeckModelView[] {
-    return this._decks;
-  }
-  private setDecks(decks: DeckModelView[]): void {
-    this._decks = decks;
-  }
-
-  public setUserInfoData(userInfoData: IUserInfo){
-    StorageHelper.setData({name:StorageTypeNames.UserInfoData, data: userInfoData});
-    // this._userDataInfo = userInfoData;
-  }
-
-  pagination = {
-    currentPage: 1,
-    itemsPerPage: 10,
-    totalPages: 0,
-    totalItems: 0,
-  };
-
-  constructor() {
-    makeAutoObservable(this);
-    this._decksService = new DecksService([], [], apiConfig.baseUrl)
-    this._authService = new AuthServices([], [], apiConfig.baseUrl)
-    const data = StorageHelper.getData<StorageTypeNames.UserToken>(StorageTypeNames.UserToken);
-    if (data) {
-      this._userTokens = data as UserTokensInfoI; // Явное приведение к типу
+    get UserTokensUpdateCount() {
+        return this._userTokensUpdateCount
     }
-    const userInfoData = StorageHelper.getData<StorageTypeNames.UserInfoData>(StorageTypeNames.UserInfoData);
-    if (userInfoData) {
-      this._userDataInfo = userInfoData;
+    get Decks(): DeckModelView[] {
+        return this._decks;
     }
-  }
-
-
-  async getDecks(page: number = this.pagination.currentPage,
-                 itemsPerPage: number = this.pagination.itemsPerPage): Promise<DeckModelView[] | undefined> {
-    try {
-      const data = await this._decksService.getDecks(
-        page,
-        itemsPerPage
-      );
-      const decksView = DeckModelView.Map(data.items)
-      this.setDecks(decksView)
-      this.pagination = data.pagination;
-
-      return decksView
-    } catch (error: any) {
-      this.error = error.message || 'Something went wrong';
-      this.loading = false;
+    private setDecks(decks: DeckModelView[]): void {
+        this._decks = decks;
     }
 
-  }
-
-  async createDeck(name: string, bearerToken?: string, cover?: File): Promise<IDeckBaseModel | undefined> {
-
-    try {
-      const data = await this._decksService.createDeck(name)
-      toast.success("deck created successfully");
-      return data
-    } catch (e: any) {
-      this.error = e.message || 'Something went wrong';
+    public setUserInfoData(userInfoData: IUserInfo){
+        StorageHelper.setData({name:StorageTypeNames.UserInfoData, data: userInfoData});
+        this._userDataInfo = userInfoData;
     }
-  }
 
-  async deleteDeck(id: string, bearerToken: string, delitingDeckInfo: DeckModelView): Promise<IDeckBaseModel | undefined> {
-    if (this._userDataInfo?.id === delitingDeckInfo.author.id) {
-      try {
-        const deletedDeck = await this._decksService.deleteDeck(id, bearerToken)
-        toast.success("deck deleted successfully");
-        return deletedDeck
+    pagination = {
+        currentPage: 1,
+        itemsPerPage: 10,
+        totalPages: 0,
+        totalItems: 0,
+    };
 
-      } catch (e: any) {
-        if (e.response?.status === 403) {
-          this.error = e.message;
-        } else {
-          this.error = e.message || 'Something went wrong';
+    constructor() {
+        makeAutoObservable(this);
+        this._decksService = new DecksService([], [], apiConfig.baseUrl)
+        this._authService = new AuthServices([], [], apiConfig.baseUrl)
+        const data = StorageHelper.getData<StorageTypeNames.UserToken>(StorageTypeNames.UserToken);
+        if (data) {
+            this._userTokens = data as UserTokensInfoI; // Явное приведение к типу
         }
-      }
-    } else {
-      toast.warn("You can't delete decks that don't belong to you")
+        const userInfoData = StorageHelper.getData<StorageTypeNames.UserInfoData>(StorageTypeNames.UserInfoData);
+        if (userInfoData) {
+            this._userDataInfo = userInfoData;
+        }
     }
 
-  }
 
-  async updateDeck(payload: {
-    deckId: string,
-    name?: string,
-    cover?: File | undefined,
-    isPrivate?: boolean,
-    bearerToken?: string,
-    updatingDeckInfo: DeckModelView
-  }) {
-    if (this._userDataInfo?.id === payload.updatingDeckInfo.author.id) {
-      try {
-        const updatedDeck = await this._decksService.updateDeck(payload)
-        toast.success("deck updated successfully");
-        return updatedDeck
+    async getDecks(page: number = this.pagination.currentPage,
+                   itemsPerPage: number = this.pagination.itemsPerPage): Promise<DeckModelView[] | undefined> {
+        try {
+            const data = await this._decksService.getDecks(
+                page,
+                itemsPerPage
+            );
+            const decksView = DeckModelView.Map(data.items)
+            this.setDecks(decksView)
+            this.pagination = data.pagination;
 
-      } catch (e: any) {
-        this.error = e.message || 'Something went wrong';
-      }
-
-    } else {
-      toast.warn("You can't update decks that don't belong to you")
+            return decksView
+        } catch (error: any) {
+            this.error = error.message || 'Something went wrong';
+            this.loading = false;
+        }
     }
-  }
 
-  setPage(page: number) {
+    async createDeck(name: string, bearerToken?: string, cover?: File): Promise<IDeckBaseModel | undefined> {
 
-    this.pagination.currentPage = page;
+        try {
+            const data = await this._decksService.createDeck(name)
+            toast.success("deck created successfully");
+            return data
+        } catch (e: any) {
+            this.error = e.message || 'Something went wrong';
+        }
+    }
 
-  }
+    async deleteDeck(id: string, bearerToken: string, delitingDeckInfo: DeckModelView): Promise<IDeckBaseModel | undefined> {
+        if (this._userDataInfo?.id === delitingDeckInfo.author.id) {
+            try {
+                const deletedDeck = await this._decksService.deleteDeck(id, bearerToken)
+                toast.success("deck deleted successfully");
+                return deletedDeck
 
-  setItemsPerPage(itemsPerPage: number) {
-    this.pagination.itemsPerPage = itemsPerPage;
-    // this.getDecks(this.pagination.currentPage, itemsPerPage);
-  }
+            } catch (e: any) {
+                if (e.response?.status === 403) {
+                    this.error = e.message;
+                } else {
+                    this.error = e.message || 'Something went wrong';
+                }
+            }
+        } else {
+            toast.warn("You can't delete decks that don't belong to you")
+        }
+
+    }
+
+    async updateDeck(payload: {
+        deckId: string,
+        name?: string,
+        cover?: File | undefined,
+        isPrivate?: boolean,
+        bearerToken?: string,
+        updatingDeckInfo: DeckModelView
+    }) {
+        if (this._userDataInfo?.id === payload.updatingDeckInfo.author.id) {
+            try {
+                const updatedDeck = await this._decksService.updateDeck(payload)
+                toast.success("deck updated successfully");
+                return updatedDeck
+
+            } catch (e: any) {
+                this.error = e.message || 'Something went wrong';
+            }
+
+        } else {
+            toast.warn("You can't update decks that don't belong to you")
+        }
+    }
+
+    setPage(page: number) {
+        this.pagination.currentPage = page;
+    }
+
+    setItemsPerPage(itemsPerPage: number) {
+        this.pagination.itemsPerPage = itemsPerPage;
+        // this.getDecks(this.pagination.currentPage, itemsPerPage);
+    }
 
 }
 

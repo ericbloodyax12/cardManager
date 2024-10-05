@@ -1,0 +1,28 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+}
+
+.paginator {
+  display: flex;
+  gap:20px;
+  align-items: center;
+  justify-content: center;
+
+  margin: 2em ;
+
+  font-size: 1.4em;
+
+}
+
+.paginator button  {
+  color: white!important;
+  background-color: transparent !important;
+
+}
+
+.paginator span  {
+  display: flex;
+  gap: 20px
+}

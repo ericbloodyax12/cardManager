@@ -1,7 +1,7 @@
 import React, {FormEvent, useState} from 'react';
 import {TextField} from "@/components/ui/textField";
 import {Button} from "@/components/ui/button";
-import "./onRowDoubleClickDataContent.scss"
+import "./addNewDeck.scss"
 import s from "@/components/auth/login/login-form.module.scss";
 import {useStores} from "@/contexts/storeContext/storeContext";
 import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
@@ -11,7 +11,7 @@ type TOnRowDoubleClickDataContetProps = {
 
 }
 
-export const OnRowDoubleClickDataContent: React.FC<TOnRowDoubleClickDataContetProps> = ({}) => {
+export const AddNewDeck: React.FC<TOnRowDoubleClickDataContetProps> = ({}) => {
     const {decksStore} = useStores()!
     const {dialogStore} = useDialogs()
     const [formState, setFormState] = useState<{name:string}>({ name: '' })
@@ -32,11 +32,11 @@ export const OnRowDoubleClickDataContent: React.FC<TOnRowDoubleClickDataContetPr
     }
 
     return (
-        <div className="onRowDoubleClickDataContent-DivContainer">
+        <div className="addNewDeck-DivContainer">
 
             <form className={s.formContainer} onSubmit={onSubmit}>
-                <TextField id="onRowDoubleClickDataContet"
-                           className={"onRowDoubleClickDataContent-input"}
+                <TextField id="addNewDeck"
+                           className={"addNewDeck-input"}
                            label="Eter name"
                            onChange={(e) => { // todo когда непосредственно вводишь текст его невидно
                                setFormState({
