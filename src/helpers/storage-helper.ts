@@ -17,7 +17,8 @@ export enum StorageTypeNames {
 }
 
 export type StorageType =
-    {name: StorageTypeNames.UserToken, data: UserTokensInfoI | IUserInfo | undefined}
+    { name: StorageTypeNames.UserToken, data: UserTokensInfoI | undefined }
+  | { name: StorageTypeNames.UserInfoData, data: IUserInfo | undefined }
 
 // | { name: StorageTypeNames.ConfigGuid, deckInfoDialog: string }
 // | { name: StorageTypeNames.GantTaskInfo, deckInfoDialog: { [key: string]: {currentSelectedTask?: TTaskType, expandedTasksKeys?: string[]} }}
