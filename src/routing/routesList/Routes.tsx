@@ -6,6 +6,7 @@ import {SignUp} from "@/pages/publicPages/signUp/signUp";
 import {CheckEmail} from "@/pages/publicPages/checkEmail/checkEmailPage";
 import {TestComponentsPage} from "@/pages/testPages/testComponentsPage";
 import {CreateNewPasswordPage} from "@/pages/publicPages/createNewPassword/createNewPasswordPage";
+import {Cards} from "@/pages/cardsPage/cards";
 
 
 export const paths = {
@@ -16,6 +17,7 @@ export const paths = {
   DECKS: '/decks',
   EDIT_MAIN_PROFILE: '/edit_main_profile',
   CREATE_NEW_PASSWORD: '/recover-password/:id',
+  CARDS: "/cards"
 }
 
 type RouteConfigType = {
@@ -73,6 +75,12 @@ export const routesConfig: RouteConfigType[] = [
     routeName: "decks",
     path: paths.DECKS,
     element: <Decks/>,
+    private: true,
+  },
+  {
+    routeName: "cards",
+    path: paths.CARDS,
+    element: <Cards/>,
     private: true,
   },
   {

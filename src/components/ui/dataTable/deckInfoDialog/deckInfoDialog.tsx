@@ -3,8 +3,6 @@ import {DeckModelView} from "@/models-view/deck-view";
 
 
 import {DeleteIcon} from "@/components/assets/icons/componentSvg/deleteIcon";
-
-import './deckInfoDialog.scss'
 import {PlayIcon} from "@/components/assets/icons/componentSvg/playIcon";
 import {EditIcon} from "@/components/assets/icons/componentSvg/editIcon";
 import {useStores} from "@/contexts/storeContext/storeContext";
@@ -12,12 +10,16 @@ import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
 import {UpdateInfoDialog} from "@/components/ui/dataTable/deckInfoDialog/updateInfoDialog/updateInfoDialog";
 import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
 
+import './deckInfoDialog.scss'
+
+
 
 
 type TDataProps = {
     selectedDeck: DeckModelView
 }
 
+// todo как реализовать здесь useNavigate
 
 export const DeckInfoDialog: React.FC<TDataProps> = (props) => {
 
@@ -49,7 +51,7 @@ export const DeckInfoDialog: React.FC<TDataProps> = (props) => {
             <p><strong>Created by:</strong> {props.selectedDeck?.author.name}</p>
 
                 <div className={"div-ButtonIconsWrapper"} >
-                    {createButtonIcon("learn",<PlayIcon/>)}
+                    {createButtonIcon("learn",<PlayIcon/>,  )} {/*() => navigate(paths.CARDS) */}
                     {createButtonIcon("edit",<EditIcon/>, () => dialogStore.openNewDialog(
                             {
                                 headerTitle: `Deck info of : ${props.selectedDeck.name}`,
@@ -60,7 +62,7 @@ export const DeckInfoDialog: React.FC<TDataProps> = (props) => {
                     )}
                     {
                         createButtonIcon("delete", <DeleteIcon/>, async () => {
-                             await decksStore.deleteDeck(props.selectedDeck?.id, tokensData!.accessToken, props.selectedDeck)
+                             await decksStore.deleteDeck(props.selectedDeck?.id, tokensData!.accessToken, props.selectedDeck) // todo нужно исправить типизацию
                              dialogStore.closeDialog()
                         })
                     }
