@@ -131,9 +131,7 @@ export class DecksStore {
     }
 
     setPage(page: number) {
-
         this.pagination.currentPage = page;
-
     }
 
     setItemsPerPage(itemsPerPage: number) {

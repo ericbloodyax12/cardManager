@@ -1,4 +1,4 @@
-import {useEffect} from "react"
+import  {useEffect} from "react"
 import {observer} from "mobx-react-lite";
 import {Paginator} from "primereact/paginator";
 
@@ -6,9 +6,12 @@ import {Button} from "@/components/ui/button";
 import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
 import {useStores} from "@/contexts/storeContext/storeContext";
 import {DataTableComponent} from "@/components/ui/dataTable/dataTable";
+import {AddNewDeck} from "@/pages/decks/addNewDeck/addNewDeck";
+import {DataTableRowClickEvent} from "primereact/datatable";
+import {DeckModelView} from "@/models-view/deck-view";
+import {DeckInfoDialog} from "@/components/ui/dataTable/deckInfoDialog/deckInfoDialog";
 
 import s from './decks.module.scss'
-import {AddNewDeck} from "@/pages/decks/addNewDeck/addNewDeck";
 
 export const Decks = observer(() => {
     const { decksStore} = useStores()!
@@ -23,6 +26,17 @@ export const Decks = observer(() => {
         decksStore.getDecks(pagination.currentPage, pagination.itemsPerPage);
     }, [pagination.currentPage, pagination.itemsPerPage]);
 
+
+
+    const onRowDoubleClick = (e: DataTableRowClickEvent) => {
+        console.log(e.data)
+        const deckDataInfo = e.data as DeckModelView;
+        dialogStore.openNewDialog({
+            headerTitle: `Deck info of : ${deckDataInfo.name}`,
+            isVisible: true,
+            dialogContent: () => <DeckInfoDialog selectedDeck={deckDataInfo}/>
+        })
+    };
 
     const onPageChange = (e: any) => {
         const curretntPage = e.page + 1 // PrimeReact paginator начинает с 0, поэтому прибавляем 1
@@ -48,12 +62,16 @@ export const Decks = observer(() => {
                 <div className={s.divMainContainer__dataTable__div}>
                     <Button onClick={addNewDeck}>Add new Deck</Button>
                 </div>
-                <DataTableComponent items={Decks} header={{
-                    first: "name",
-                    second: "Cards Count",
-                    third: "Last Updated",
-                    fourth: "Created by"
-                }}
+                <DataTableComponent items={Decks}
+                                    header={
+                                        {
+                                            first: "name",
+                                            second: "Cards Count",
+                                            third: "Last Updated",
+                                            fourth: "Created by"
+                                        }
+                                    }
+                                    onRowDoubleClick={onRowDoubleClick}
                 />
             </div>
             <Paginator

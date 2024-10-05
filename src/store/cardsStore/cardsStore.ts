@@ -42,4 +42,13 @@ export class CardsStore {
         }
     }
 
+    setPage(page: number) {
+        this.pagination.currentPage = page;
+    }
+
+    setItemsPerPage(itemsPerPage: number) {
+        this.pagination.itemsPerPage = itemsPerPage;
+        // this.getDecks(this.pagination.currentPage, itemsPerPage);
+    }
+
 }
