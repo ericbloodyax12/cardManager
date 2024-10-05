@@ -1,4 +1,4 @@
-import {UserTokensInfoI} from "@/dto/auth/auth-dto";
+import {IUserInfo, UserTokensInfoI} from "@/dto/auth/auth-dto";
 
 
 export type propertyPanelPositionType = { isVisible: boolean, position?: 'right' | 'down' | 'none' };
@@ -9,14 +9,15 @@ export interface ILoadedReferences {
 }
 
 export enum StorageTypeNames {
-  UserToken = 'userToken'
+  UserToken = 'userToken',
+  UserInfoData = 'userInfoData',
 
 
   // ConfigGuid = 'configGuid' // гуид конфигурации из-под которой был выполнен последний успешный вход
 }
 
 export type StorageType =
-    {name: StorageTypeNames.UserToken, data: UserTokensInfoI | undefined}
+    {name: StorageTypeNames.UserToken, data: UserTokensInfoI | IUserInfo | undefined}
 
 // | { name: StorageTypeNames.ConfigGuid, deckInfoDialog: string }
 // | { name: StorageTypeNames.GantTaskInfo, deckInfoDialog: { [key: string]: {currentSelectedTask?: TTaskType, expandedTasksKeys?: string[]} }}

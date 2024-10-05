@@ -15,17 +15,21 @@ import s from './login-form.module.scss'
 
 export const LoginForm = () => {
     const navigate = useNavigate()
-    const {authStore} = useStores()!
+    const {authStore, decksStore} = useStores()!
 
     const [formState, setFormState] = useState<LoginSchema>({email: "", password: "", rememberMe: true})
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+
         try {
+
             const {email, password, rememberMe} = formState!
-            await authStore?.signIn(email, password, rememberMe)
-            authStore.setIsAuth(true)
+            const tokens = await authStore?.signIn(email, password, rememberMe)
+            const userInfoData = await authStore.getUserInfoData(tokens)
+            decksStore.setUserInfoData(userInfoData)
             navigate(paths.DECKS)
+            authStore.setIsAuth(true) // todo rout wrapper  реагирует раньше чем  navigate
         } catch (e) {
             throw new Error("ошибка логинизации")
         }

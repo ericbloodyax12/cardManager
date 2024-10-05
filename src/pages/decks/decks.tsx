@@ -17,11 +17,11 @@ export const Decks = observer(() => {
     // const [newDeckModel, setNewDeckModel] = useState(); todo @Erik - реализовать логику и шаблон создания
 
     const {
-        decks,
+        Decks,
         pagination,
     } = decksStore;
 
-    useEffect(() => {
+    useEffect( () => {
         decksStore.getDecks(pagination.currentPage, pagination.itemsPerPage);
     }, [pagination.currentPage, pagination.itemsPerPage]);
 
@@ -50,7 +50,7 @@ export const Decks = observer(() => {
                 <div className={s.divMainContainer__dataTable__div}>
                     <Button onClick={addNewDeck}>Add new Deck</Button>
                 </div>
-                <DataTableComponent items={decks}/>
+                <DataTableComponent items={Decks}/>
 
 
             </div>

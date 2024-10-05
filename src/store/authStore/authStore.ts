@@ -24,6 +24,7 @@ export class AuthStore {
 
     if (data) {
       this._userTokens = data as UserTokensInfoI; // Явное приведение к типу
+      this._isAuth = true;
     }
 
   }
@@ -39,9 +40,8 @@ export class AuthStore {
     return this._userTokens
   }
 
-
-
   get IsAuth() {
+
     return this._isAuth
   }
 
@@ -51,27 +51,31 @@ export class AuthStore {
   }
 
   setIsAuth(isAuth: boolean) {
+
     this._isAuth = isAuth
   }
 
   logOut() {
     StorageHelper.remove(StorageTypeNames.UserToken)
+    StorageHelper.remove(StorageTypeNames.UserInfoData)
     this._userTokens = null
     this.setIsAuth(false)
   }
 
-  async signIn(email:string,password:string,rememberMe:boolean) {
+  async getUserInfoData(userTokens: UserTokensInfoI | undefined) {
+    return await this._authService.getCurrentUserData(userTokens?.accessToken)
+  }
+
+  async signIn(email:string,password:string,rememberMe:boolean): Promise<UserTokensInfoI> {
       const userTokens= await this._authService.signIn(email,password,rememberMe)
       this.setUserTokens(userTokens)
-
+      return userTokens
   }
 
 
   async signUp(email: string, password: string) {
     try {
       await this._authService.signUp(email,password)
-
-
     }
     catch (e: any) {
       const errorMessage = e.message
