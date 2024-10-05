@@ -22,7 +22,7 @@ export const Cards: React.FC<TCardsProps> = observer(({deckId}) => {
             pagination
         } = cardsStore;
 
-        const deckIdTest = 'cm0yinlwv000njq0183emcyfj'
+        const deckIdTest = "clzl7l5df04fqnt016s6fs67h"
          deckId = deckIdTest
         useEffect(() => {
             cardsStore.getCards(deckId)
@@ -45,12 +45,20 @@ export const Cards: React.FC<TCardsProps> = observer(({deckId}) => {
                     <Button>Add New Card</Button>
                 </div>
 
-                <DataTableComponent items={Cards} header={{
-                    first: "Questions",
-                    second: "Answer",
-                    third: "Last Updated",
-                    fourth: "Grade",
-                }}
+                <DataTableComponent
+                                    items={Cards}
+                                    field={{
+                                        first: "question",
+                                        second: "answer",
+                                        third: "updated",
+                                        fourth: "grade",
+                                    }}
+                                    header={{
+                                        first: "Questions",
+                                        second: "Answer",
+                                        third: "Last Updated",
+                                        fourth: "Grade",
+                                    }}
                 />
                 <Paginator
                     first={(pagination.currentPage - 1) * pagination.itemsPerPage}
