@@ -28,7 +28,7 @@ export class CardsStore {
         this._cardsService = new CardsService([],[], apiConfig.baseUrl)
     }
 
-    async getCards (id: string, bearerToken?: string): Promise<CardModelView[] | undefined> {
+    async getCards(id: string, bearerToken?: string): Promise<CardModelView[] | undefined> {
         try {
             const data = await this._cardsService.getCardsInDeck(id)
             const cardsView = CardModelView.Map(data.items)
