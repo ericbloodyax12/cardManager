@@ -74,7 +74,6 @@ export class DecksStore {
             this.error = error.message || 'Something went wrong';
             this.loading = false;
         }
-
     }
 
     async createDeck(name: string, bearerToken?: string, cover?: File): Promise<IDeckBaseModel | undefined> {
@@ -132,9 +131,7 @@ export class DecksStore {
     }
 
     setPage(page: number) {
-
         this.pagination.currentPage = page;
-
     }
 
     setItemsPerPage(itemsPerPage: number) {
