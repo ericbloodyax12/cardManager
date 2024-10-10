@@ -1,4 +1,5 @@
 import  {useEffect} from "react"
+import {useNavigate} from "react-router-dom";
 import {observer} from "mobx-react-lite";
 import {Paginator} from "primereact/paginator";
 
@@ -10,20 +11,29 @@ import {AddNewDeck} from "@/pages/decks/addNewDeck/addNewDeck";
 import {DataTableRowClickEvent} from "primereact/datatable";
 import {DeckModelView} from "@/models-view/deck-view";
 import {DeckInfoDialog} from "@/components/ui/dataTable/deckInfoDialog/deckInfoDialog";
+import {paths} from "@/routing/routesList/Routes";
 
 import s from './decks.module.scss'
 
 export const Decks = observer(() => {
-    const { decksStore} = useStores()!
+    const { decksStore, authStore} = useStores()!
     const { dialogStore} = useDialogs();
+    const navigate = useNavigate();
 
     const {
         Decks,
         pagination,
     } = decksStore;
 
+
+
     useEffect( () => {
-        decksStore.getDecks(pagination.currentPage, pagination.itemsPerPage);
+        // todo разобрать ситуацию после закрытия браузера и долгого выхода почему не проходит запрос хотя все данные есть, говорит что не авторизован
+        if (authStore.IsAuth && authStore.UserTokens?.accessToken) {
+            decksStore.getDecks(pagination.currentPage, pagination.itemsPerPage);
+        } else {
+            navigate(paths.SIGN_IN)
+        }
     }, [pagination.currentPage, pagination.itemsPerPage]);
 
 
