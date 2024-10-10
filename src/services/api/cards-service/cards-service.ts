@@ -25,7 +25,7 @@ export class CardsService extends ApiService {
         answer: string,
         bearerToken?: string
     }): Promise<ICardBaseModel> {
-        const addingPath = `${this.decksPath}/${payload.cardId}${this.cardsPath}`
+        const addingPath = `${this.decksPath}${payload.cardId}${this.cardsPath}`
 
         const formData = new FormData();
 

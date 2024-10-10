@@ -26,10 +26,11 @@ export const AddNewCard: React.FC<TAddNewCardProps> = ({selectedDeck}) => {
     }
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        debugger
         try {
             const generatedId = cardId();
             const {question, answer} = formState!
-            await cardsStore.addNewCard({cardId: generatedId, question: question, answer: answer})
+            await cardsStore.addNewCard({cardId: generatedId, question: question, answer: answer, updatingDeckInfo:selectedDeck})
             dialogStore.closeDialog()
         } catch (e) {
             throw new Error("ошибка логинизации")
