@@ -1,6 +1,5 @@
 import {ApiService} from "@/services/api-service";
 import {ICardBaseModel, ICardsDataResponse} from "@/dto/cards/cards-dto";
-import {IDeckBaseModel} from "@/dto/decks/decks-dto";
 import {appendFormData} from "@/services/servicesHelpers/appendFormData";
 
 

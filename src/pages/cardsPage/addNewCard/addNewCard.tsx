@@ -14,7 +14,7 @@ type TAddNewCardProps = {
 
 export const AddNewCard: React.FC<TAddNewCardProps> = ({selectedDeck}) => {
 
-    const {cardsStore} = useStores()
+    const {cardsStore} = useStores()!
     const {dialogStore} = useDialogs()
     const [formState, setFormState] = useState<{
         question: string,
