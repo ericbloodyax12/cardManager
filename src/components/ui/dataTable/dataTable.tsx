@@ -33,13 +33,20 @@ export const DataTableComponent: React.FC<TDataTableComponentProps> = observer((
 
 
   return (
-    <div>
+    <div className={"div-dataTable-container"}>
       <DataTable value={items}
                  showGridlines
                  paginator={false}
                  responsiveLayout="scroll"
                  selectionMode="single"
                  onRowDoubleClick={onRowDoubleClick}
+                 className="dataTable"
+
+                 pt={{
+                   bodyRow: {className:"dataTableRowTest"},
+                     // tbody: {root: {className:"dataTableRowTest"}}
+                   }
+                 }
       >
         <Column field={field.first} header={header.first}/>
         <Column field={field.second} header={header.second}/>

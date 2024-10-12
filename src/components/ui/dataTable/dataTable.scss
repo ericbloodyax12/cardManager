@@ -9,3 +9,19 @@
   gap:40px;
   background-color: var(--color-dark-100)
 }
+
+body div.darkMode {
+  .dataTable {
+    user-select: none;
+
+    .dataTableRowTest {
+      background-color: var(--color-dark-700);
+    }
+
+    .dataTableRowTest:hover {
+      background-color: var(--color-dark-100) ;
+    }
+  }
+}
+
+
