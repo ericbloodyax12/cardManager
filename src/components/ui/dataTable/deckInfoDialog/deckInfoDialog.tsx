@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React from 'react';
 import {DeckModelView} from "@/models-view/deck-view";
 
 
@@ -13,6 +13,7 @@ import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
 import './deckInfoDialog.scss'
 import {useNavigate} from "react-router-dom";
 import {paths} from "@/routing/routesList/Routes";
+import {IconButton} from "@/components/ui/iconButton/iconButton";
 
 
 
@@ -21,8 +22,6 @@ type TDataProps = {
     selectedDeck: DeckModelView
 }
 
-// todo как реализовать здесь useNavigate
-
 export const DeckInfoDialog: React.FC<TDataProps> = (props) => {
 
     const {decksStore} = useStores()!
@@ -30,21 +29,6 @@ export const DeckInfoDialog: React.FC<TDataProps> = (props) => {
     const navigate = useNavigate()
 
     const tokensData = StorageHelper.getData(StorageTypeNames.UserToken)
-    const createButtonIcon = (
-        label: string,
-        iconComponent: ReactNode,
-        method?: () => void
-    ): ReactNode => {
-
-        return (
-            <button onClick={method} className={"button-icon"} data-hover={label}>
-                <div className={"div-icon"}>
-                    {iconComponent}
-                </div>
-            </button>
-    )
-    }
-
 
     return (
         <div className={"div-root-container"}>
@@ -54,21 +38,18 @@ export const DeckInfoDialog: React.FC<TDataProps> = (props) => {
             <p><strong>Created by:</strong> {props.selectedDeck?.author.name}</p>
 
                 <div className={"div-ButtonIconsWrapper"} >
-                    {createButtonIcon("learn",<PlayIcon/>, () => navigate(paths.CARDS) )} {/* */}
-                    {createButtonIcon("edit",<EditIcon/>, () => dialogStore.openNewDialog(
-                            {
-                                headerTitle: `Deck info of : ${props.selectedDeck.name}`,
-                                isVisible: true,
-                                dialogContent: () => <UpdateInfoDialog selectedDeck={props.selectedDeck}/>,
-                            }
-                    )
-                    )}
-                    {
-                        createButtonIcon("delete", <DeleteIcon/>, async () => {
-                             await decksStore.deleteDeck(props.selectedDeck?.id, tokensData!.accessToken, props.selectedDeck) // todo нужно исправить типизацию
-                             dialogStore.closeDialog()
-                        })
-                    }
+                    <IconButton label={"learn"} iconComponent={<PlayIcon/>} method={() => navigate(paths.CARDS)}/>
+                    <IconButton label={"edit"} iconComponent={<EditIcon/>} method={() => dialogStore.openNewDialog(
+                        {
+                            headerTitle: `Deck info of : ${props.selectedDeck.name}`,
+                            isVisible: true,
+                            dialogContent: () => <UpdateInfoDialog selectedDeck={props.selectedDeck}/>,
+                        }
+                    )}/>
+                    <IconButton label={"delete"} iconComponent={<DeleteIcon/>} method={async () => {
+                        await decksStore.deleteDeck(props.selectedDeck?.id, tokensData!.accessToken, props.selectedDeck)
+                        dialogStore.closeDialog()
+                    }}/>
                 </div>
         </div>
     );
