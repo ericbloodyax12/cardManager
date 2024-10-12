@@ -11,6 +11,8 @@ import {UpdateInfoDialog} from "@/components/ui/dataTable/deckInfoDialog/updateI
 import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
 
 import './deckInfoDialog.scss'
+import {useNavigate} from "react-router-dom";
+import {paths} from "@/routing/routesList/Routes";
 
 
 
@@ -25,6 +27,7 @@ export const DeckInfoDialog: React.FC<TDataProps> = (props) => {
 
     const {decksStore} = useStores()!
     const {dialogStore} = useDialogs()
+    const navigate = useNavigate()
 
     const tokensData = StorageHelper.getData(StorageTypeNames.UserToken)
     const createButtonIcon = (
@@ -51,7 +54,7 @@ export const DeckInfoDialog: React.FC<TDataProps> = (props) => {
             <p><strong>Created by:</strong> {props.selectedDeck?.author.name}</p>
 
                 <div className={"div-ButtonIconsWrapper"} >
-                    {createButtonIcon("learn",<PlayIcon/>,  )} {/*() => navigate(paths.CARDS) */}
+                    {createButtonIcon("learn",<PlayIcon/>, () => navigate(paths.CARDS) )} {/* */}
                     {createButtonIcon("edit",<EditIcon/>, () => dialogStore.openNewDialog(
                             {
                                 headerTitle: `Deck info of : ${props.selectedDeck.name}`,
