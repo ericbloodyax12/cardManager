@@ -9,6 +9,7 @@ import {SignIn} from "@/pages/publicPages/signIn/signIn";
 import {ThemeProvider} from "@/contexts/themeContext/themeProvider";
 import {observer} from "mobx-react-lite";
 import {useStores} from "@/contexts/storeContext/storeContext";
+import {DialogStoreProvider} from "@/contexts/dialogProvider/DialogStoreProvider";
 
 
 
@@ -22,7 +23,9 @@ export const RouterWrapper = observer(() => {
       handle: {buttonText: "Sign Up", navigateTo: paths.SIGN_UP},
       element:
           <ThemeProvider>
-            <MainLayoutWrapper isAuth={isAuth ?? false}/>
+              <DialogStoreProvider>
+                  <MainLayoutWrapper isAuth={isAuth ?? false}/>
+              </DialogStoreProvider>
           </ThemeProvider>,
       children: [
         ...routesConfig.map(route =>

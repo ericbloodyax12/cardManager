@@ -22,7 +22,7 @@ export const DialogContainer: FC<TDialogsProps> = observer(({dialogStore}) => {
       className={'dialog-root-container'}
       header={dialogState.headerTitle}
       visible={dialogState.isVisible}
-
+      appendTo={"self"}
 
       onHide={() => dialogStore.closeDialog()}
     >
