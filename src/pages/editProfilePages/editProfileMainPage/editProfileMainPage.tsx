@@ -1,16 +1,20 @@
-
-
-
-import s from './editProfileMainPage.module.scss'
 import {EditProfileMain} from "@/components/editProfile/editProfileMain/editProfileMain";
+import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
+
+import './editProfileMainPage.scss'
 
 export type EditProfilePagePropsType = {
-  name: string;
-  email: string
+
 }
-export const EditProfileMainPage = ({name = "Eric",email = "as@gmail.com"}:EditProfilePagePropsType ) => {
+export const EditProfileMainPage = ({}:EditProfilePagePropsType ) => {
+
+    const userData = StorageHelper.getData(StorageTypeNames.UserInfoData)
+
+    const name = userData?.name || "Noname";
+    const email = userData?.email || "email@example.com";
+
   return (
-      <div className={s.editProfileMainPageContainer}>
+      <div className="editProfileMainPageContainer">
         <EditProfileMain name={name} email={email}/>
       </div>
   );

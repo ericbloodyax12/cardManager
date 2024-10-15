@@ -2,7 +2,6 @@ import {makeAutoObservable} from "mobx";
 import {CardModelView} from "@/models-view/cards-view";
 import {CardsService} from "@/services/api/cards-service/cards-service";
 import {apiConfig} from "../../../configs/apiConfig";
-import {ICardBaseModel} from "@/dto/cards/cards-dto";
 import {toast} from "react-toastify";
 import {IUserInfo} from "@/dto/auth/auth-dto";
 import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
@@ -46,6 +45,7 @@ export class CardsStore {
     }
 
     async getCards(id: string, bearerToken?: string): Promise<CardModelView[] | undefined> {
+        console.log(bearerToken)
         try {
             const data = await this._cardsService.getCardsInDeck(id)
             const cardsView = CardModelView.Map(data.items)

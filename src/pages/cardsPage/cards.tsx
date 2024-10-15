@@ -16,7 +16,7 @@ import {paths} from "@/routing/routesList/Routes";
 
 
 type TCardsProps = {
-    selectedDeck:DeckModelView
+    selectedDeck?:DeckModelView
 }
 
 export const Cards: React.FC<TCardsProps> = observer(({selectedDeck}) => {
@@ -33,14 +33,16 @@ export const Cards: React.FC<TCardsProps> = observer(({selectedDeck}) => {
         const {selectedDeckParam} = location.state || {};
         selectedDeck = selectedDeckParam
         useEffect(() => {
-            cardsStore.getCards(selectedDeck.id)
+            if (selectedDeck) {
+                cardsStore.getCards(selectedDeck.id)
+            }
         }, []);
-        const isOwnOfDeck = authorId === selectedDeck.userId
+        const isOwnOfDeck = authorId === selectedDeck?.userId
     const addNewDeck = () => {
         dialogStore.openNewDialog({
             headerTitle: 'Create New Card',
             isVisible: true,
-            dialogContent: () => <AddNewCard selectedDeck={selectedDeck} />
+            dialogContent: () => <AddNewCard selectedDeck={selectedDeck as DeckModelView} />
         })
     };
 
@@ -60,7 +62,7 @@ export const Cards: React.FC<TCardsProps> = observer(({selectedDeck}) => {
                     <Button onClick={() => navigate(paths.DECKS)}>Back to Decks</Button>
                 </div>
                 <div className="header-container">
-                    <Typography>{selectedDeck.name}</Typography>
+                    <Typography>{selectedDeck?.name}</Typography>
                     {isOwnOfDeck ? <Button onClick={addNewDeck}> Add New Card </Button> : <></>}
                 </div>
 
