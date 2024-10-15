@@ -14,6 +14,7 @@ import './deckInfoDialog.scss'
 import {useNavigate} from "react-router-dom";
 import {paths} from "@/routing/routesList/Routes";
 import {IconButton} from "@/components/ui/iconButton/iconButton";
+import {LayersIconComponent} from "@/components/assets/icons/componentSvg/layersIcon";
 
 
 
@@ -30,6 +31,15 @@ export const DeckInfoDialog: React.FC<TDataProps> = (props) => {
 
     const tokensData = StorageHelper.getData(StorageTypeNames.UserToken)
 
+    const handleClick = () => {
+        navigate(paths.CARDS, {
+            state: {
+                selectedDeckParam: props.selectedDeck,
+                tokensDataParam: tokensData,
+            },
+        });
+        dialogStore.closeDialog()
+    };
     return (
         <div className={"div-root-container"}>
             <p><strong>Name:</strong> {props.selectedDeck?.name}</p>
@@ -39,6 +49,7 @@ export const DeckInfoDialog: React.FC<TDataProps> = (props) => {
 
                 <div className={"div-ButtonIconsWrapper"} >
                     <IconButton label={"learn"} iconComponent={<PlayIcon/>} method={() => navigate(paths.CARDS)}/>
+                    <IconButton label={"all cards"} iconComponent={<LayersIconComponent/>} method={() => handleClick()}/>
                     <IconButton label={"edit"} iconComponent={<EditIcon/>} method={() => dialogStore.openNewDialog(
                         {
                             headerTitle: `Deck info of : ${props.selectedDeck.name}`,

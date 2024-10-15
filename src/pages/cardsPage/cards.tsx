@@ -1,32 +1,42 @@
 import React, {useEffect} from 'react';
+import {useLocation} from "react-router-dom";
 import {Typography} from "@/components/ui/typography";
 import {Button} from "@/components/ui/button";
 import {observer} from "mobx-react-lite";
 import {useStores} from "@/contexts/storeContext/storeContext";
 import {DataTableComponent} from "@/components/ui/dataTable/dataTable";
 import {Paginator} from "primereact/paginator";
+import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
+import {AddNewCard} from "@/pages/cardsPage/addNewCard/addNewCard";
 
 import "./cards.scss"
 
-
-
 type TCardsProps = {
-    deckId: string;
+
 }
 
-
-export const Cards: React.FC<TCardsProps> = observer(({deckId}) => {
+export const Cards: React.FC<TCardsProps> = observer(({}) => {
         const {cardsStore} = useStores()!
+        const {dialogStore} = useDialogs()
+        const location = useLocation();
         const {
             Cards,
             pagination
         } = cardsStore;
 
-        const deckIdTest = "clzl7l5df04fqnt016s6fs67h"
-         deckId = deckIdTest
+        const {selectedDeckParam} = location.state || {};
+
         useEffect(() => {
-            cardsStore.getCards(deckId)
+            cardsStore.getCards(selectedDeckParam.id)
         }, []);
+
+    const addNewDeck = () => {
+        dialogStore.openNewDialog({
+            headerTitle: 'Create New Card',
+            isVisible: true,
+            dialogContent: () => <AddNewCard selectedDeck={selectedDeckParam} />
+        })
+    };
 
     const onPageChange = (e: any) => {
         const curretntPage = e.page + 1 // PrimeReact paginator начинает с 0, поэтому прибавляем 1
@@ -41,8 +51,8 @@ export const Cards: React.FC<TCardsProps> = observer(({deckId}) => {
         return (
             <div>
                 <div className="header-container">
-                    <Typography>{"as"}</Typography> {/* // заголовок деки которая будет прокидываться через props */}
-                    <Button>Add New Card</Button>
+                    <Typography>{selectedDeckParam.name}</Typography>
+                    <Button onClick={addNewDeck}> Add New Card </Button>
                 </div>
 
                 <DataTableComponent
