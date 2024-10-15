@@ -30,7 +30,8 @@ export const DeckInfoDialog: React.FC<TDataProps> = (props) => {
     const navigate = useNavigate()
 
     const tokensData = StorageHelper.getData(StorageTypeNames.UserToken)
-
+    const authorId = StorageHelper.getData(StorageTypeNames.UserInfoData)?.id
+    const isOwnOfDeck = authorId === props.selectedDeck.userId
     const navigateToAllCardsHandleClick = () => {
         navigate(paths.CARDS, {
             state: {
@@ -45,6 +46,15 @@ export const DeckInfoDialog: React.FC<TDataProps> = (props) => {
         await decksStore.getDecks()
         dialogStore.closeDialog()
     }
+    const editDeckHandleClick = () => {
+        dialogStore.openNewDialog(
+            {
+                headerTitle: `Deck info of : ${props.selectedDeck.name}`,
+                isVisible: true,
+                dialogContent: () => <UpdateInfoDialog selectedDeck={props.selectedDeck}/>,
+            }
+        )
+    }
 
     return (
         <div className={"div-root-container"}>
@@ -56,14 +66,17 @@ export const DeckInfoDialog: React.FC<TDataProps> = (props) => {
                 <div className={"div-ButtonIconsWrapper"} >
                     <IconButton label={"learn"} iconComponent={<PlayIcon/>} method={() => navigate(paths.CARDS)}/>
                     <IconButton label={"all cards"} iconComponent={<LayersIconComponent/>} method={() => navigateToAllCardsHandleClick()}/>
-                    <IconButton label={"edit"} iconComponent={<EditIcon/>} method={() => dialogStore.openNewDialog(
-                        {
-                            headerTitle: `Deck info of : ${props.selectedDeck.name}`,
-                            isVisible: true,
-                            dialogContent: () => <UpdateInfoDialog selectedDeck={props.selectedDeck}/>,
-                        }
-                    )}/>
-                    <IconButton label={"delete"} iconComponent={<DeleteIcon/>} method={deleteDeckHandleClick}/>
+                    {
+                        (isOwnOfDeck)
+                            ? <IconButton label={"edit"} iconComponent={<EditIcon/>} method={editDeckHandleClick}/>
+                            : <></>
+                    }
+                    {
+                        (isOwnOfDeck)
+                            ? <IconButton label={"delete"} iconComponent={<DeleteIcon/>} method={deleteDeckHandleClick}/>
+                            : <></>
+                    }
+
                 </div>
         </div>
     );

@@ -23,11 +23,10 @@ export const AddNewCard: React.FC<TAddNewCardProps> = ({selectedDeck}) => {
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        debugger
         try {
             const {question, answer} = formState!
             await cardsStore.addNewCard({
-                cardId: "cm23kf7rp030vjq01t0hem8wh",
+                deckId: selectedDeck.id,
                 question: question,
                 answer: answer,
                 updatingDeckInfo:selectedDeck

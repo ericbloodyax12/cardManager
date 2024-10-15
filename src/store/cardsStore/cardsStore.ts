@@ -60,7 +60,7 @@ export class CardsStore {
     }
 
     async addNewCard(payload: {
-        cardId: string,
+        deckId: string,
         question: string,
         answer: string,
         bearerToken?: string,

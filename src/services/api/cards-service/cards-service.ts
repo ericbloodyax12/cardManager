@@ -19,12 +19,12 @@ export class CardsService extends ApiService {
     }
 
     async createCard(payload: {
-        cardId: string,
+        deckId: string,
         question: string,
         answer: string,
         bearerToken?: string
     }): Promise<ICardBaseModel> {
-        const addingPath = `${this.decksPath}${payload.cardId}${this.cardsPath}`
+        const addingPath = `${this.decksPath}${payload.deckId}${this.cardsPath}`
 
         const formData = new FormData();
 
