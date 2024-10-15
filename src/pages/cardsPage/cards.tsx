@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useLocation} from "react-router-dom";
 import {Typography} from "@/components/ui/typography";
 import {Button} from "@/components/ui/button";
 import {observer} from "mobx-react-lite";
@@ -10,46 +11,30 @@ import {AddNewCard} from "@/pages/cardsPage/addNewCard/addNewCard";
 
 import "./cards.scss"
 
-
 type TCardsProps = {
-    deckId: string;
+
 }
 
-
-export const Cards: React.FC<TCardsProps> = observer(({deckId}) => {
+export const Cards: React.FC<TCardsProps> = observer(({}) => {
         const {cardsStore} = useStores()!
         const {dialogStore} = useDialogs()
+        const location = useLocation();
         const {
             Cards,
             pagination
         } = cardsStore;
 
-        const selectedDeck = {
-            "id": "cm23kf7rp030vjq01t0hem8wh",
-            "userId": "31689a85-4371-4c3d-8a4c-77d782ed960d",
-            "name": "Mr Erikson",
-            "isPrivate": false,
-            "cover": null,
-            "created": "2024-10-10T17:21:15.541Z",
-            "updated": "2024-10-10T17:44:31.731Z",
-            "cardsCount": 0,
-            "isFavorite": false,
-            "author": {
-                "id": "31689a85-4371-4c3d-8a4c-77d782ed960d",
-                "name": "erikbonopart12"
-            }
-        }
-        const deckIdTest = 'cm23kf7rp030vjq01t0hem8wh'
-         deckId = deckIdTest
+        const {selectedDeckParam} = location.state || {};
+
         useEffect(() => {
-            cardsStore.getCards(deckId)
+            cardsStore.getCards(selectedDeckParam.id)
         }, []);
 
     const addNewDeck = () => {
         dialogStore.openNewDialog({
             headerTitle: 'Create New Card',
             isVisible: true,
-            dialogContent: () => <AddNewCard selectedDeck={selectedDeck} />
+            dialogContent: () => <AddNewCard selectedDeck={selectedDeckParam} />
         })
     };
 
@@ -66,7 +51,7 @@ export const Cards: React.FC<TCardsProps> = observer(({deckId}) => {
         return (
             <div>
                 <div className="header-container">
-                    <Typography>{"as"}</Typography> {/* // заголовок деки которая будет прокидываться через props */}
+                    <Typography>{selectedDeckParam.name}</Typography>
                     <Button onClick={addNewDeck}> Add New Card </Button>
                 </div>
 

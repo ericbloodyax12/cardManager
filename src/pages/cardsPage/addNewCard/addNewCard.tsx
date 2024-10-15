@@ -21,17 +21,20 @@ export const AddNewCard: React.FC<TAddNewCardProps> = ({selectedDeck}) => {
         answer: string
     }>({question:"", answer: ""})
 
-    const cardId = () => {
-        return Math.random().toString(36).substr(2, 9);
-    }
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         debugger
         try {
-            const generatedId = cardId();
             const {question, answer} = formState!
-            await cardsStore.addNewCard({cardId: generatedId, question: question, answer: answer, updatingDeckInfo:selectedDeck})
+            await cardsStore.addNewCard({
+                cardId: "cm23kf7rp030vjq01t0hem8wh",
+                question: question,
+                answer: answer,
+                updatingDeckInfo:selectedDeck
+            })
+            await cardsStore.getCards(selectedDeck.id); // обновление стейта, без релода странички
             dialogStore.closeDialog()
+
         } catch (e) {
             throw new Error("ошибка логинизации")
         }
