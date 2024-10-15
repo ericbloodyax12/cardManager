@@ -1,4 +1,4 @@
-.cardContainer {
+.cardContainerLogin {
   display: flex;
   flex-direction: column;
   place-content: center center;
@@ -8,6 +8,7 @@
   height: 528px;
 
 }
+
 
 .formContainer {
   display: flex;
@@ -40,6 +41,11 @@
   &:hover {
     color: var(--color-light-900);
   }
+}
+
+.CheckboxComponentContainerLogin{
+  display: flex;
+  
 }
 
 .signUpContainer {
