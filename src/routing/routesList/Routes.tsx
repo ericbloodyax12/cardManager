@@ -4,7 +4,6 @@ import {Decks} from "@/pages/decks/decks";
 import {EditProfileMainPage} from "@/pages/editProfilePages/editProfileMainPage/editProfileMainPage";
 import {SignUp} from "@/pages/publicPages/signUp/signUp";
 import {CheckEmail} from "@/pages/publicPages/checkEmail/checkEmailPage";
-import {TestComponentsPage} from "@/pages/testPages/testComponentsPage";
 import {CreateNewPasswordPage} from "@/pages/publicPages/createNewPassword/createNewPasswordPage";
 import {Cards} from "@/pages/cardsPage/cards";
 
@@ -89,12 +88,5 @@ export const routesConfig: RouteConfigType[] = [
     element: <EditProfileMainPage name={"Eric"} email={"as@gmail.com"}/>,
     private: true,
   },
-   {
-    routeName: "testComponentsPage",
-    path: '/test_page',
-    element: <TestComponentsPage/>,
-    buttonInfo: getButtonInfo("testComponentsPage"),
-  },
-
 
 ]
