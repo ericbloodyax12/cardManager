@@ -1,11 +1,11 @@
 import React, {FormEvent, useState} from 'react';
 import {TextField} from "@/components/ui/textField";
 import {Button} from "@/components/ui/button";
-import "./addNewDeck.scss"
-import s from "@/components/auth/login/login-form.scss";
 import {useStores} from "@/contexts/storeContext/storeContext";
 import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
 
+import "./addNewDeck.scss"
+import  "@/components/auth/login/login-form.scss";
 
 type TOnRowDoubleClickDataContetProps = {
 
@@ -35,7 +35,7 @@ export const AddNewDeck: React.FC<TOnRowDoubleClickDataContetProps> = ({}) => {
     return (
         <div className="addNewDeck-DivContainer">
 
-            <form className={s.formContainer} onSubmit={onSubmit}>
+            <form className="formContainer" onSubmit={onSubmit}>
                 <TextField id="addNewDeck"
                            className={"addNewDeck-input"}
                            label="Enter name"

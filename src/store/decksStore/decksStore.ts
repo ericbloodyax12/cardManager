@@ -50,6 +50,7 @@ export class DecksStore {
         const data = StorageHelper.getData<StorageTypeNames.UserToken>(StorageTypeNames.UserToken);
         if (data) {
             this._userTokens = data as UserTokensInfoI; // Явное приведение к типу
+            console.log(this._authService, this._userTokens)
         }
         const userInfoData = StorageHelper.getData<StorageTypeNames.UserInfoData>(StorageTypeNames.UserInfoData);
         if (userInfoData) {
@@ -77,7 +78,7 @@ export class DecksStore {
     }
 
     async createDeck(name: string, bearerToken?: string, cover?: File): Promise<IDeckBaseModel | undefined> {
-
+        console.log(bearerToken,cover)
         try {
             const data = await this._decksService.createDeck(name)
             toast.success("deck created successfully");
