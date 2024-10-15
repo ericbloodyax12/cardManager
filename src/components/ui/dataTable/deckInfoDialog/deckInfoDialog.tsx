@@ -1,6 +1,4 @@
 import React from 'react';
-import {DeckModelView} from "@/models-view/deck-view";
-
 
 import {DeleteIcon} from "@/components/assets/icons/componentSvg/deleteIcon";
 import {PlayIcon} from "@/components/assets/icons/componentSvg/playIcon";
@@ -9,15 +7,13 @@ import {useStores} from "@/contexts/storeContext/storeContext";
 import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
 import {UpdateInfoDialog} from "@/components/ui/dataTable/deckInfoDialog/updateInfoDialog/updateInfoDialog";
 import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
-
-import './deckInfoDialog.scss'
+import {DeckModelView} from "@/models-view/deck-view";
 import {useNavigate} from "react-router-dom";
 import {paths} from "@/routing/routesList/Routes";
 import {IconButton} from "@/components/ui/iconButton/iconButton";
 import {LayersIconComponent} from "@/components/assets/icons/componentSvg/layersIcon";
 
-
-
+import './deckInfoDialog.scss'
 
 type TDataProps = {
     selectedDeck: DeckModelView

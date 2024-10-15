@@ -10,13 +10,11 @@ import { Button } from '@/components/ui/button'
 import {Typography} from "@/components/ui/typography";
 import {useNavigate, useParams} from "react-router-dom";
 import {Card} from "@/components/ui/card";
-
 import {newPasswordSchema} from "@/components/auth/createNewPassword/helpers/newPasswordSchema";
-
 import {paths} from "@/routing/routesList/Routes";
-
-import s from './createNewPassword.module.scss'
 import {useStores} from "@/contexts/storeContext/storeContext";
+
+import './createNewPassword.scss'
 
 export type FormValuesType = z.infer<typeof newPasswordSchema> // Для того что бы не писать типы для формы вручную - z.infer
 
@@ -63,25 +61,20 @@ export const CreateNewPassword = () => {
 
   return (
 
-      <Card className={s.cardContainer}>
+      <Card className="cardContainer">
           <Typography variant={"h1"}>Create New Password</Typography>
-          <form className={s.formContainer} onSubmit={handleSubmit(onSubmit)}>
-
+          <form className="formContainer" onSubmit={handleSubmit(onSubmit)}>
               <TextField
-                  className={s.textField}
+                  className="textField"
                   {...register('password')}
                   errorMessage={errors.password?.message}
                   label={'Password'}
                   variant={'password'}
               />
-
-              <Typography variant={'body2'} className={s.newPasswordText} >
+              <Typography variant={'body2'} className="newPasswordText" >
                 Create new password and we will send you further instructions to email
               </Typography>
-
-
-
-              <Button className={s.submit}
+              <Button className="submit"
                       type={'submit'}
                       fullWidth={true}
                       disabled={isSubmitting}

@@ -1,9 +1,9 @@
 import {FC, PropsWithChildren} from 'react';
-
-import  "./mainLayoutWrapper.scss"
 import {Outlet, useLocation} from "react-router-dom";
 import {AppHeader} from "@/components/ui/appHeader";
 import {useTheme} from "@/contexts/themeContext";
+
+import  "./mainLayoutWrapper.scss"
 
 type TMainLayoutWrapperProps = PropsWithChildren<{
 isAuth: boolean

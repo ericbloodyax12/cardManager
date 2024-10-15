@@ -2,7 +2,7 @@ import React, {FormEvent, useState} from 'react';
 import {TextField} from "@/components/ui/textField";
 import {Button} from "@/components/ui/button";
 import "./addNewDeck.scss"
-import s from "@/components/auth/login/login-form.module.scss";
+import s from "@/components/auth/login/login-form.scss";
 import {useStores} from "@/contexts/storeContext/storeContext";
 import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
 
