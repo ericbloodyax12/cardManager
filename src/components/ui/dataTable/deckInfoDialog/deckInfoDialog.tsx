@@ -31,7 +31,7 @@ export const DeckInfoDialog: React.FC<TDataProps> = (props) => {
 
     const tokensData = StorageHelper.getData(StorageTypeNames.UserToken)
 
-    const handleClick = () => {
+    const navigateToAllCardsHandleClick = () => {
         navigate(paths.CARDS, {
             state: {
                 selectedDeckParam: props.selectedDeck,
@@ -40,6 +40,12 @@ export const DeckInfoDialog: React.FC<TDataProps> = (props) => {
         });
         dialogStore.closeDialog()
     };
+    const deleteDeckHandleClick = async () => {
+        await decksStore.deleteDeck(props.selectedDeck?.id, tokensData!.accessToken, props.selectedDeck)
+        await decksStore.getDecks()
+        dialogStore.closeDialog()
+    }
+
     return (
         <div className={"div-root-container"}>
             <p><strong>Name:</strong> {props.selectedDeck?.name}</p>
@@ -49,7 +55,7 @@ export const DeckInfoDialog: React.FC<TDataProps> = (props) => {
 
                 <div className={"div-ButtonIconsWrapper"} >
                     <IconButton label={"learn"} iconComponent={<PlayIcon/>} method={() => navigate(paths.CARDS)}/>
-                    <IconButton label={"all cards"} iconComponent={<LayersIconComponent/>} method={() => handleClick()}/>
+                    <IconButton label={"all cards"} iconComponent={<LayersIconComponent/>} method={() => navigateToAllCardsHandleClick()}/>
                     <IconButton label={"edit"} iconComponent={<EditIcon/>} method={() => dialogStore.openNewDialog(
                         {
                             headerTitle: `Deck info of : ${props.selectedDeck.name}`,
@@ -57,10 +63,7 @@ export const DeckInfoDialog: React.FC<TDataProps> = (props) => {
                             dialogContent: () => <UpdateInfoDialog selectedDeck={props.selectedDeck}/>,
                         }
                     )}/>
-                    <IconButton label={"delete"} iconComponent={<DeleteIcon/>} method={async () => {
-                        await decksStore.deleteDeck(props.selectedDeck?.id, tokensData!.accessToken, props.selectedDeck)
-                        dialogStore.closeDialog()
-                    }}/>
+                    <IconButton label={"delete"} iconComponent={<DeleteIcon/>} method={deleteDeckHandleClick}/>
                 </div>
         </div>
     );

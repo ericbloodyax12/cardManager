@@ -23,6 +23,7 @@ export const AddNewDeck: React.FC<TOnRowDoubleClickDataContetProps> = ({}) => {
             const {name} = formState!
             console.log("its name:", name)
             await decksStore.createDeck(name)
+            await decksStore.getDecks()
             dialogStore.closeDialog()
 
         } catch (e) {
@@ -37,7 +38,7 @@ export const AddNewDeck: React.FC<TOnRowDoubleClickDataContetProps> = ({}) => {
             <form className={s.formContainer} onSubmit={onSubmit}>
                 <TextField id="addNewDeck"
                            className={"addNewDeck-input"}
-                           label="Eter name"
+                           label="Enter name"
                            onChange={(e) => { // todo когда непосредственно вводишь текст его невидно
                                setFormState({
                                    ...formState,
