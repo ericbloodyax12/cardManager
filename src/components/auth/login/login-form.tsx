@@ -21,7 +21,6 @@ export const LoginForm = () => {
 
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-
         try {
 
             const {email, password, rememberMe} = formState!
@@ -37,7 +36,7 @@ export const LoginForm = () => {
     }
     return (
 
-        <Card className="cardContainer">
+        <Card className="cardContainerLogin">
             <Typography variant={"h1"}>Sign In</Typography>
             <form className="formContainer" onSubmit={onSubmit}>
                 <TextField
@@ -63,12 +62,15 @@ export const LoginForm = () => {
                         })
                     }}
                 />
-                <CheckboxComponent checked={true} withLabel={true} label={"Remember Me"} onCheckedChange={(e) => {
-                    setFormState({
-                        ...formState,
-                        rememberMe: !!e
-                    })
-                }}/>
+                <div className="CheckboxComponentContainerLogin">
+                    <CheckboxComponent checked={true} withLabel={true} label={"Remember Me"} onCheckedChange={(e) => {
+                        setFormState({
+                            ...formState,
+                            rememberMe: !!e
+                        })
+                    }}/>
+                </div>
+
 
 
                 <div className="forgotPasswordContainer">
