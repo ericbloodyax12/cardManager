@@ -2,14 +2,14 @@
 import {LoginForm} from "@/components/auth/login/login-form";
 
 
-import s from './signIn.module.scss'
+import './signIn.scss'
 
 
 
 export const SignIn = () => {
 
     return (
-        <div className={s.loginContainer}>
+        <div className="loginContainer">
             <LoginForm/>
         </div>
 

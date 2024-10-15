@@ -10,7 +10,7 @@ import {CheckboxComponent} from "@/components/ui/ checkbox";
 import {Typography} from "@/components/ui/typography";
 import {Card} from "@/components/ui/card";
 
-import s from './login-form.module.scss'
+import './login-form.scss'
 
 
 export const LoginForm = () => {
@@ -37,11 +37,11 @@ export const LoginForm = () => {
     }
     return (
 
-        <Card className={s.cardContainer}>
+        <Card className="cardContainer">
             <Typography variant={"h1"}>Sign In</Typography>
-            <form className={s.formContainer} onSubmit={onSubmit}>
+            <form className="formContainer" onSubmit={onSubmit}>
                 <TextField
-                    className={s.textField}
+                    className="textField"
                     label={'email'}
                     autoComplete="email"
                     onChange={(e) => {
@@ -52,7 +52,7 @@ export const LoginForm = () => {
                     }}
                 />
                 <TextField
-                    className={s.textField}
+                    className="textField"
                     label={'password'}
                     variant={'password'}
                     autoComplete="new-password"
@@ -71,16 +71,16 @@ export const LoginForm = () => {
                 }}/>
 
 
-                <div className={s.forgotPasswordContainer}>
-                    <Typography variant={'body2'} className={s.forgotPassword} onClick={() => {
+                <div className="forgotPasswordContainer">
+                    <Typography variant={'body2'} className="forgotPassword" onClick={() => {
                         navigate('/forgot_password')
                     }}>Forgot Password?</Typography>
                 </div>
-                <Button className={s.submit} type={'submit'}>
+                <Button className="submit" type={'submit'}>
                     Submit
                 </Button>
-                <div className={s.signUpContainer}>
-                    <Typography as={"a"} variant={'link1'} className={s.signUp} onClick={() => {
+                <div className="signUpContainer">
+                    <Typography as={"a"} variant={'link1'} className="signUp" onClick={() => {
                         navigate('/sign_up')
                     }}>
                         Sign Up

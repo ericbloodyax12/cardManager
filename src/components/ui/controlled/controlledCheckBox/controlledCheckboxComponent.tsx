@@ -1,5 +1,5 @@
 import {CheckboxComponent} from "@/components/ui/ checkbox";
-import s from "@/components/auth/login/login-form.module.scss";
+import s from "@/components/auth/login/login-form.scss";
 import {Control, useController} from "react-hook-form";
 
 export type ControlledCheckboxComponentType = {

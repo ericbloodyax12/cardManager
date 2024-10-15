@@ -13,7 +13,7 @@ import {DeckModelView} from "@/models-view/deck-view";
 import {DeckInfoDialog} from "@/components/ui/dataTable/deckInfoDialog/deckInfoDialog";
 import {paths} from "@/routing/routesList/Routes";
 
-import s from './decks.module.scss'
+import  './decks.scss'
 
 export const Decks = observer(() => {
     const { decksStore, authStore} = useStores()!
@@ -67,9 +67,9 @@ export const Decks = observer(() => {
     };
 
     return (
-        <div className={s.divMainContainer}>
-            <div className={s.divMainContainer__dataTable}>
-                <div className={s.divMainContainer__dataTable__div}>
+        <div className="divMainContainer">
+            <div className="divMainContainer__dataTable">
+                <div className="divMainContainer__dataTable__div">
                     <Button onClick={addNewDeck}>Add new Deck</Button>
                 </div>
                 <DataTableComponent items={Decks}
@@ -96,7 +96,7 @@ export const Decks = observer(() => {
                 totalRecords={pagination.totalItems}
                 onPageChange={onPageChange}
                 rowsPerPageOptions={[5, 10, 25, 50]}
-                className={s.paginator}
+                className={"paginator"}
             />
         </div>
 
