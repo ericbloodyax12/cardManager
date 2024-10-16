@@ -85,7 +85,7 @@ export const routesConfig: RouteConfigType[] = [
   {
     routeName: "edit_main_profile",
     path: paths.EDIT_MAIN_PROFILE,
-    element: <EditProfileMainPage name={"Eric"} email={"as@gmail.com"}/>,
+    element: <EditProfileMainPage />,
     private: true,
   },
 

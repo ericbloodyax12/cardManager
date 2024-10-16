@@ -1,6 +1,7 @@
 import {CheckboxComponent} from "@/components/ui/ checkbox";
-import s from "@/components/auth/login/login-form.scss";
 import {Control, useController} from "react-hook-form";
+
+import  "@/components/auth/login/login-form.scss";
 
 export type ControlledCheckboxComponentType = {
 control: Control<{email: string, password: string, rememberMe: boolean}, any>
@@ -13,7 +14,7 @@ export const ControlledCheckboxComponent = (props:ControlledCheckboxComponentTyp
     return (
         <CheckboxComponent
             checked={value}
-            className={s.checkbox}
+            className={"checkbox"}
             label={'remember me'}
             onCheckedChange={onChange}
             withLabel
