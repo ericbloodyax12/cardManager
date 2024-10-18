@@ -40,8 +40,7 @@ export class CardsService extends ApiService {
     }
 
     async deleteCard(cardId: string): Promise<void> {
-        const path = this.cardsPath + cardId;
-
+        const path = `/v1${this.cardsPath}/${cardId}`;
          await super.delete<void>({
             path
         });

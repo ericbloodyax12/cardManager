@@ -27,8 +27,9 @@ export const CardInfoDialog: React.FC<TDataProps> = (props) => {
     const isOwnOfDeck = authorId === props.selectedDeck.userId
 
     const deleteCardHandleClick = async () => {
+        console.log("props.selectedCard.id",props.selectedCard.id)
         await cardsStore.deleteCard(props.selectedCard.id)
-        await cardsStore.getCards(props.selectedCard.id)
+        await cardsStore.getCards(props.selectedDeck.id)
         dialogStore.closeDialog()
     }
     const editDeckHandleClick = () => {

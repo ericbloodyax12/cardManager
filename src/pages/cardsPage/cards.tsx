@@ -14,7 +14,6 @@ import {DeckModelView} from "@/models-view/deck-view";
 import "./cards.scss"
 import {paths} from "@/routing/routesList/Routes";
 import {DataTableRowClickEvent} from "primereact/datatable";
-import {DeckInfoDialog} from "@/components/ui/dataTable/deckInfoDialog/deckInfoDialog";
 import {CardModelView} from "@/models-view/cards-view";
 import {CardInfoDialog} from "@/pages/cardsPage/cardsInfoDialog/cardInfoDialog";
 
