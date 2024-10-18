@@ -58,6 +58,15 @@ export class CardsStore {
             error = error.message || 'Something went wrong';
         }
     }
+    async deleteCard(id: string): Promise<void> {
+        try {
+           await this._cardsService.deleteCard(id)
+            toast.success("card deleted successfully");
+        }
+        catch (error: any) {
+            error = error.message || 'Something went wrong';
+        }
+    }
 
     async addNewCard(payload: {
         deckId: string,

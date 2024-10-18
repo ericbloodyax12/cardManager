@@ -39,7 +39,6 @@ export const Decks = observer(() => {
 
 
     const onRowDoubleClick = (e: DataTableRowClickEvent) => {
-        console.log(e.data)
         const deckDataInfo = e.data as DeckModelView;
         dialogStore.openNewDialog({
             headerTitle: `Deck info of : ${deckDataInfo.name}`,

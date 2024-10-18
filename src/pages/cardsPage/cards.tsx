@@ -13,6 +13,9 @@ import {DeckModelView} from "@/models-view/deck-view";
 
 import "./cards.scss"
 import {paths} from "@/routing/routesList/Routes";
+import {DataTableRowClickEvent} from "primereact/datatable";
+import {CardModelView} from "@/models-view/cards-view";
+import {CardInfoDialog} from "@/pages/cardsPage/cardsInfoDialog/cardInfoDialog";
 
 
 type TCardsProps = {
@@ -38,11 +41,20 @@ export const Cards: React.FC<TCardsProps> = observer(({selectedDeck}) => {
             }
         }, []);
         const isOwnOfDeck = authorId === selectedDeck?.userId
+
     const addNewDeck = () => {
         dialogStore.openNewDialog({
             headerTitle: 'Create New Card',
             isVisible: true,
             dialogContent: () => <AddNewCard selectedDeck={selectedDeck as DeckModelView} />
+        })
+    };
+    const onRowDoubleClick = (e: DataTableRowClickEvent) => {
+        const cardDataInfo = e.data as CardModelView;
+        dialogStore.openNewDialog({
+            headerTitle: `Card info of : ${selectedDeck?.name}`,
+            isVisible: true,
+            dialogContent: () => <CardInfoDialog selectedDeck={selectedDeck as DeckModelView} selectedCard={cardDataInfo}/>
         })
     };
 
@@ -80,6 +92,7 @@ export const Cards: React.FC<TCardsProps> = observer(({selectedDeck}) => {
                                         third: "Last Updated",
                                         fourth: "Grade",
                                     }}
+                                    onRowDoubleClick={onRowDoubleClick}
                 />
                 <Paginator
                     first={(pagination.currentPage - 1) * pagination.itemsPerPage}
