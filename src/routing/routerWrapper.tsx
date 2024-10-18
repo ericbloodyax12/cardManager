@@ -1,5 +1,5 @@
 // import React, {FC} from 'react';
-import {createBrowserRouter, createHashRouter, Navigate, RouterProvider} from "react-router-dom";
+import {createHashRouter, Navigate, RouterProvider} from "react-router-dom";
 import {MainLayoutWrapper} from "@/pages/mainLayoutWrapper/mainLayoutWrapper";
 
 import {PrivateRouteWrapper} from "@/routing/privateRouteWrapper";

@@ -16,4 +16,4 @@ export default defineConfig (({mode}) => ({
   },
   base: mode === 'production' ? '/cardManager/' : "/",
 }))
-// mode === 'production' ? '/cardManager/' :
+//  mode === 'production' ? '/cardManager/' : "/"
