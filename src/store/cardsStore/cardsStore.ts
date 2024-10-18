@@ -89,6 +89,20 @@ export class CardsStore {
             toast.warn("You can't add card that deck don't belong to you")
         }
     }
+    async updateCard(payload: {
+        cardId: string,
+        question?: string,
+        answer?: string,
+    }) {
+            try {
+                const updatedCard = await this._cardsService.updateCard(payload)
+                toast.success("card updated successfully");
+                return updatedCard
+
+            } catch (e: any) {
+                 e.message || 'Something went wrong';
+            }
+    }
 
     setPage(page: number) {
         this.pagination.currentPage = page;
