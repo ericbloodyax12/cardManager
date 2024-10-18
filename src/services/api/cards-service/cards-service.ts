@@ -38,6 +38,26 @@ export class CardsService extends ApiService {
         });
         return res as any
     }
+    async updateCard(payload: {
+        cardId: string,
+        question?: string,
+        answer?: string,
+    }): Promise<ICardBaseModel> {
+
+        const path = `/v1${this.cardsPath}/${payload.cardId}`;
+
+        const formData = new FormData();
+
+        appendFormData(formData, 'question', payload.question);
+        appendFormData(formData, 'answer', payload.answer);
+
+        const res = await super.patch<ICardBaseModel>({
+            path: path,
+            body: formData,
+
+        });
+        return res as any
+    }
 
     async deleteCard(cardId: string): Promise<void> {
         const path = `/v1${this.cardsPath}/${cardId}`;

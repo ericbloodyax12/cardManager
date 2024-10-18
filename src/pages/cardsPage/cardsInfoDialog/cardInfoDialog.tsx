@@ -4,13 +4,13 @@ import {DeleteIcon} from "@/components/assets/icons/componentSvg/deleteIcon";
 import {EditIcon} from "@/components/assets/icons/componentSvg/editIcon";
 import {useStores} from "@/contexts/storeContext/storeContext";
 import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
-import {UpdateInfoDialog} from "@/components/ui/dataTable/deckInfoDialog/updateInfoDialog/updateInfoDialog";
 import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
 import {DeckModelView} from "@/models-view/deck-view";
 import {IconButton} from "@/components/ui/iconButton/iconButton";
 import {CardModelView} from "@/models-view/cards-view";
 
 import './cardInfoDialog.scss'
+import {EditCardDialog} from "@/pages/cardsPage/cardsInfoDialog/editCardDialog/editCardDialog";
 
 
 type TDataProps = {
@@ -32,12 +32,12 @@ export const CardInfoDialog: React.FC<TDataProps> = (props) => {
         await cardsStore.getCards(props.selectedDeck.id)
         dialogStore.closeDialog()
     }
-    const editDeckHandleClick = () => {
+    const editCardHandleClick = () => {
         dialogStore.openNewDialog(
             {
                 headerTitle: `Card info of : ${props.selectedDeck.name}`,
                 isVisible: true,
-                dialogContent: () => <UpdateInfoDialog selectedDeck={props.selectedDeck}/>,
+                dialogContent: () => <EditCardDialog selectedDeck={props.selectedDeck} selectedCard={props.selectedCard}/>,
             }
         )
     }
@@ -52,7 +52,7 @@ export const CardInfoDialog: React.FC<TDataProps> = (props) => {
             <div className={"div-ButtonIconsWrapper"} >
                 {
                     (isOwnOfDeck)
-                        ? <IconButton label={"edit"} iconComponent={<EditIcon/>} method={editDeckHandleClick}/>
+                        ? <IconButton label={"edit"} iconComponent={<EditIcon/>} method={editCardHandleClick}/>
                         : <></>
                 }
                 {
