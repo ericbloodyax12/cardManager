@@ -1,5 +1,5 @@
 // import React, {FC} from 'react';
-import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, createHashRouter, Navigate, RouterProvider} from "react-router-dom";
 import {MainLayoutWrapper} from "@/pages/mainLayoutWrapper/mainLayoutWrapper";
 
 import {PrivateRouteWrapper} from "@/routing/privateRouteWrapper";
@@ -17,7 +17,7 @@ export const RouterWrapper = observer(() => {
   const { authStore } = useStores()!
   const isAuth = authStore?.IsAuth
 
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
       path: "/",
       handle: {buttonText: "Sign Up", navigateTo: paths.SIGN_UP},
@@ -59,6 +59,7 @@ export const RouterWrapper = observer(() => {
       path: "*",
       element: isAuth ? <Navigate to="/"/> : <Navigate to={paths.SIGN_IN}/>,
     },
+
   ]);
   return (
       <RouterProvider router={router}/>
