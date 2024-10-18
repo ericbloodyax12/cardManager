@@ -1,5 +1,5 @@
 // import React, {FC} from 'react';
-import {createHashRouter, Navigate, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, createHashRouter, Navigate, RouterProvider} from "react-router-dom";
 import {MainLayoutWrapper} from "@/pages/mainLayoutWrapper/mainLayoutWrapper";
 
 import {PrivateRouteWrapper} from "@/routing/privateRouteWrapper";
@@ -16,8 +16,9 @@ import {DialogStoreProvider} from "@/contexts/dialogProvider/DialogStoreProvider
 export const RouterWrapper = observer(() => {
   const { authStore } = useStores()!
   const isAuth = authStore?.IsAuth
-
-  const router = createHashRouter([
+    const routeCreateR = process.env.NODE_ENV === "development" ? createBrowserRouter  : createHashRouter
+    console.log("proccess", process.env.NODE_ENV)
+  const router = routeCreateR([
     {
       path: "/",
       handle: {buttonText: "Sign Up", navigateTo: paths.SIGN_UP},
