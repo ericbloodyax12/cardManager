@@ -5,6 +5,7 @@ import {RouterWrapper} from "@/routing/routerWrapper";
 import {StoreProvider} from "@/contexts/storeContext/storeContext";
 
 export function App() {
+    console.log(1)
   return (
       <StoreProvider>
           <RouterWrapper/>
