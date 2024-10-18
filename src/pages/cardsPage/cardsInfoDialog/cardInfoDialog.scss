@@ -1,0 +1,46 @@
+.div-root-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center
+}
+
+.button-icon {
+
+
+}
+
+.button-icon::after {
+  pointer-events: none;
+  content: attr(data-hover);
+
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 5px 10px;
+
+  color: var(--color-light-100);
+  white-space: nowrap;
+
+  opacity: 0;
+  background-color: var(--color-dark-300);
+  border-radius: 3px;
+
+  transition: opacity 0.3s;
+
+}
+
+.button-icon:hover::after {
+  opacity: 1;
+}
+
+.div-icon {
+  display: flex;
+  justify-content: center
+}
+
+.div-ButtonIconsWrapper {
+  display: flex;
+
+}
