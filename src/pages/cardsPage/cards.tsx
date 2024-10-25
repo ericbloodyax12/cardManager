@@ -5,7 +5,6 @@ import {Button} from "@/components/ui/button";
 import {observer} from "mobx-react-lite";
 import {useStores} from "@/contexts/storeContext/storeContext";
 import {DataTableComponent} from "@/components/ui/dataTable/dataTable";
-import {Paginator} from "primereact/paginator";
 import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
 import {AddNewCard} from "@/pages/cardsPage/addNewCard/addNewCard";
 import {StorageHelper, StorageTypeNames} from "@/helpers/storage-helper";
@@ -16,6 +15,7 @@ import {paths} from "@/routing/routesList/Routes";
 import {DataTableRowClickEvent} from "primereact/datatable";
 import {CardModelView} from "@/models-view/cards-view";
 import {CardInfoDialog} from "@/pages/cardsPage/cardsInfoDialog/cardInfoDialog";
+import {PaginatorComponent} from "@/components/ui/paginator/paginator";
 
 
 type TCardsProps = {
@@ -59,9 +59,9 @@ export const Cards: React.FC<TCardsProps> = observer(({selectedDeck}) => {
     };
 
     const onPageChange = (e: any) => {
-        const curretntPage = e.page + 1 // PrimeReact paginator начинает с 0, поэтому прибавляем 1
-        if (pagination.currentPage !== curretntPage) {
-            cardsStore.setPage(curretntPage);
+        const currentPage = e.page + 1 // PrimeReact paginator начинает с 0, поэтому прибавляем 1
+        if (pagination.currentPage !== currentPage) {
+            cardsStore.setPage(currentPage);
         } else if (pagination.itemsPerPage !== e.rows) {
             cardsStore.setItemsPerPage(e.rows);
         }
@@ -94,15 +94,13 @@ export const Cards: React.FC<TCardsProps> = observer(({selectedDeck}) => {
                                     }}
                                     onRowDoubleClick={onRowDoubleClick}
                 />
-                <Paginator
+                <PaginatorComponent
                     first={(pagination.currentPage - 1) * pagination.itemsPerPage}
-                    rows={pagination.itemsPerPage}
-                    totalRecords={pagination.totalItems}
-                    onPageChange={onPageChange}
-                    rowsPerPageOptions={[5, 10, 25, 50]}
-                    className="paginator"
+                                    rows={pagination.itemsPerPage}
+                                    totalRecords={pagination.totalItems}
+                                    onPageChange={onPageChange}
+                                    rowsPerPageOptions={[5, 10, 25, 50]}
                 />
-
             </div>
         );
     }

@@ -1,7 +1,6 @@
 import  {useEffect} from "react"
 import {useNavigate} from "react-router-dom";
 import {observer} from "mobx-react-lite";
-import {Paginator} from "primereact/paginator";
 
 import {Button} from "@/components/ui/button";
 import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
@@ -14,6 +13,7 @@ import {DeckInfoDialog} from "@/components/ui/dataTable/deckInfoDialog/deckInfoD
 import {paths} from "@/routing/routesList/Routes";
 
 import  './decks.scss'
+import {PaginatorComponent} from "@/components/ui/paginator/paginator";
 
 export const Decks = observer(() => {
     const { decksStore, authStore} = useStores()!
@@ -48,9 +48,9 @@ export const Decks = observer(() => {
     };
 
     const onPageChange = (e: any) => {
-        const curretntPage = e.page + 1 // PrimeReact paginator начинает с 0, поэтому прибавляем 1
-        if (pagination.currentPage !== curretntPage) {
-            decksStore.setPage(curretntPage);
+        const currentPage = e.page + 1 // PrimeReact paginator начинает с 0, поэтому прибавляем 1
+        if (pagination.currentPage !== currentPage) {
+            decksStore.setPage(currentPage);
         } else if (pagination.itemsPerPage !== e.rows) {
             decksStore.setItemsPerPage(e.rows);
         }
@@ -89,13 +89,13 @@ export const Decks = observer(() => {
                                     onRowDoubleClick={onRowDoubleClick}
                 />
             </div>
-            <Paginator
+            <PaginatorComponent
                 first={(pagination.currentPage - 1) * pagination.itemsPerPage}
                 rows={pagination.itemsPerPage}
                 totalRecords={pagination.totalItems}
                 onPageChange={onPageChange}
                 rowsPerPageOptions={[5, 10, 25, 50]}
-                className={"paginator"}
+
             />
         </div>
 

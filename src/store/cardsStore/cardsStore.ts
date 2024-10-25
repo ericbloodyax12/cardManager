@@ -110,7 +110,7 @@ export class CardsStore {
 
     setItemsPerPage(itemsPerPage: number) {
         this.pagination.itemsPerPage = itemsPerPage;
-        // this.getDecks(this.pagination.currentPage, itemsPerPage);
+
     }
 
 }
