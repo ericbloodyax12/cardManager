@@ -11,7 +11,7 @@ export const CheckEmailForm = () => {
   const location = useLocation();
   const email = location.state?.email || 'example@mail.com'
   return (
-      <Card className="cardContainer">
+      <Card className="cardContainerCheckEmail">
         <Typography variant={"h1"} className="header">Check Email?</Typography>
           <img src='/src/components/assets/icons/svgIcon/checkEmail.svg'/>
           <div className="bodyContainer">

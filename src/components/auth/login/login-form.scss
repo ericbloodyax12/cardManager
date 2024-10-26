@@ -9,6 +9,16 @@
 
 }
 
+.textFieldLogin {
+  width: 350px;
+}
+
+.div-inputContainer-Login {
+  display: flex;
+  flex-direction: column;
+  gap:20px;
+  width: 100%
+}
 
 .formContainer {
   display: flex;
@@ -45,7 +55,9 @@
 
 .CheckboxComponentContainerLogin{
   display: flex;
-  
+  align-items: center;
+  justify-content: flex-start; /* Выравнивание влево */
+  width: 100%;
 }
 
 .signUpContainer {

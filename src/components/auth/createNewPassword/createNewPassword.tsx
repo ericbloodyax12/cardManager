@@ -61,7 +61,7 @@ export const CreateNewPassword = () => {
 
   return (
 
-      <Card className="cardContainer">
+      <Card className="cardContainerCreateNewPassword">
           <Typography variant={"h1"}>Create New Password</Typography>
           <form className="formContainer" onSubmit={handleSubmit(onSubmit)}>
               <TextField

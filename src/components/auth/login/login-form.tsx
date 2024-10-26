@@ -39,29 +39,31 @@ export const LoginForm = () => {
         <Card className="cardContainerLogin">
             <Typography variant={"h1"}>Sign In</Typography>
             <form className="formContainer" onSubmit={onSubmit}>
-                <TextField
-                    className="textField"
-                    label={'email'}
-                    autoComplete="email"
-                    onChange={(e) => {
-                        setFormState({
-                            ...formState,
-                            email: e.target.value
-                        })
-                    }}
-                />
-                <TextField
-                    className="textField"
-                    label={'password'}
-                    variant={'password'}
-                    autoComplete="new-password"
-                    onChange={(e) => {
-                        setFormState({
-                            ...formState,
-                            password: e.target.value
-                        })
-                    }}
-                />
+                <div className={"div-inputContainer-Login"}>
+                    <TextField
+                        className="textFieldLogin"
+                        label={'email'}
+                        autoComplete="email"
+                        onChange={(e) => {
+                            setFormState({
+                                ...formState,
+                                email: e.target.value
+                            })
+                        }}
+                    />
+                    <TextField
+                        className="textFieldLogin"
+                        label={'password'}
+                        variant={'password'}
+                        autoComplete="new-password"
+                        onChange={(e) => {
+                            setFormState({
+                                ...formState,
+                                password: e.target.value
+                            })
+                        }}
+                    />
+                </div>
                 <div className="CheckboxComponentContainerLogin">
                     <CheckboxComponent checked={true} withLabel={true} label={"Remember Me"} onCheckedChange={(e) => {
                         setFormState({
