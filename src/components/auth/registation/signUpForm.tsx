@@ -48,7 +48,7 @@ export const SignUpForm = () => {
     return (
         <Card className="cardContainer">
             <Typography variant={"h1"}>Sign Up</Typography>
-            <form className="formContainer" onSubmit={handleSubmit(onSubmit)} id={"signUpForm"} >
+            <form className="formContainerSignUpForm" onSubmit={handleSubmit(onSubmit)} id={"signUpForm"} >
                 <TextField
                     className="textField"
                     {...register('email')}
@@ -77,7 +77,7 @@ export const SignUpForm = () => {
                         navigate('/login')
                     }}>Already have an account?</Typography>
                 </div>
-                <div className="signInContainer">
+                <div className="signUp-button-Container">
                     <Typography as={"a"} variant={'link1'} className="signIn" onClick={() => {
                     navigate('/login')
                 }}>Sign In</Typography></div>

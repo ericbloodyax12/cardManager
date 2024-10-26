@@ -63,7 +63,7 @@ export const CreateNewPassword = () => {
 
       <Card className="cardContainerCreateNewPassword">
           <Typography variant={"h1"}>Create New Password</Typography>
-          <form className="formContainer" onSubmit={handleSubmit(onSubmit)}>
+          <form className="formContainerRecoverPassword" onSubmit={handleSubmit(onSubmit)}>
               <TextField
                   className="textField"
                   {...register('password')}

@@ -7,11 +7,11 @@
   justify-content: space-between;
 
   width: 100%; // Adjust based on your design
-  height: 60px; // Adjust based on your design
-  padding: 0 80px;
+  height: 56px; // Adjust based on your design
+  padding: 0 160px;
 
   background-color:  var(--color-dark-700) ; // Assuming a dark background
-  box-shadow: 0 4px 4px rgb(0 0 0 / 10%);
+  box-shadow: 0 20px 20px var(--color-dark-500);
 }
 
 .AppHeader_divWrapper {

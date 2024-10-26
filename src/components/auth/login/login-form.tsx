@@ -38,7 +38,7 @@ export const LoginForm = () => {
 
         <Card className="cardContainerLogin">
             <Typography variant={"h1"}>Sign In</Typography>
-            <form className="formContainer" onSubmit={onSubmit}>
+            <form className="formContainerLoginForm" onSubmit={onSubmit}>
                 <div className={"div-inputContainer-Login"}>
                     <TextField
                         className="textFieldLogin"
@@ -75,15 +75,15 @@ export const LoginForm = () => {
 
 
 
-                <div className="forgotPasswordContainer">
+                <div className="forgotPasswordContainer-Login">
                     <Typography variant={'body2'} className="forgotPassword" onClick={() => {
                         navigate('/forgot_password')
                     }}>Forgot Password?</Typography>
                 </div>
-                <Button className="submit" type={'submit'}>
+                <Button className="submit" type={'submit'} fullWidth={true}>
                     Submit
                 </Button>
-                <div className="signUpContainer">
+                <div className="signIn-buttonContainer">
                     <Typography as={"a"} variant={'link1'} className="signUp" onClick={() => {
                         navigate('/sign_up')
                     }}>

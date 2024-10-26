@@ -9,8 +9,19 @@
   height: 348px;
 }
 
-.divContainer {
+.divContainerEditProfile {
   display: flex;
   gap: 5px;
   align-items: baseline
+}
+
+.editProfile-button {
+  background-color: transparent !important;
+}
+
+.editProfileButtonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
 }

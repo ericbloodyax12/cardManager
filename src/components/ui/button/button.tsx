@@ -3,7 +3,7 @@ import {ComponentPropsWithoutRef, ElementType} from 'react'
 import defaultIcon from '@/components/assets/icons/svgIcon/logout.svg'
 
 
-import s from './button.module.scss'
+import './button.scss'
 
 export type ButtonProps<T extends ElementType> = {
     /**
@@ -29,7 +29,7 @@ export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) 
     } = props
 
     return (
-        <Component className={`${s.button} ${s[variant]} ${fullWidth ? s.fullWidth : ''} ${className} ${s.signUpContainer}`} {...rest}>
+        <Component className={`button ${variant} ${fullWidth ? 'fullWidth' : ''} ${className || ''} signUpContainer`} {...rest}>
             {withIcon && <img alt={'logout icon'} src={icon ?? defaultIcon}/>}
             {children}
         </Component>

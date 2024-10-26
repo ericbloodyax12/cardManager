@@ -69,7 +69,7 @@ export const Cards: React.FC<TCardsProps> = observer(({selectedDeck}) => {
 
 
         return (
-            <div>
+            <div className={"root-div-cardsContainer"}>
                 <div className={"backDiv-Container"}>
                     <Button onClick={() => navigate(paths.DECKS)}>Back to Decks</Button>
                 </div>

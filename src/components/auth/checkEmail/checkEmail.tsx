@@ -12,7 +12,7 @@ export const CheckEmailForm = () => {
   const email = location.state?.email || 'example@mail.com'
   return (
       <Card className="cardContainerCheckEmail">
-        <Typography variant={"h1"} className="header">Check Email?</Typography>
+        <Typography variant={"h1"} className="CheckEmailHeader">Check Email?</Typography>
           <img src='/src/components/assets/icons/svgIcon/checkEmail.svg'/>
           <div className="bodyContainer">
             <Typography variant={"body2"} className="body">

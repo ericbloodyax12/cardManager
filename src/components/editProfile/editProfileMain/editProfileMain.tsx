@@ -18,22 +18,26 @@ export const EditProfileMain = ({name = "Eric", email = "as@gmail.com"}: EditPro
         <Card className="cardContainerEditProfile">
             <Typography variant={"h1"}>Personal Information</Typography>
             <Avatar size={86} initialImageUrl={image010}/>
-            <div className="divContainer">
+            <div className="divContainerEditProfile">
                 <Typography variant={"h2"}>{name}</Typography>
-                <button onClick={() => {
+                <button className={"editProfile-button"} onClick={() => {
                     // здесь навигейт видимо на старничку где будем имя менять
                 }}>
-                    <EditIcon/>
+                    <EditIcon />
                 </button>
             </div>
             <Typography variant={"body2"}>{email}</Typography>
-            <Button withIcon={true}
-                    variant={"secondary"}
-                    onClick={() => {
-                        authStore?.logOut()
-                    }}
-            >
-                <Typography variant={"subtitle2"}>Logout</Typography></Button>
+                <Button withIcon={true}
+                        variant={"secondary"}
+                        onClick={() => {
+                            authStore?.logOut()
+                        }}
+                        className={"editProfileButtonContainer"}
+                >
+                    <Typography variant={"subtitle2"}>
+                        Logout
+                    </Typography>
+                </Button>
         </Card>
     )
 }

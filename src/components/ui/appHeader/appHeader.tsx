@@ -1,13 +1,12 @@
 import {Button} from "@/components/ui/button";
-import s from './appHeader.module.scss';
 import {Typography} from "@/components/ui/typography";
 import {useLocation, useMatches, useNavigate} from "react-router-dom";
 import {Avatar} from "@/components/assets/Avatar/avatar";
 import {TButtonInfo} from "@/routing/routesList/Routes";
 import {SwitchComponent} from "@/components/ui/switch/switch";
-
-
 import {useStores} from "@/contexts/storeContext/storeContext";
+
+import './appHeader.scss';
 
 
 type HeaderWithButtonProps = {
@@ -31,14 +30,14 @@ export const AppHeader = ({title, isAuth, avatarUrl = ""}: HeaderWithButtonProps
 
 
   return (
-      <header className={s.header}>
+      <header className={"header"}>
         <Typography variant={"large"}>{title}</Typography>
-        <div className={s.AppHeader_divWrapper}>
+        <div className={"AppHeader_divWrapper"}>
           <SwitchComponent  />
           {
             (isAuth)
-                ? <div className={s.AvatarContainer}>
-                  <Typography className={s.avatarWrapper} variant={"subtitle1"}>as
+                ? <div className={"AvatarContainer"}>
+                  <Typography className={"avatarWrapper"} variant={"subtitle1"}>as
 
                   </Typography>
                     <Avatar  initialImageUrl={avatarUrl} alt="User Avatar"/>
@@ -46,7 +45,7 @@ export const AppHeader = ({title, isAuth, avatarUrl = ""}: HeaderWithButtonProps
                 </div>
                 : <Button
                     variant={"secondary"}
-                    className={s.button}
+                    className={"button"}
                     onClick={(() => navigate(buttonInfo.navigateTo))}
                 >
                   {buttonInfo?.buttonText}

@@ -53,7 +53,7 @@ export const ForgotPasswordForm = () => {
     return (
         <Card className="cardContainerForgotPassword">
             <Typography variant={"h1"} className="s.header">Forgot your password?</Typography>
-            <form className="formContainer" onSubmit={handleSubmit(onSubmit)}>
+            <form className="formContainerForgotPassword" onSubmit={handleSubmit(onSubmit)}>
                 <TextField
                     className="textField"
                     {...register('email')}

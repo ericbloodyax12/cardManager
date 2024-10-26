@@ -1,12 +1,19 @@
+.root-div-cardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding-left: 20px;
+}
+
 .header-container {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+
 }
 
 .backDiv-Container {
   display: flex;
-  padding: 10px;
+
 }
 
 
