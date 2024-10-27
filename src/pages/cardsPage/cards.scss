@@ -1,28 +1,24 @@
+.root-div-cardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding-left: 20px;
+}
+
 .header-container {
   display: flex;
   justify-content: space-between;
-  padding: 50px;
+
 }
 
-.paginator {
+.backDiv-Container {
   display: flex;
-  gap:20px;
-  align-items: center;
-  justify-content: center;
-
-  margin: 2em ;
-
-  font-size: 1.4em;
 
 }
 
-.paginator button  {
-  color: white!important;
-  background-color: transparent !important;
 
-}
-
-.paginator span  {
-  display: flex;
-  gap: 20px
-}
+//.paginator span button:active  {
+//  color: var(--color-accent-300); /* Цвет текста для выбранной страницы */
+//  background-color: var(--color-accent-300); /* Цвет текста для выбранной страницы */
+//  border-radius: 50%; /* Округлить выбранный элемент для наглядности */
+//}

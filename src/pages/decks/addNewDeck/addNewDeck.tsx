@@ -1,11 +1,11 @@
 import React, {FormEvent, useState} from 'react';
 import {TextField} from "@/components/ui/textField";
 import {Button} from "@/components/ui/button";
-import "./addNewDeck.scss"
-import s from "@/components/auth/login/login-form.module.scss";
 import {useStores} from "@/contexts/storeContext/storeContext";
 import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
 
+import "./addNewDeck.scss"
+import  "@/components/auth/login/login-form.scss";
 
 type TOnRowDoubleClickDataContetProps = {
 
@@ -23,6 +23,7 @@ export const AddNewDeck: React.FC<TOnRowDoubleClickDataContetProps> = ({}) => {
             const {name} = formState!
             console.log("its name:", name)
             await decksStore.createDeck(name)
+            await decksStore.getDecks()
             dialogStore.closeDialog()
 
         } catch (e) {
@@ -34,10 +35,10 @@ export const AddNewDeck: React.FC<TOnRowDoubleClickDataContetProps> = ({}) => {
     return (
         <div className="addNewDeck-DivContainer">
 
-            <form className={s.formContainer} onSubmit={onSubmit}>
+            <form className="formContainer" onSubmit={onSubmit}>
                 <TextField id="addNewDeck"
                            className={"addNewDeck-input"}
-                           label="Eter name"
+                           label="Enter name"
                            onChange={(e) => { // todo когда непосредственно вводишь текст его невидно
                                setFormState({
                                    ...formState,

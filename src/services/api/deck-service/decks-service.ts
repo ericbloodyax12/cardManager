@@ -2,6 +2,7 @@
 import {ApiService} from "@/services/api-service";
 
 import {DecksResponse, IDeckBaseModel} from "@/dto/decks/decks-dto";
+import {appendFormData} from "@/services/servicesHelpers/appendFormData";
 
 export class DecksService extends ApiService {
 
@@ -35,12 +36,7 @@ export class DecksService extends ApiService {
       Authorization: bearerToken ? `Bearer ${bearerToken}` : '',
     };
     console.log(formData, "test")
-    // const response = await super.post<IDeckBaseModel>({ //todo из за  const stringifiedBody = JSON.stringify(body) cервер неправиправильно обрабатывает контент type  тип multi form deckInfoDialog поставить флаг можно в сервайсе на этот кейс
 
-    //     path:path,
-    //     body: formData,
-    //     headers: headers
-    // } )
 
     const response = await fetch(`https://api.flashcards.andrii.es${this.decksPath}`,
       {
@@ -59,24 +55,8 @@ export class DecksService extends ApiService {
       Authorization: payload.bearerToken ? `Bearer ${payload.bearerToken}` : '',
     }
     const formData = new FormData();
-    const appendFormData = (key: string, value: string | File | undefined ) => {
 
-      if (value !== undefined && value !== null) {
-        formData.append(key, value);
-      }
-    };
-
-    appendFormData('name', payload.name);
-    // appendFormData('isPrivate', isPrivate !== undefined ? String(isPrivate) : null);
-    // appendFormData('cover', cover);
-
-    // const response = await fetch(`https://api.flashcards.andrii.es${updatePath}`,
-    //     {
-    //         headers: headers,
-    //         method: "PATCH",
-    //         body:formData,
-    //         credentials: "include",
-    //     });
+    appendFormData(formData,'name', payload.name);
 
     const res = await super.patch<IDeckBaseModel>({
       path: updatePath,

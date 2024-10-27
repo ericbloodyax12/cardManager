@@ -2,24 +2,26 @@
 import {Card} from "@/components/ui/card";
 import {Typography} from "@/components/ui/typography";
 import {useLocation, useNavigate} from "react-router-dom";
-import s from '@/components/auth/checkEmail/check-email.module.scss'
 import {Button} from "@/components/ui/button";
+
+import '@/components/auth/checkEmail/check-email.scss'
+
 export const CheckEmailForm = () => {
   const navigate = useNavigate()
   const location = useLocation();
   const email = location.state?.email || 'example@mail.com'
   return (
-      <Card className={s.cardContainer}>
-        <Typography variant={"h1"} className={s.header}>Check Email?</Typography>
+      <Card className="cardContainerCheckEmail">
+        <Typography variant={"h1"} className="CheckEmailHeader">Check Email?</Typography>
           <img src='/src/components/assets/icons/svgIcon/checkEmail.svg'/>
-          <div className={s.bodyContainer}>
-            <Typography variant={"body2"} className={s.body}>
-              {`We’ve sent an Email with instructions to`} <br className={s.bodyBr}/>
+          <div className="bodyContainer">
+            <Typography variant={"body2"} className="body">
+              {`We’ve sent an Email with instructions to`} <br className="bodyBr"/>
               {email}
             </Typography>
           </div>
-          <div className={s.rememberPasswordContainer}>
-            <Button className={s.checkButton} onClick={() => {
+          <div className="rememberPasswordContainer">
+            <Button className="checkButton" onClick={() => {
               navigate('/login')
             }}>Back to Sign In</Button>
           </div>

@@ -1,5 +1,5 @@
 // import React, {FC} from 'react';
-import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, createHashRouter, Navigate, RouterProvider} from "react-router-dom";
 import {MainLayoutWrapper} from "@/pages/mainLayoutWrapper/mainLayoutWrapper";
 
 import {PrivateRouteWrapper} from "@/routing/privateRouteWrapper";
@@ -9,20 +9,24 @@ import {SignIn} from "@/pages/publicPages/signIn/signIn";
 import {ThemeProvider} from "@/contexts/themeContext/themeProvider";
 import {observer} from "mobx-react-lite";
 import {useStores} from "@/contexts/storeContext/storeContext";
+import {DialogStoreProvider} from "@/contexts/dialogProvider/DialogStoreProvider";
 
 
 
 export const RouterWrapper = observer(() => {
   const { authStore } = useStores()!
   const isAuth = authStore?.IsAuth
-
-  const router = createBrowserRouter([
+    const routeCreateR = process.env.NODE_ENV === "development" ? createBrowserRouter  : createHashRouter
+    console.log("proccess", process.env.NODE_ENV)
+  const router = routeCreateR([
     {
       path: "/",
       handle: {buttonText: "Sign Up", navigateTo: paths.SIGN_UP},
       element:
           <ThemeProvider>
-            <MainLayoutWrapper isAuth={isAuth ?? false}/>
+              <DialogStoreProvider>
+                  <MainLayoutWrapper isAuth={isAuth ?? false}/>
+              </DialogStoreProvider>
           </ThemeProvider>,
       children: [
         ...routesConfig.map(route =>
@@ -56,6 +60,7 @@ export const RouterWrapper = observer(() => {
       path: "*",
       element: isAuth ? <Navigate to="/"/> : <Navigate to={paths.SIGN_IN}/>,
     },
+
   ]);
   return (
       <RouterProvider router={router}/>

@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ElementType } from 'react'
 
-import s from '@/components/ui/typography/typography.module.scss'
+import '@/components/ui/typography/typography.scss'
 
 export type TypographyProps<T extends ElementType> = {
   /**
@@ -38,5 +38,5 @@ export const Typography = <T extends ElementType = 'a' | 'label' | 'p'>(
     ...rest
   } = props
 
-  return <Component className={`${s[variant]} ${s.typography} ${className}`} {...rest} />
+  return <Component className={`${variant} typography ${className}`} {...rest} />
 }

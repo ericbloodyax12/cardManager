@@ -1,9 +1,10 @@
-import s from './forgot-password.module.scss'
 import {ForgotPasswordForm} from "@/components/auth/forgotPassword/forgotPasswordForm";
+
+import './forgot-password.scss'
 
 export const ForgotPassword = () => {
     return (
-        <div className={s.forgotPasswordContainer}>
+        <div className="forgotPasswordContainer">
 
             <ForgotPasswordForm />
         </div>

@@ -1,10 +1,11 @@
 
 import {SignUpForm} from "@/components/auth/registation/signUpForm";
 
-import s from './sign-up.module.scss'
+import './sign-up.scss'
+
 export const SignUp = () => {
     return (
-        <div className={s.signUpContainer}>
+        <div className="signUpFormContainer">
           <SignUpForm />
         </div>
     );

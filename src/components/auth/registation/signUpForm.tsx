@@ -1,19 +1,16 @@
 import {Typography} from "@/components/ui/typography";
 import {Card} from "@/components/ui/card";
-
-import s from './sign-up-form.module.scss'
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {signUpSchema} from "@/components/auth/registation/helpers/signUpSchema";
 import {z} from "zod";
-
 import {TextField} from "@/components/ui/textField";
 import {Button} from "@/components/ui/button";
 import {useNavigate} from "react-router-dom";
-
 import {toast} from "react-toastify";
 import {useStores} from "@/contexts/storeContext/storeContext";
 
+import  './sign-up-form.scss'
 
 export type FormValuesType = z.infer<typeof signUpSchema>
 export const SignUpForm = () => {
@@ -49,39 +46,39 @@ export const SignUpForm = () => {
     };
 
     return (
-        <Card className={s.cardContainer}>
+        <Card className="cardContainer">
             <Typography variant={"h1"}>Sign Up</Typography>
-            <form className={s.formContainer} onSubmit={handleSubmit(onSubmit)} id={"signUpForm"} >
+            <form className="formContainerSignUpForm" onSubmit={handleSubmit(onSubmit)} id={"signUpForm"} >
                 <TextField
-                    className={s.textField}
+                    className="textField"
                     {...register('email')}
                     errorMessage={errors.email?.message}
                     label={'Email'}
                 />
                 <TextField
-                    className={s.textField}
+                    className="textField"
                     {...register('password')}
                     errorMessage={errors.confirmPassword?.message}
                     label={'Password'}
                     variant={'password'}
                 />
                 <TextField
-                className={s.textField}
+                className="textField"
                 {...register('confirmPassword')}
                 errorMessage={errors.confirmPassword?.message}
                 label={'Confirm password'}
                 variant={'password'}
             />
-                <Button className={s.submit} type={'submit'} fullWidth={true}>
+                <Button className="submit" type={'submit'} fullWidth={true}>
                     Sign Up
                 </Button>
-                <div className={s.haveAccountContainer}>
-                    <Typography variant={'body2'} className={s.haveAccount} onClick={() => {
+                <div className="haveAccountContainer">
+                    <Typography variant={'body2'} className="haveAccount" onClick={() => {
                         navigate('/login')
                     }}>Already have an account?</Typography>
                 </div>
-                <div className={s.signInContainer}>
-                    <Typography as={"a"} variant={'link1'} className={s.signIn} onClick={() => {
+                <div className="signUp-button-Container">
+                    <Typography as={"a"} variant={'link1'} className="signIn" onClick={() => {
                     navigate('/login')
                 }}>Sign In</Typography></div>
             </form>

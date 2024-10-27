@@ -1,0 +1,27 @@
+.cardContainerEditProfile {
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  place-content: center center;
+  align-items: center;
+
+  width: 420px;
+  height: 348px;
+}
+
+.divContainerEditProfile {
+  display: flex;
+  gap: 5px;
+  align-items: baseline
+}
+
+.editProfile-button {
+  background-color: transparent !important;
+}
+
+.editProfileButtonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}

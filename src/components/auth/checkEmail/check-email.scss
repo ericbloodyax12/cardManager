@@ -1,4 +1,4 @@
-.cardContainer {
+.cardContainerCheckEmail {
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -10,19 +10,9 @@
 
 }
 
-.formContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  align-items: center;
 
-  width: 348px;
-  height: 398px;
-    margin-top: 80px;
 
-}
-
-.header{
+.CheckEmailHeader{
   margin-bottom: 0;
   padding-bottom: 0;
 }

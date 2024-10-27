@@ -3,14 +3,17 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://ericbloodyax12.github.io/cardManager",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "vite --mode development",
+    "build": "vite build --mode production",
     "preview": "vite preview",
     "format": "prettier --write src",
     "lint": "eslint . --ext .jsx,.js,.tsx,.ts  --no-error-on-unmatched-pattern --fix && stylelint --fix src/{,*/}*.{scss,css} --allow-empty-input",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "predeploy": "pnpm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@fontsource/roboto": "^5.0.8",
@@ -25,6 +28,7 @@
     "@reduxjs/toolkit": "^2.1.0",
     "@types/qs": "^6.9.15",
     "clsx": "^2.0.0",
+    "gh-pages": "^6.2.0",
     "http-status-codes": "^2.3.0",
     "mobx": "^6.13.1",
     "mobx-react-lite": "^4.0.7",

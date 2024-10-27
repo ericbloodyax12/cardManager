@@ -5,7 +5,7 @@ import {Typography} from '@/components/ui/typography'
 import * as Checkbox from '@radix-ui/react-checkbox'
 import {CheckboxProps} from '@radix-ui/react-checkbox'
 
-import s from './checkbox.module.scss'
+import './checkbox.scss'
 
 type CheckboxComponentProps = {
   label?: string
@@ -27,10 +27,10 @@ export const CheckboxComponent = (props: CheckboxComponentProps) => {
   // }, [checked])
 
   return (
-      <div className={s.checkboxContainer}>
+      <div className={"checkboxContainer"}>
         <Checkbox.Root
             checked={checkBoxValue}
-            className={`${s.CheckboxRoot} ${className}`}
+            className={`${"CheckboxRoot"} ${className}`}
             id={'c1'}
             onCheckedChange={checked => {
               // const value = !!checked
@@ -46,7 +46,7 @@ export const CheckboxComponent = (props: CheckboxComponentProps) => {
           {checkBoxValue ? <CheckIcon/> : <CheckIcon1/>}
         </Checkbox.Root>
         {withLabel && (
-            <label className={s.Label} htmlFor={'c1'}>
+            <label className={"Label"} htmlFor={'c1'}>
               <Typography as={'label'} variant={'body2'}>
                 {label}
               </Typography>

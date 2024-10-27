@@ -7,7 +7,7 @@ import {useStores} from "@/contexts/storeContext/storeContext";
 import {useDialogs} from "@/contexts/dialogProvider/DialogStoreContext";
 
 import "./updateInfoDialog.scss"
-import s from "@/components/auth/login/login-form.module.scss";
+import  "@/components/auth/login/login-form.scss";
 
 type TUpdateInfoDialogProps = {
     selectedDeck: DeckModelView
@@ -24,6 +24,7 @@ export const UpdateInfoDialog: React.FC<TUpdateInfoDialogProps> = ({selectedDeck
         try {
             const {name} = formState!
             await decksStore.updateDeck({deckId: selectedDeck.id, name: name, updatingDeckInfo:selectedDeck})
+            await decksStore.getDecks()
             dialogStore.closeDialog()
         } catch (e) {
             throw new Error("ошибка логинизации")
@@ -34,7 +35,7 @@ export const UpdateInfoDialog: React.FC<TUpdateInfoDialogProps> = ({selectedDeck
     return (
         <div className={"div-container"}>
             <p><strong>Name:</strong> {selectedDeck?.name}</p>
-            <form className={s.formContainer} onSubmit={onSubmit}>
+            <form className="formContainer" onSubmit={onSubmit}>
                 <TextField
                     className={"textField"}
                     label={'name'}
