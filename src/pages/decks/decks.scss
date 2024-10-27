@@ -1,22 +1,29 @@
-.divMainContainer {
-  padding-right: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.divMainContainer__dataTable {
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.table-container {
   height: 100%;
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: column;
+
+  .table-container__dataTable {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    flex: 1;
+    .dataTable__tools-container {
+      display: flex;
+      justify-content: end;
+    }
+  }
+
+  .table-container__paginator {
+    height: 60px;
+  }
+
 }
 
-.divMainContainer__dataTable__div{
-  display: flex;
-  flex-direction: row-reverse;
-  margin-bottom: 20px;
-}
+
 
 
 

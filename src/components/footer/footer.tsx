@@ -8,9 +8,9 @@ type TFooterProps = {
 
 export const Footer: React.FC<TFooterProps> = ({}) => {
     return (
-        <div>
+        <footer className={'app-footer-container'}>
             <p>© 2024 Barsegyan. Все права защищены.</p>
-        </div>
+        </footer>
     );
 }
 
