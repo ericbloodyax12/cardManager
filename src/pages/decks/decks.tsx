@@ -95,7 +95,6 @@ export const Decks = observer(() => {
                 totalRecords={pagination.totalItems}
                 onPageChange={onPageChange}
                 rowsPerPageOptions={[5, 10, 25, 50]}
-
             />
         </div>
 

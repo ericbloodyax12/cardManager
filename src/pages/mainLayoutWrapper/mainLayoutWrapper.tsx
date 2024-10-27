@@ -20,14 +20,15 @@ const mainLayoutContainerCN = [
   return (
       <div className={mainLayoutContainerCN}>
         <div className={"main-layout-container__header"}>
-          <AppHeader title={"Barsegyan&Co"} isAuth={isAuth} />
+          <AppHeader title={"Barsegyan&Co"} isAuth={isAuth}/>
         </div>
         <div className={"main-layout-container__content"}>
-          <Outlet />
+          <Outlet/>
         </div>
-          <div className={"main-layout-container__footer"}>
-              <Footer />
-          </div>
+        <div className={"main-layout-container__footer"}>
+          <Footer/>
+        </div>
+
       </div>
   );
 }
