@@ -4,6 +4,7 @@ import {AppHeader} from "@/components/ui/appHeader";
 import {useTheme} from "@/contexts/themeContext";
 
 import  "./mainLayoutWrapper.scss"
+import {Footer} from "@/components/footer/footer";
 
 type TMainLayoutWrapperProps = PropsWithChildren<{
 isAuth: boolean
@@ -24,6 +25,9 @@ const mainLayoutContainerCN = [
         <div className={"main-layout-container__content"}>
           <Outlet />
         </div>
+          <div className={"main-layout-container__footer"}>
+              <Footer />
+          </div>
       </div>
   );
 }
