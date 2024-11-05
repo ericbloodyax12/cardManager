@@ -28,7 +28,6 @@ const mainLayoutContainerCN = [
         <div className={"main-layout-container__footer"}>
           <Footer/>
         </div>
-
       </div>
   );
 }

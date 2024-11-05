@@ -17,7 +17,7 @@ export const RouterWrapper = observer(() => {
   const { authStore } = useStores()!
   const isAuth = authStore?.IsAuth
     const routeCreateR = process.env.NODE_ENV === "development" ? createBrowserRouter  : createHashRouter
-    console.log("proccess", process.env.NODE_ENV)
+
   const router = routeCreateR([
     {
       path: "/",

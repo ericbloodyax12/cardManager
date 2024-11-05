@@ -2,6 +2,7 @@
 @import "@/styles/themes/darkMode";
 
 .main-layout-container {
+  overflow: auto;
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 60px 1fr 60px;
@@ -14,13 +15,14 @@
   background-color: var(--color-dark-700);
 
   .main-layout-container__header {
-
+    width: 100%;
   }
 
   .main-layout-container__content {
-
+    margin-top: 60px;
 
   }
+
   .main-layout-container__footer {
 
   }
