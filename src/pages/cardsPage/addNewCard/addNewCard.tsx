@@ -39,7 +39,7 @@ export const AddNewCard: React.FC<TAddNewCardProps> = ({selectedDeck}) => {
 
     }
     return (
-        <div>
+        <div className={"addNewCard-divRootContainer"}>
             <p><strong>Name:</strong> {selectedDeck?.name}</p>
             <form className="formContainer" onSubmit={onSubmit}>
                 <TextField
@@ -62,7 +62,7 @@ export const AddNewCard: React.FC<TAddNewCardProps> = ({selectedDeck}) => {
                         })
                     }}
                 />
-                <div className="div_submitButton">
+                <div className={"addNewCardButtonContainer"}>
                     <Button type={'submit'} className="submitButton">
                         Submit
                     </Button>

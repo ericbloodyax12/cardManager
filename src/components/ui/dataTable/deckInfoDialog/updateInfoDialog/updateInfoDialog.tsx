@@ -33,12 +33,12 @@ export const UpdateInfoDialog: React.FC<TUpdateInfoDialogProps> = ({selectedDeck
     }
 
     return (
-        <div className={"div-container"}>
+        <div className={"div-container_deckUpdate"}>
             <p><strong>Name:</strong> {selectedDeck?.name}</p>
-            <form className="formContainer" onSubmit={onSubmit}>
+            <form className="formContainer_deckUpdate" onSubmit={onSubmit}>
                 <TextField
                     className={"textField"}
-                    label={'name'}
+                    label={'Edit name:'}
                     onChange={(e) => {
                         setFormState({
                             ...formState,
