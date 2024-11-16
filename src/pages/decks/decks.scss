@@ -1,19 +1,23 @@
 .table-container {
-  height: 100%;
-  padding: 0px 10px;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  padding: 0 10px;
 
   .table-container__dataTable {
     overflow: auto;
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 10px;
+
     height: 100%;
-    flex: 1;
+
     .dataTable__tools-container {
       display: flex;
       justify-content: end;
+
+      //margin-bottom: 20px;
     }
   }
 

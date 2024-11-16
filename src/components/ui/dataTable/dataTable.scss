@@ -19,9 +19,16 @@ body div.darkMode {
     }
 
     .dataTableRowTest:hover {
-      background-color: var(--color-dark-100) ;
+      background-color: var(--color-dark-100);
+      transition: background-color 1.7s;
     }
   }
 }
 
 
+.p-datatable-thead > tr > th {
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: var(--color-dark-500);
+
+}

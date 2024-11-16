@@ -38,6 +38,7 @@ export const Decks = observer(() => {
 
   const onRowDoubleClick = (e: DataTableRowClickEvent) => {
     const deckDataInfo = e.data as DeckModelView;
+    console.log("onRowDoubleClick")
     dialogStore.openNewDialog({
       headerTitle: `Deck info of : ${deckDataInfo.name}`,
       isVisible: true,
@@ -85,6 +86,7 @@ export const Decks = observer(() => {
                               }
                             }
                             onRowDoubleClick={onRowDoubleClick}
+
         />
       </div>
 

@@ -40,6 +40,18 @@ export const DataTableComponent: React.FC<TDataTableComponentProps> = observer((
                  responsiveLayout="scroll"
                  selectionMode="single"
                  onRowDoubleClick={onRowDoubleClick}
+                 onRowClick={(e) => {
+                     const userAgent = navigator.userAgent;
+
+                     // Проверяем, мобильное это устройство или нет
+                     const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent);
+
+                     if (isMobile) {
+                         onRowDoubleClick && onRowDoubleClick(e)
+                     } else {
+                         console.log("Нажатие с компьютера");
+                     }
+                 }}
                  className="dataTable"
 
                  pt={{
