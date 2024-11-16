@@ -20,7 +20,7 @@ const mainLayoutContainerCN = [
   return (
       <div className={mainLayoutContainerCN}>
         <div className={"main-layout-container__header"}>
-          <AppHeader title={"Barsegyan&Co"} isAuth={isAuth}/>
+          <AppHeader title={"Card Manager"} isAuth={isAuth}/>
         </div>
         <div className={"main-layout-container__content"}>
           <Outlet/>
